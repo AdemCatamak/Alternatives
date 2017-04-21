@@ -2,12 +2,12 @@
 <package >
   <metadata>
     <id>AdemCatamak.Utilities</id>
-    <version>1.0.0.4</version>
+    <version>1.0.0.5</version>
     <title>AdemCatamak.Utilities</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
-    <licenseUrl><![CDATA[https://bitbucket.org/ademcatamak/ademcatamak.app/src/bfb947d14e01629855ca617559baba40091d74b2/LICENSE?at=master&fileviewer=file-view-default]]></licenseUrl>
-    <projectUrl>https://bitbucket.org/ademcatamak/ademcatamak.app/wiki/AdemCatamak.Utilities</projectUrl>
+    <licenseUrl><![CDATA[https://bitbucket.org/ademcatamak/ademcatamak.utilities/src/b9cf77e170d960d9bf86706f59a770b167ee1759/AdemCatamak.Utilities/LICENSE?at=master&fileviewer=file-view-default]]></licenseUrl>
+    <projectUrl>https://bitbucket.org/ademcatamak/ademcatamak.utilities/wiki/Home</projectUrl>
     <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Basic application requirements</description>
@@ -20,5 +20,6 @@
     </dependencies>
   </metadata>
   <files>
+    <file src="bin\Release\AdemCatamak.Utilities.dll" target="lib\net46"></file>
   </files>
 </package>
