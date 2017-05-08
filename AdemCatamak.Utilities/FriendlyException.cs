@@ -7,7 +7,7 @@ namespace AdemCatamak.Utilities
         public string FriendlyMessage { get; }
         public bool IsFatal { get; }
 
-        public FriendlyException(string friendlyMessage, bool isFatal = false)
+        public FriendlyException(string friendlyMessage, bool isFatal = false) : base (null)
         {
             FriendlyMessage = friendlyMessage;
             IsFatal = isFatal;
