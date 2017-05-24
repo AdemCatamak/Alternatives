@@ -935,6 +935,28 @@ namespace AdemCatamak.Utilities.UnitTest
         //NOTE : Parametresiz constructor sahibi olmayan sınıflarda kullanılamaz
 
         [TestMethod]
+        public void AdemCatamak_Utilities_UnitTest__ExtensionsTest__CreateInstance_InSameAssembly_Type()
+        {
+            object actual = Extensions.CreateInstance(typeof(IsValidTestClass));
+
+
+            Assert.IsNotNull(actual, "Actual is null");
+            Assert.IsNotNull(actual as IsValidTestClass,
+                             "Cast operation show that IsValidClass instance cannot be created");
+        }
+
+        [TestMethod]
+        public void AdemCatamak_Utilities_UnitTest__ExtensionsTest__CreateInstance_InDifferentAssembly_Type()
+        {
+            object actual = Extensions.CreateInstance(typeof(CryptographyEngine));
+
+
+            Assert.IsNotNull(actual, "Actual is null");
+            Assert.IsNotNull(actual as AdemCatamak.Utilities.CryptographyEngine,
+                             "Cast operation show that IsValidClass instance cannot be created");
+        }
+
+        [TestMethod]
         public void AdemCatamak_Utilities_UnitTest__ExtensionsTest__CreateInstance_InSameAssembly()
         {
             string fullName = typeof(IsValidTestClass).AssemblyQualifiedName;

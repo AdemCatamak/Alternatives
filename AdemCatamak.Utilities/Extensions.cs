@@ -217,6 +217,10 @@ namespace AdemCatamak.Utilities
             return table;
         }
 
+        public static object CreateInstance(Type type)
+        {
+            return Activator.CreateInstance(type);
+        }
 
         public static object CreateInstance(string strFullyQualifiedName)
         {
