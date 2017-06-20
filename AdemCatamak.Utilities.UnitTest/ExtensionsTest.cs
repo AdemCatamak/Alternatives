@@ -1079,5 +1079,36 @@ namespace AdemCatamak.Utilities.UnitTest
         }
 
         #endregion
+        
+        [TestMethod]
+        public void AdemCatamak_Utilities_UnitTest__ExtensionsTest__CheckIpInRange()()
+        {
+            bool result = Extensions.CheckInRange(IPAddress.Parse("0.0.0.0"), IPAddress.Parse("0.0.0.0"), IPAddress.Parse("0.0.0.0"));
+            Assert.IsTrue(result);
+
+            result = Extensions.CheckInRange(IPAddress.Parse("0.0.0.0"), IPAddress.Parse("125.0.0.0"), IPAddress.Parse("0.0.0.0"));
+            Assert.IsTrue(result);
+
+            result = Extensions.CheckInRange(IPAddress.Parse("0.0.0.0"), IPAddress.Parse("125.0.0.0"), IPAddress.Parse("125.0.0.0"));
+            Assert.IsTrue(result);
+
+            result = Extensions.CheckInRange(IPAddress.Parse("0.0.0.0"), IPAddress.Parse("125.0.0.0"), IPAddress.Parse("60.0.0.0"));
+            Assert.IsTrue(result);
+
+            result = Extensions.CheckInRange(IPAddress.Parse("0.0.0.0"), IPAddress.Parse("125.0.0.0"), IPAddress.Parse("0.0.0.1"));
+            Assert.IsTrue(result);
+
+            result = Extensions.CheckInRange(IPAddress.Parse("100.0.0.0"), IPAddress.Parse("125.0.0.0"), IPAddress.Parse("100.0.0.1"));
+            Assert.IsTrue(result);
+
+            result = Extensions.CheckInRange(IPAddress.Parse("100.0.0.0"), IPAddress.Parse("125.0.0.0"), IPAddress.Parse("0.0.0.0"));
+            Assert.IsFalse(result);
+
+            result = Extensions.CheckInRange(IPAddress.Parse("100.0.0.0"), IPAddress.Parse("125.0.0.0"), IPAddress.Parse("130.0.0.0"));
+            Assert.IsFalse(result);
+
+            result = Extensions.CheckInRange(IPAddress.Parse("100.0.0.0"), IPAddress.Parse("125.0.0.0"), IPAddress.Parse("125.0.0.1"));
+            Assert.IsFalse(result);
+        }
     }
 }
