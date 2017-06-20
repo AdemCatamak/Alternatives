@@ -246,5 +246,34 @@ namespace AdemCatamak.Utilities
 
             return result;
         }
+        
+        public bool CheckInRange(IPAddress minIpAddress, IPAddress maxIpAddress, IPAddress ipAddress)
+        {
+            bool result = true;
+            byte[] minAddressBytes = minIpAddress.GetAddressBytes();
+            byte[] maxAddressBytes = maxIpAddress.GetAddressBytes();
+
+            if (ipAddress.AddressFamily == minIpAddress.AddressFamily)
+            {
+                byte[] addressBytes = ipAddress.GetAddressBytes();
+
+                bool lowerBoundary = true, upperBoundary = true;
+
+                for (int i = 0; i < minAddressBytes.Length && (lowerBoundary || upperBoundary); i++)
+                {
+                    if ((lowerBoundary && addressBytes[i] < minAddressBytes[i]) ||
+                        (upperBoundary && addressBytes[i] > maxAddressBytes[i]))
+                    {
+                        result = false;
+                        break;
+                    }
+
+                    lowerBoundary &= (addressBytes[i] == minAddressBytes[i]);
+                    upperBoundary &= (addressBytes[i] == maxAddressBytes[i]);
+                }
+            }
+
+            return result;
+        }
     }
 }
