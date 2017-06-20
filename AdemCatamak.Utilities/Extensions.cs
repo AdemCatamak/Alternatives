@@ -247,7 +247,7 @@ namespace AdemCatamak.Utilities
             return result;
         }
         
-        public bool CheckInRange(IPAddress minIpAddress, IPAddress maxIpAddress, IPAddress ipAddress)
+        public static bool CheckInRange(IPAddress minIpAddress, IPAddress maxIpAddress, IPAddress ipAddress)
         {
             bool result = true;
             byte[] minAddressBytes = minIpAddress.GetAddressBytes();
