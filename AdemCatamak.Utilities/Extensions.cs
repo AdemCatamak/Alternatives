@@ -5,6 +5,7 @@ using System.Data;
 using System.ComponentModel;
 using System.Resources;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Reflection;
 using Newtonsoft.Json;
 using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
@@ -164,7 +165,9 @@ namespace AdemCatamak.Utilities
                 string name;
                 try
                 {
-                    name = resourceManager != null ? resourceManager.GetString(enumName) : enumName;
+                    name = resourceManager != null
+                               ? resourceManager.GetString(enumName)
+                               : enumName;
                 }
                 catch
                 {
@@ -246,8 +249,8 @@ namespace AdemCatamak.Utilities
 
             return result;
         }
-        
-        public static bool CheckInRange(IPAddress minIpAddress, IPAddress maxIpAddress, IPAddress ipAddress)
+
+        public static bool CheckIpInRange(this IPAddress ipAddress, IPAddress minIpAddress, IPAddress maxIpAddress)
         {
             bool result = true;
             byte[] minAddressBytes = minIpAddress.GetAddressBytes();
