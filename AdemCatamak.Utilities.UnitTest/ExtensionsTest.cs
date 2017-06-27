@@ -953,7 +953,7 @@ namespace AdemCatamak.Utilities.UnitTest
 
 
             Assert.IsNotNull(actual, "Actual is null");
-            Assert.IsNotNull(actual as AdemCatamak.Utilities.CryptographyEngine,
+            Assert.IsNotNull(actual as CryptographyEngine,
                              "Cast operation show that IsValidClass instance cannot be created");
         }
 
@@ -974,14 +974,14 @@ namespace AdemCatamak.Utilities.UnitTest
         [TestMethod]
         public void AdemCatamak_Utilities_UnitTest__ExtensionsTest__CreateInstance_InDifferentAssembly()
         {
-            string fullName = typeof(AdemCatamak.Utilities.CryptographyEngine).FullName;
+            string fullName = typeof(CryptographyEngine).FullName;
 
 
             object actual = Extensions.CreateInstance(fullName);
 
 
             Assert.IsNotNull(actual, "Actual is null");
-            Assert.IsNotNull(actual as AdemCatamak.Utilities.CryptographyEngine,
+            Assert.IsNotNull(actual as CryptographyEngine,
                              "Cast operation show that IsValidClass instance cannot be created");
         }
 
