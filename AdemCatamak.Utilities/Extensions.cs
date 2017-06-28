@@ -5,6 +5,7 @@ using System.Data;
 using System.ComponentModel;
 using System.Resources;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
 using Newtonsoft.Json;
@@ -274,6 +275,31 @@ namespace AdemCatamak.Utilities
                     lowerBoundary &= (addressBytes[i] == minAddressBytes[i]);
                     upperBoundary &= (addressBytes[i] == maxAddressBytes[i]);
                 }
+            }
+
+            return result;
+        }
+
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> iEnumerable, Expression<Func<T, bool>> predicate = null)
+        {
+            bool result = iEnumerable == null ||
+                          IsNullOrEmpty(iEnumerable.AsQueryable(), predicate);
+            return result;
+        }
+
+        public static bool IsNullOrEmpty<T>(this IQueryable<T> iQueryable, Expression<Func<T, bool>> predicate = null)
+        {
+            bool result;
+
+            if (iQueryable == null)
+            {
+                result = true;
+            }
+            else
+            {
+                result = predicate == null
+                             ? !iQueryable.Any()
+                             : !iQueryable.Any(predicate);
             }
 
             return result;
