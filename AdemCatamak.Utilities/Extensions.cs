@@ -5,6 +5,7 @@ using System.Data;
 using System.ComponentModel;
 using System.Resources;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
@@ -45,9 +46,11 @@ namespace AdemCatamak.Utilities
         }
 
 
-        public static int ToInt(this object value)
+        public static int ToInt(this object value, CultureInfo culture = null)
         {
-            return int.Parse(value.ToString());
+            return culture == null
+                       ? int.Parse(value.ToString())
+                       : int.Parse(value.ToString(), culture);
         }
 
         public static int TryToInt(this object value, int defaultValue = default(int))
@@ -58,10 +61,21 @@ namespace AdemCatamak.Utilities
             return result;
         }
 
-
-        public static double ToDouble(this object value)
+        public static int TryToInt(this object value, CultureInfo culture, int defaultValue = default(int))
         {
-            return double.Parse(value.ToString());
+            culture = culture ?? CultureInfo.CurrentCulture;
+            if (value == null || !int.TryParse(value.ToString(), NumberStyles.Any, culture, out int result))
+                result = defaultValue;
+
+            return result;
+        }
+
+
+        public static double ToDouble(this object value, CultureInfo culture = null)
+        {
+            return culture == null
+                       ? double.Parse(value.ToString())
+                       : double.Parse(value.ToString(), culture);
         }
 
         public static double TryToDouble(this object value, double defaultValue = default(double))
@@ -72,10 +86,20 @@ namespace AdemCatamak.Utilities
             return result;
         }
 
-
-        public static long ToLong(this object value)
+        public static double TryToDouble(this object value, CultureInfo culture, double defaultValue = default(double))
         {
-            return long.Parse(value.ToString());
+            culture = culture ?? CultureInfo.CurrentCulture;
+            if (value == null || !double.TryParse(value.ToString(), NumberStyles.Any, culture, out double result))
+                result = defaultValue;
+
+            return result;
+        }
+
+        public static long ToLong(this object value, CultureInfo culture = null)
+        {
+            return culture == null
+                       ? long.Parse(value.ToString())
+                       : long.Parse(value.ToString(), culture);
         }
 
         public static long TryToLong(this object value, long defaultValue = default(long))
@@ -86,6 +110,14 @@ namespace AdemCatamak.Utilities
             return result;
         }
 
+        public static long TryToLong(this object value, CultureInfo culture, long defaultValue = default(long))
+        {
+            culture = culture ?? CultureInfo.CurrentCulture;
+            if (value == null || !long.TryParse(value.ToString(), NumberStyles.Any, culture, out long result))
+                result = defaultValue;
+
+            return result;
+        }
 
         public static string FirstLetterToUpperAll(this string text)
         {

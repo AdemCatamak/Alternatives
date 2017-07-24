@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
@@ -21,7 +22,7 @@ namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
             const string data = "123a123.24";
 
 
-            data.ToDouble();
+            data.ToDouble(CultureInfo.GetCultureInfo("tr-TR"));
         }
 
         [TestMethod]
@@ -31,7 +32,7 @@ namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
             const string data = "12,5";
 
 
-            double actual = data.ToDouble();
+            double actual = data.ToDouble(CultureInfo.GetCultureInfo("tr-TR"));
 
 
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
@@ -44,7 +45,7 @@ namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
             const string data = "12.15";
 
 
-            double actual = data.ToDouble();
+            double actual = data.ToDouble(CultureInfo.GetCultureInfo("tr-TR"));
 
 
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");

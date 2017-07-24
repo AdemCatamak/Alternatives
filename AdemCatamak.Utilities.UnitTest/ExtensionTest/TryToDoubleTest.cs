@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Globalization;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
 {
@@ -36,7 +37,7 @@ namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
             object data = "12,3";
 
 
-            double actual = data.TryToDouble();
+            double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"));
 
 
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
@@ -49,7 +50,7 @@ namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
             object data = "15.412,3";
 
 
-            double actual = data.TryToDouble();
+            double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"));
 
 
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
@@ -63,7 +64,7 @@ namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
             object data = "12,3";
 
 
-            double actual = data.TryToDouble(defaultValue);
+            double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"),defaultValue);
 
 
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
@@ -76,7 +77,7 @@ namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
             object data = "123.7";
 
 
-            double actual = data.TryToDouble();
+            double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"));
 
 
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
@@ -90,7 +91,7 @@ namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
             object data = "111.8";
 
 
-            double actual = data.TryToDouble(defaultValue);
+            double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"),defaultValue);
 
 
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");

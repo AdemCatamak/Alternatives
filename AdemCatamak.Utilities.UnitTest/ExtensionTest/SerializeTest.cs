@@ -23,11 +23,7 @@ namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
         public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__Serialize()
         {
             string expected = @"
-{""Phone"":null,
-""Email"":""ademcatamak@gmail.com"",
-""Username"":""ademcatamak"",
-""RequiredPhone"":null,
-""Id"":3,""ExtraData"":null}"
+{""Phone"":null,""Email"":""ademcatamak@gmail.com"",""Username"":""ademcatamak"",""RequiredPhone"":null,""Id"":3,""ExtraData"":null}"
                 .Replace(" ", string.Empty)
                 .Replace(Environment.NewLine, string.Empty);
 
@@ -39,7 +35,9 @@ namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
                                     };
 
 
-            string actual = item.Serialize();
+            string actual = item.Serialize()
+                                .Replace(" ", string.Empty)
+                                .Replace(Environment.NewLine, string.Empty);
 
 
             Assert.AreEqual(expected, actual, $"{actual} is not expected");

@@ -5,7 +5,7 @@ namespace AdemCatamak.Utilities.UnitTest
     [TestClass]
     public class WebApiConsumerTest
     {
-        [TestMethod]
+        [TestMethod, Ignore]
         public void AdemCatamak_Utilities_UnitTest__WebApiConsumerTest__CheckNet()
         {
             // internet bağlantısı varsa true, yoksa false beklenmeli
@@ -18,7 +18,7 @@ namespace AdemCatamak.Utilities.UnitTest
             Assert.AreEqual(expected, actual, $"{actual} is not expected");
         }
 
-        [TestMethod]
+        [TestMethod, Ignore]
         public void AdemCatamak_Utilities_UnitTest__WebApiConsumerTest__CheckConnectionAndSetAddress()
         {
             // internet bağlantısı varsa => var olan bir site için true, yoksa false beklenmeli
@@ -33,7 +33,7 @@ namespace AdemCatamak.Utilities.UnitTest
             Assert.IsFalse(actualFailureConnection, $"{actualSuccessfullConnection} is not expected");
         }
 
-        [TestMethod]
+        [TestMethod, Ignore]
         public void AdemCatamak_Utilities_UnitTest__WebApiConsumerTest__Get()
         {
             // Note: ileride kişisel websitesi üzerinden test edilebilir.
@@ -47,7 +47,7 @@ namespace AdemCatamak.Utilities.UnitTest
             Assert.AreEqual(expected, actualResponse, $"{actualResponse} is not expected");
         }
 
-        [TestMethod]
+        [TestMethod, Ignore]
         [ExpectedException(typeof(FriendlyException), "Response is not null")]
         public void AdemCatamak_Utilities_UnitTest__WebApiConsumerTest__Get_ResponseWillBeNull()
         {
