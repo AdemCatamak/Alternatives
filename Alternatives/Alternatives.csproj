@@ -50,9 +50,9 @@
   <ItemGroup>
     <Compile Include="CryptographyEngine.cs" />
     <Compile Include="CustomDataAnnotations\TurkeyPhone.cs" />
-    <Compile Include="EmailEngine.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FriendlyException.cs" />
+    <Compile Include="ModelCollector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApiConsumer.cs" />
   </ItemGroup>

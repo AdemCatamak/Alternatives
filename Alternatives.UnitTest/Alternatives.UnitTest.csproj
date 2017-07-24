@@ -78,7 +78,11 @@
     <Compile Include="ExtensionTest\TryToDoubleTest.cs" />
     <Compile Include="ExtensionTest\TryToIntTest.cs" />
     <Compile Include="ExtensionTest\TryToLongTest.cs" />
+    <Compile Include="ModelCollectorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestModel\IInterface.cs" />
+    <Compile Include="TestModel\Implementations\AnotherTestInterface.cs" />
+    <Compile Include="TestModel\Implementations\TestInterface.cs" />
     <Compile Include="WebApiConsumerTest.cs" />
   </ItemGroup>
   <ItemGroup>
