@@ -10,10 +10,10 @@
     <projectUrl>https://bitbucket.org/ademcatamak/alternatives/wiki/Home</projectUrl>
     <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>Basic application requirements</description>
+    <description>Shortcuts and General Extensions</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2017</copyright>
-    <tags>Alternatives</tags>
+    <tags>alternatives,shortcut,utilities,extensions</tags>
     <dependencies>
       <dependency id="AutoMapper" version="6.1.1" />
       <dependency id="Newtonsoft.Json" version="10.0.3" />
