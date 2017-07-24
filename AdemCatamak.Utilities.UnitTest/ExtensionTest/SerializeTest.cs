@@ -22,8 +22,7 @@ namespace AdemCatamak.Utilities.UnitTest.ExtensionTest
         [TestMethod]
         public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__Serialize()
         {
-            string expected = @"
-{""Phone"":null,""Email"":""ademcatamak@gmail.com"",""Username"":""ademcatamak"",""RequiredPhone"":null,""Id"":3,""ExtraData"":null}"
+            string expected = @"{""Phone"":null,""Email"":""ademcatamak@gmail.com"",""Username"":""ademcatamak"",""RequiredPhone"":null,""Id"":3,""ExtraData"":null}"
                 .Replace(" ", string.Empty)
                 .Replace(Environment.NewLine, string.Empty);
 
