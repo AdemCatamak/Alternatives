@@ -49,16 +49,35 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CryptographyEngineTest.cs" />
-    <Compile Include="ExtensionsTest.cs" />
+    <Compile Include="ExtensionTest\ConvertToDataTableTest.cs" />
+    <Compile Include="ExtensionTest\CopyTest.cs" />
+    <Compile Include="ExtensionTest\CreateInstanceTest.cs" />
+    <Compile Include="ExtensionTest\DeserializeTest.cs" />
+    <Compile Include="ExtensionTest\EnumToDictionaryTest.cs" />
+    <Compile Include="ExtensionTest\CheckIpInRangeTest.cs" />
     <Compile Include="ExtensionsTestClass\DataTableTestClass.cs" />
     <Compile Include="ExtensionsTestClass\IsValidTestClass.cs" />
     <Compile Include="ExtensionsTestClass\IsValidTestClassPartial.cs" />
     <Compile Include="ExtensionsTestClass\TestEnum.cs" />
     <Compile Include="ExtensionsTestClass\TestEnumWithNegative.cs" />
+    <Compile Include="ExtensionTest\FirstLetterUpperAllTest.cs" />
+    <Compile Include="ExtensionTest\FirstLetterUpperTest.cs" />
+    <Compile Include="ExtensionTest\GetDbValueTest.cs" />
+    <Compile Include="ExtensionTest\IsNullOrEmptyTest.cs" />
+    <Compile Include="ExtensionTest\IsValidTest.cs" />
+    <Compile Include="ExtensionTest\MapTest.cs" />
+    <Compile Include="ExtensionTest\SerializeTest.cs" />
+    <Compile Include="ExtensionTest\ToDoubleTest.cs" />
+    <Compile Include="ExtensionTest\ToIntTest.cs" />
+    <Compile Include="ExtensionTest\ToLongTest.cs" />
+    <Compile Include="ExtensionTest\TryToDoubleTest.cs" />
+    <Compile Include="ExtensionTest\TryToIntTest.cs" />
+    <Compile Include="ExtensionTest\TryToLongTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApiConsumerTest.cs" />
   </ItemGroup>
