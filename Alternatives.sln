@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_Solution_Items", "1_Solution_Items", "{5FDABD34-7D69-4E78-8979-A20EF79F3895}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_Src", "2_Src", "{8F17BA69-A4CB-4776-9E06-8EE16166C4EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_Tests", "3_Tests", "{71B30615-84AE-4D1B-90D6-08882B886A62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alternatives", "Alternatives\Alternatives.csproj", "{D3A54B8B-F0D8-4B76-82DF-6CFF52E42CCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alternatives.UnitTest", "Alternatives.UnitTest\Alternatives.UnitTest.csproj", "{566335C9-08E7-4789-938C-3BC00969F00E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3A54B8B-F0D8-4B76-82DF-6CFF52E42CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A54B8B-F0D8-4B76-82DF-6CFF52E42CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A54B8B-F0D8-4B76-82DF-6CFF52E42CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A54B8B-F0D8-4B76-82DF-6CFF52E42CCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{566335C9-08E7-4789-938C-3BC00969F00E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{566335C9-08E7-4789-938C-3BC00969F00E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{566335C9-08E7-4789-938C-3BC00969F00E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{566335C9-08E7-4789-938C-3BC00969F00E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D3A54B8B-F0D8-4B76-82DF-6CFF52E42CCC} = {8F17BA69-A4CB-4776-9E06-8EE16166C4EC}
+		{566335C9-08E7-4789-938C-3BC00969F00E} = {71B30615-84AE-4D1B-90D6-08882B886A62}
+	EndGlobalSection
+EndGlobal
