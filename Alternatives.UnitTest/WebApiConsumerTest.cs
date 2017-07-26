@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Alternatives.CustomExceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Alternatives.UnitTest
 {

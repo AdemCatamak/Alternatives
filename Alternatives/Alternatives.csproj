@@ -50,8 +50,9 @@
   <ItemGroup>
     <Compile Include="CryptographyEngine.cs" />
     <Compile Include="CustomDataAnnotations\TurkeyPhone.cs" />
+    <Compile Include="CustomExceptions\BusinessException.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="FriendlyException.cs" />
+    <Compile Include="CustomExceptions\FriendlyException.cs" />
     <Compile Include="ModelCollector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApiConsumer.cs" />
