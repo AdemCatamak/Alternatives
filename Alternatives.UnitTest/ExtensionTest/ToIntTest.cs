@@ -9,14 +9,14 @@ namespace Alternatives.UnitTest.ExtensionTest
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException), "Argument not null")]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__ToInt_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__ToInt_Null()
         {
             ((object)null).ToInt();
         }
 
         [TestMethod]
         [ExpectedException(typeof(FormatException), "Value cannot be converted")]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__ToInt_Alphabet()
+        public void Alternatives_UnitTest_ExtensionsTest__ToInt_Alphabet()
         {
             const string data = "123a123";
 
@@ -26,7 +26,7 @@ namespace Alternatives.UnitTest.ExtensionTest
 
         [TestMethod]
         [ExpectedException(typeof(FormatException), "Value cannot be converted")]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__ToInt_WithComma()
+        public void Alternatives_UnitTest_ExtensionsTest__ToInt_WithComma()
         {
             const string data = "12,3";
 
@@ -35,7 +35,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__ToInt()
+        public void Alternatives_UnitTest_ExtensionsTest__ToInt()
         {
             const int expected = 123;
             const string data = "123";

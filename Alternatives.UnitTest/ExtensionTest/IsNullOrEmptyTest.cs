@@ -7,7 +7,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class IsNullOrEmptyTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__IsNullOrEmpty_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Null()
         {
             // Act
             bool isNullOrEmpty = ((List<string>) null).IsNullOrEmpty();
@@ -18,7 +18,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__IsNullOrEmpty_Empty_NotFiltered()
+        public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Empty_NotFiltered()
         {
             // Arrange
             List<string> list = new List<string>();
@@ -34,7 +34,7 @@ namespace Alternatives.UnitTest.ExtensionTest
 
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__IsNullOrEmpty_Empty_Filtered()
+        public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Empty_Filtered()
         {
             // Arrange
             List<string> list = new List<string>();
@@ -49,7 +49,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__IsNullOrEmpty_NotEmpty_Filtered_NotMatch()
+        public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_NotEmpty_Filtered_NotMatch()
         {
             // Arrange
             List<string> list = new List<string>{"test"};
@@ -64,7 +64,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__IsNullOrEmpty_NotEmpty_Filtered_Match()
+        public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_NotEmpty_Filtered_Match()
         {
             // Arrange
             List<string> list = new List<string> { "test" };
@@ -79,7 +79,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__IsNullOrEmpty_NotEmpty_NotFiltered()
+        public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_NotEmpty_NotFiltered()
         {
             // Arrange
             List<string> list = new List<string> { "test" };

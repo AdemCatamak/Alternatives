@@ -7,7 +7,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class CheckIpInRangeTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__CheckIpInRange()
+        public void Alternatives_UnitTest_ExtensionsTest__CheckIpInRange()
         {
             bool result;
 

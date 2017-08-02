@@ -10,7 +10,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class ConvertToDataTableTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__ToDataTable()
+        public void Alternatives_UnitTest_ExtensionsTest__ToDataTable()
         {
             DataTable expected = new DataTable()
                                  {

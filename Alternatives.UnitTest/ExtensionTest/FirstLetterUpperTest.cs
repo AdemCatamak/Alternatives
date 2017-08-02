@@ -6,7 +6,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class FirstLetterUpperTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__FirstLetterUpper_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_Null()
         {
             string expected = string.Empty;
 
@@ -18,7 +18,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__FirstLetterUpper_Empty()
+        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_Empty()
         {
             string expected = string.Empty;
             string data = string.Empty;
@@ -30,7 +30,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__FirstLetterUpper_OneCharacter()
+        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_OneCharacter()
         {
             const string expected = "A",
                          data = "a";
@@ -42,7 +42,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__FirstLetterUpper_Word()
+        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_Word()
         {
             const string expected = "Adem",
                          data = "adem";
@@ -54,7 +54,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__FirstLetterUpper_WordWithSpace()
+        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_WordWithSpace()
         {
             const string expected = "Adem",
                          data = "adem ";
@@ -66,7 +66,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__FirstLetterUpper_Words()
+        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_Words()
         {
             const string expected = "Adem catamak",
                          data = "adem catamak";

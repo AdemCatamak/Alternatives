@@ -8,14 +8,14 @@ namespace Alternatives.UnitTest.ExtensionTest
     {
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException), "Argument not null")]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__ToLong_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__ToLong_Null()
         {
             ((object) null).ToLong();
         }
 
         [TestMethod]
         [ExpectedException(typeof(FormatException), "Value cannot be converted")]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__ToLong_Alphabet()
+        public void Alternatives_UnitTest_ExtensionsTest__ToLong_Alphabet()
         {
             const string data = "123a123.24";
 
@@ -25,7 +25,7 @@ namespace Alternatives.UnitTest.ExtensionTest
 
         [TestMethod]
         [ExpectedException(typeof(FormatException), "Value cannot be converted")]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__ToLong_DotSeperator()
+        public void Alternatives_UnitTest_ExtensionsTest__ToLong_DotSeperator()
         {
             const string data = "12.15";
 
@@ -35,7 +35,7 @@ namespace Alternatives.UnitTest.ExtensionTest
 
         [TestMethod]
         [ExpectedException(typeof(FormatException), "Value cannot be converted")]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__ToLong_CommaSeperator()
+        public void Alternatives_UnitTest_ExtensionsTest__ToLong_CommaSeperator()
         {
             const string data = "12,15";
 
@@ -44,7 +44,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__ToLong()
+        public void Alternatives_UnitTest_ExtensionsTest__ToLong()
         {
             const long expected = 123123123;
             const string data = "123123123";

@@ -7,7 +7,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class TryToDoubleTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToDouble_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_Null()
         {
             const double expected = default(double);
 
@@ -19,7 +19,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToDouble_NullWithDefault()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_NullWithDefault()
         {
             const double expected = 5.5;
 
@@ -31,7 +31,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToDouble_WithComma()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_WithComma()
         {
             const double expected = 12.3;
             object data = "12,3";
@@ -44,7 +44,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToDouble_WithDotAndComma()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_WithDotAndComma()
         {
             const double expected = 15412.3;
             object data = "15.412,3";
@@ -57,7 +57,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToDouble_WithCommaAndDefault()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_WithCommaAndDefault()
         {
             const double expected = 12.3,
                          defaultValue = 8;
@@ -71,7 +71,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToDouble()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToDouble()
         {
             const double expected = 1237;
             object data = "123.7";
@@ -84,7 +84,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToDouble_WithDefault()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_WithDefault()
         {
             const double expected = 1118,
                          defaultValue = 15;

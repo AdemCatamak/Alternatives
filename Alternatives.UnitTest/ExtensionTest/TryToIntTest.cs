@@ -6,7 +6,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class TryToIntTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToInt_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToInt_Null()
         {
             const int expected = default(int);
 
@@ -18,7 +18,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToInt_NullWithDefault()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToInt_NullWithDefault()
         {
             const int expected = 5;
 
@@ -30,7 +30,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToInt_WithComma()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToInt_WithComma()
         {
             const int expected = default(int);
             object data = "12,3";
@@ -43,7 +43,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToInt_WithCommaAndDefault()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToInt_WithCommaAndDefault()
         {
             const int expected = 5;
             object data = "12,3";
@@ -56,7 +56,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToInt()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToInt()
         {
             const int expected = 123;
             object data = "123";
@@ -69,7 +69,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToInt_WithDefault()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToInt_WithDefault()
         {
             const int expected = 111,
                       defaultValue = 15;

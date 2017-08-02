@@ -9,7 +9,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         //NOTE : Parametresiz constructor sahibi olmayan sınıflar için kullanılamaz
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__Map_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__Map_Null()
         {
             object actual = ((object) null).Map<object, object>();
 
@@ -18,7 +18,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__Map_ClassItemMap()
+        public void Alternatives_UnitTest_ExtensionsTest__Map_ClassItemMap()
         {
             IsValidTestClassPartial expected = new IsValidTestClassPartial
                                                {

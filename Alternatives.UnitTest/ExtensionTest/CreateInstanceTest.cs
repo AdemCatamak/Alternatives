@@ -9,7 +9,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         //NOTE : Parametresiz constructor sahibi olmayan sınıflarda kullanılamaz
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__CreateInstance_InSameAssembly_Type()
+        public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InSameAssembly_Type()
         {
             object actual = Extensions.CreateInstance(typeof(IsValidTestClass));
 
@@ -20,7 +20,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__CreateInstance_InDifferentAssembly_Type()
+        public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InDifferentAssembly_Type()
         {
             object actual = Extensions.CreateInstance(typeof(CryptographyEngine));
 
@@ -31,7 +31,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__CreateInstance_InSameAssembly()
+        public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InSameAssembly()
         {
             string fullName = typeof(IsValidTestClass).AssemblyQualifiedName;
 
@@ -45,7 +45,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__CreateInstance_InDifferentAssembly()
+        public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InDifferentAssembly()
         {
             string fullName = typeof(CryptographyEngine).FullName;
 

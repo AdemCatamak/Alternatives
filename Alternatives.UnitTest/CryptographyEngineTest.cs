@@ -8,14 +8,14 @@ namespace Alternatives.UnitTest
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "Argument is not null")]
-        public void AdemCatamak_Utilities_UnitTest__CryptographyEngineTest_Encrypte_Null()
+        public void Alternatives_UnitTest__CryptographyEngineTest_Encrypte_Null()
         {
             CryptographyEngine engine = new CryptographyEngine();
             engine.Encrypt(null);
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest__CryptographyEngineTest_Encrypte()
+        public void Alternatives_UnitTest__CryptographyEngineTest_Encrypte()
         {
             const string expected = "wKxS9gMmJL5ali85zkBcsA==";
             const string plainText = "adem";
@@ -29,7 +29,7 @@ namespace Alternatives.UnitTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest__CryptographyEngineTest_Encrypte_DifferentKey()
+        public void Alternatives_UnitTest__CryptographyEngineTest_Encrypte_DifferentKey()
         {
             const string expected = "21LHLh9bVDumyVE/A8RAzw==";
             const string notExpected = "wKxS9gMmJL5ali85zkBcsA==";
@@ -47,14 +47,14 @@ namespace Alternatives.UnitTest
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "Argument is not null")]
-        public void AdemCatamak_Utilities_UnitTest__CryptographyEngineTest_Decrypte_Null()
+        public void Alternatives_UnitTest__CryptographyEngineTest_Decrypte_Null()
         {
             CryptographyEngine engine = new CryptographyEngine();
             engine.Decrypt(null);
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest__CryptographyEngineTest_Decrypte()
+        public void Alternatives_UnitTest__CryptographyEngineTest_Decrypte()
         {
             const string expected = "adem";
             const string cipherText = "wKxS9gMmJL5ali85zkBcsA==";
@@ -68,7 +68,7 @@ namespace Alternatives.UnitTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest__CryptographyEngineTest_Decrypte_DifferentKey()
+        public void Alternatives_UnitTest__CryptographyEngineTest_Decrypte_DifferentKey()
         {
             const string cipherText = "21LHLh9bVDumyVE/A8RAzw==";
             const string defaultCipherText = "wKxS9gMmJL5ali85zkBcsA==";
@@ -87,14 +87,14 @@ namespace Alternatives.UnitTest
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "Argument is not null")]
-        public void AdemCatamak_Utilities_UnitTest__CryptographyEngineTest_Hash_Null()
+        public void Alternatives_UnitTest__CryptographyEngineTest_Hash_Null()
         {
             CryptographyEngine engine = new CryptographyEngine();
             engine.Hashing(null);
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest__CryptographyEngineTest_Hash()
+        public void Alternatives_UnitTest__CryptographyEngineTest_Hash()
         {
             const string expected = "40-BD-00-15-63-08-5F-C3-51-65-32-9E-A1-FF-5C-5E-CB-DB-BE-EF";
             const string data = "123";

@@ -9,7 +9,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         //NOTE: Parametresiz constructor sahibi olmayan sınıflar için kullanılamaz
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__Copy_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__Copy_Null()
         {
             object actual = ((object) null).Copy();
 
@@ -18,7 +18,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__Copy_ClassItemCopy()
+        public void Alternatives_UnitTest_ExtensionsTest__Copy_ClassItemCopy()
         {
             IsValidTestClass expected = new IsValidTestClass()
                                         {

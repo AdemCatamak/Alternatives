@@ -7,7 +7,7 @@ namespace Alternatives.UnitTest
     public class WebApiConsumerTest
     {
         [TestMethod, Ignore]
-        public void AdemCatamak_Utilities_UnitTest__WebApiConsumerTest__CheckNet()
+        public void Alternatives_UnitTest__WebApiConsumerTest__CheckNet()
         {
             // internet bağlantısı varsa true, yoksa false beklenmeli
             const bool expected = true;
@@ -20,7 +20,7 @@ namespace Alternatives.UnitTest
         }
 
         [TestMethod, Ignore]
-        public void AdemCatamak_Utilities_UnitTest__WebApiConsumerTest__CheckConnectionAndSetAddress()
+        public void Alternatives_UnitTest__WebApiConsumerTest__CheckConnectionAndSetAddress()
         {
             // internet bağlantısı varsa => var olan bir site için true, yoksa false beklenmeli
 
@@ -35,7 +35,7 @@ namespace Alternatives.UnitTest
         }
 
         [TestMethod, Ignore]
-        public void AdemCatamak_Utilities_UnitTest__WebApiConsumerTest__Get()
+        public void Alternatives_UnitTest__WebApiConsumerTest__Get()
         {
             // Note: ileride kişisel websitesi üzerinden test edilebilir.
             string expected = string.Empty;
@@ -50,7 +50,7 @@ namespace Alternatives.UnitTest
 
         [TestMethod, Ignore]
         [ExpectedException(typeof(FriendlyException), "Response is not null")]
-        public void AdemCatamak_Utilities_UnitTest__WebApiConsumerTest__Get_ResponseWillBeNull()
+        public void Alternatives_UnitTest__WebApiConsumerTest__Get_ResponseWillBeNull()
         {
             WebApiConsumer consumer = new WebApiConsumer("http://notexistwebsite.com");
             consumer.Get(string.Empty);

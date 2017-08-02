@@ -9,7 +9,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class EnumToDictionaryTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__EnumToDictionary_WithNegativeValue()
+        public void Alternatives_UnitTest_ExtensionsTest__EnumToDictionary_WithNegativeValue()
         {
             Dictionary<int, string> expected = new Dictionary<int, string>()
                                                {
@@ -27,7 +27,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__EnumToDictionary()
+        public void Alternatives_UnitTest_ExtensionsTest__EnumToDictionary()
         {
             Dictionary<int, string> expected = new Dictionary<int, string>()
                                                {

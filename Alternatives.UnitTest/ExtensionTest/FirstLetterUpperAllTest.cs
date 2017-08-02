@@ -6,7 +6,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class FirstLetterUpperAllTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__FirstLetterUpperAll_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Null()
         {
             string expected = string.Empty;
 
@@ -18,7 +18,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__FirstLetterUpperAll_Empty()
+        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Empty()
         {
             string expected = string.Empty;
 
@@ -30,7 +30,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__FirstLetterUpperAll_Word()
+        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Word()
         {
             const string expected = "Adem",
                          data = "adem";
@@ -42,7 +42,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__FirstLetterUpperAll_WordWithSpace()
+        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_WordWithSpace()
         {
             const string expected = "Adem",
                          data = "adem ";
@@ -54,7 +54,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__FirstLetterUpperAll_Words()
+        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Words()
         {
             const string expected = "Adem Catamak",
                          data = "adem catamak ";

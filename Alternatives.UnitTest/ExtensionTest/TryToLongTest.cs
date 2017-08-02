@@ -7,7 +7,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class TryToLongTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToLong_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToLong_Null()
         {
             const long expected = default(long);
 
@@ -19,7 +19,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToLong_NullWithDefault()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToLong_NullWithDefault()
         {
             const long expected = 5;
 
@@ -31,7 +31,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToLong_WithComma()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithComma()
         {
             const long expected = default(long);
             object data = "12,3";
@@ -44,7 +44,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToLong_WithDotAndComma()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithDotAndComma()
         {
             const long expected = default(long);
             object data = "15.412,3";
@@ -57,7 +57,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToLong_WithCommaAndDefault()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithCommaAndDefault()
         {
             const long expected = 8,
                        defaultValue = expected;
@@ -71,7 +71,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToLong()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToLong()
         {
             const long expected = 1237;
             object data = "123.7";
@@ -84,7 +84,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__TryToLong_WithDefault()
+        public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithDefault()
         {
             const double expected = 1118,
                          defaultValue = 15;

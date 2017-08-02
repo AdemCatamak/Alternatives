@@ -7,7 +7,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class GetDbValueTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__GetDbValue_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__GetDbValue_Null()
         {
             DBNull expected = DBNull.Value;
 
@@ -19,7 +19,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__GetDbValue_NullInt()
+        public void Alternatives_UnitTest_ExtensionsTest__GetDbValue_NullInt()
         {
             DBNull expected = DBNull.Value;
             int? data = null;
@@ -33,7 +33,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__GetDbValue_EmptyString()
+        public void Alternatives_UnitTest_ExtensionsTest__GetDbValue_EmptyString()
         {
             string expected = string.Empty;
             string data = string.Empty;
@@ -46,7 +46,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__GetDbValue_Int()
+        public void Alternatives_UnitTest_ExtensionsTest__GetDbValue_Int()
         {
             const int expected = 5;
             const int data = 5;

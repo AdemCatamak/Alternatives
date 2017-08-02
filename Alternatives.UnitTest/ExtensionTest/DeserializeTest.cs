@@ -8,7 +8,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class DeserializeTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__Deserialize_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__Deserialize_Null()
         {
             IsValidTestClass actual = @"null".Deserialize<IsValidTestClass>();
 
@@ -17,7 +17,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__Deserialize()
+        public void Alternatives_UnitTest_ExtensionsTest__Deserialize()
         {
             IsValidTestClass expected = new IsValidTestClass
                                         {

@@ -8,7 +8,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class SerializeTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__Serialize_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__Serialize_Null()
         {
             const string expected = @"null";
 
@@ -20,7 +20,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__Serialize()
+        public void Alternatives_UnitTest_ExtensionsTest__Serialize()
         {
             string expected = @"{""Phone"":null,""Email"":""ademcatamak@gmail.com"",""Username"":""ademcatamak"",""RequiredPhone"":null,""Id"":3,""ExtraData"":null}"
                 .Replace(" ", string.Empty)

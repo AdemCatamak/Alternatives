@@ -7,7 +7,7 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class IsValidTest
     {
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__IsValid_NullTest()
+        public void Alternatives_UnitTest_ExtensionsTest__IsValid_NullTest()
         {
             bool isValid = ((object)null).IsValid();
 
@@ -16,7 +16,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__IsValid_EmailFormat()
+        public void Alternatives_UnitTest_ExtensionsTest__IsValid_EmailFormat()
         {
             bool isValid = SetEmailAndTest("ademcatamak@gmail.com");
             Assert.IsTrue(isValid, "Email-1 format must be valid");
@@ -52,7 +52,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__IsValid_Required()
+        public void Alternatives_UnitTest_ExtensionsTest__IsValid_Required()
         {
             bool isValid = SetUsernameAndTest("ademcatamak@gmail.com");
             Assert.IsTrue(isValid, "Username-1 format must be valid");
@@ -77,7 +77,7 @@ namespace Alternatives.UnitTest.ExtensionTest
 
 
         [TestMethod]
-        public void AdemCatamak_Utilities_UnitTest_ExtensionsTest__IsValid_TurkeyPhoneFormat()
+        public void Alternatives_UnitTest_ExtensionsTest__IsValid_TurkeyPhoneFormat()
         {
             bool isValid = SetPhoneNumberAndTest("+90 555 555 55 55");
             Assert.IsTrue(isValid, "Phone-1 format is not valid");
