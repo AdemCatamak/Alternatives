@@ -83,8 +83,11 @@
     <Compile Include="ExtensionTest\TryToLongTest.cs" />
     <Compile Include="ExtensionTest\GetInheritedTypesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestModel\IGenericInterface.cs" />
     <Compile Include="TestModel\IInterface.cs" />
+    <Compile Include="TestModel\Implementations\AnotherTestGenericInterface.cs" />
     <Compile Include="TestModel\Implementations\AnotherTestInterface.cs" />
+    <Compile Include="TestModel\Implementations\TestGenericInterface.cs" />
     <Compile Include="TestModel\Implementations\TestInterface.cs" />
   </ItemGroup>
   <ItemGroup>

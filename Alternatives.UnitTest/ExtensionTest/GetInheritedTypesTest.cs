@@ -29,5 +29,39 @@ namespace Alternatives.UnitTest.ExtensionTest
             Assert.IsTrue(typeList.Contains(typeof(TestInterface)));
             Assert.IsTrue(typeList.Contains(typeof(AnotherTestInterface)));
         }
+
+        [TestMethod]
+        public void Alternatives_UnitTest_ExtensionsTest__GetCollection_BaseGenericInterface()
+        {
+            // Act
+            DateTime startTime = DateTime.Now;
+            List<Type> typeList = ReflectionExtensions.GetInheritedTypes(typeof(IGenericInterface<>)).ToList();
+            DateTime endTime = DateTime.Now;
+
+
+            Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
+
+            // Assert
+            Assert.AreEqual(2, typeList.Count, $"{string.Join(" - ", typeList.Select(t => t.Name))}");
+            Assert.IsTrue(typeList.Contains(typeof(TestGenericInterface)));
+            Assert.IsTrue(typeList.Contains(typeof(AnotherTestGenericInterface)));
+        }
+
+
+        [TestMethod]
+        public void Alternatives_UnitTest_ExtensionsTest__GetCollection_BaseGenericInterfaceSpesific()
+        {
+            // Act
+            DateTime startTime = DateTime.Now;
+            List<Type> typeList = ReflectionExtensions.GetInheritedTypes(typeof(IGenericInterface<int>)).ToList();
+            DateTime endTime = DateTime.Now;
+
+
+            Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
+
+            // Assert
+            Assert.AreEqual(1, typeList.Count, $"{string.Join(" - ", typeList.Select(t => t.Name))}");
+            Assert.IsTrue(typeList.Contains(typeof(TestGenericInterface)));
+        }
     }
 }

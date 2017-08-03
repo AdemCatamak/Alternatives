@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Alternatives.Extensions
@@ -208,7 +207,7 @@ namespace Alternatives.Extensions
 
                         foreach (Type i in type.GetInterfaces())
                         {
-                            if (i == baseType)
+                            if (i == baseType || i.GetGenericTypeDefinition() == baseType)
                             {
                                 parentTypes.Add(type);
                             }
