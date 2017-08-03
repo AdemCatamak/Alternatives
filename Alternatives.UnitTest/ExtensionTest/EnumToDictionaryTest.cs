@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Alternatives.Extensions;
 using Alternatives.UnitTest.ExtensionsTestClass;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,7 +19,7 @@ namespace Alternatives.UnitTest.ExtensionTest
                                                };
 
 
-            Dictionary<int, string> actual = Extensions.EnumToDictionary(typeof(TestEnumWithNegative));
+            Dictionary<int, string> actual = ConverterExtensions.EnumToDictionary(typeof(TestEnumWithNegative));
 
             for (int i = 0; i < actual.Count; i++)
             {
@@ -36,7 +37,7 @@ namespace Alternatives.UnitTest.ExtensionTest
                                                };
 
 
-            Dictionary<int, string> actual = Extensions.EnumToDictionary(typeof(TestEnum));
+            Dictionary<int, string> actual = ConverterExtensions.EnumToDictionary(typeof(TestEnum));
 
             for (int i = 0; i < actual.Count; i++)
             {

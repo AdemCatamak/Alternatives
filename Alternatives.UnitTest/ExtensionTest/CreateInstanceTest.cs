@@ -1,4 +1,5 @@
-﻿using Alternatives.UnitTest.ExtensionsTestClass;
+﻿using Alternatives.Extensions;
+using Alternatives.UnitTest.ExtensionsTestClass;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Alternatives.UnitTest.ExtensionTest
@@ -11,7 +12,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         [TestMethod]
         public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InSameAssembly_Type()
         {
-            object actual = Extensions.CreateInstance(typeof(IsValidTestClass));
+            object actual = ReflectionExtensions.CreateInstance(typeof(IsValidTestClass));
 
 
             Assert.IsNotNull(actual, "Actual is null");
@@ -22,7 +23,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         [TestMethod]
         public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InDifferentAssembly_Type()
         {
-            object actual = Extensions.CreateInstance(typeof(CryptographyEngine));
+            object actual = ReflectionExtensions.CreateInstance(typeof(CryptographyEngine));
 
 
             Assert.IsNotNull(actual, "Actual is null");
@@ -36,7 +37,7 @@ namespace Alternatives.UnitTest.ExtensionTest
             string fullName = typeof(IsValidTestClass).AssemblyQualifiedName;
 
 
-            object actual = Extensions.CreateInstance(fullName);
+            object actual = ReflectionExtensions.CreateInstance(fullName);
 
 
             Assert.IsNotNull(actual, "Actual is null");
@@ -50,7 +51,7 @@ namespace Alternatives.UnitTest.ExtensionTest
             string fullName = typeof(CryptographyEngine).FullName;
 
 
-            object actual = Extensions.CreateInstance(fullName);
+            object actual = ReflectionExtensions.CreateInstance(fullName);
 
 
             Assert.IsNotNull(actual, "Actual is null");

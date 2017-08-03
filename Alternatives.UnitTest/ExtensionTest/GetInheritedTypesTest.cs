@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Alternatives.Extensions;
 using Alternatives.UnitTest.TestModel;
 using Alternatives.UnitTest.TestModel.Implementations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
-namespace Alternatives.UnitTest
+namespace Alternatives.UnitTest.ExtensionTest
 {
     [TestClass]
     public class ModelCollectorTest
     {
 
         [TestMethod]
-        public void AdemCatamak_DAL_UnitTest__ModelCollectorTest__GetCollection_BaseInterface()
+        public void Alternatives_UnitTest_ExtensionsTest__GetCollection_BaseInterface()
         {
             // Act
             DateTime startTime = DateTime.Now;
-            List<Type> typeList = ModelCollector.GetInheritedTypes(typeof(IInterface)).ToList();
+            List<Type> typeList = ReflectionExtensions.GetInheritedTypes(typeof(IInterface)).ToList();
             DateTime endTime = DateTime.Now;
 
 
