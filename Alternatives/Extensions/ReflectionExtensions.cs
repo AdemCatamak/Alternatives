@@ -119,7 +119,7 @@ namespace Alternatives.Extensions
             List<Type> typeList = new List<Type>();
             typeList.AddRange(typesFromDll);
             typeList.AddRange(typesFromAppDomain);
-            return typeList.Distinct();
+            return typeList.Distinct().Where(t => t != baseType);
         }
 
         private static IEnumerable<Type> GetInheritedTypesFromAppDomain(Type baseType)
@@ -208,25 +208,25 @@ namespace Alternatives.Extensions
                                             {
                                                 try
                                                 {
-                                                    if (type.IsClass)
+                                                    if (baseType.IsClass)
                                                     {
-                                                        if (type.BaseType != null && type.BaseType == baseType)
+                                                        if (DoesMatchBaseClass(type, baseType))
                                                         {
                                                             parentTypes.Add(type);
                                                         }
-                                                        else
+                                                    }
+                                                    else if (baseType.IsInterface)
+                                                    {
+                                                        bool isGeneric = baseType.IsGenericTypeDefinition;
+                                                        foreach (Type i in type.GetInterfaces())
                                                         {
-                                                            bool isGeneric = baseType.IsGenericTypeDefinition;
-                                                            foreach (Type i in type.GetInterfaces())
+                                                            if (isGeneric && i.GetGenericTypeDefinition() == baseType)
                                                             {
-                                                                if (isGeneric && i.GetGenericTypeDefinition() == baseType)
-                                                                {
-                                                                    parentTypes.Add(type);
-                                                                }
-                                                                else if (i == baseType)
-                                                                {
-                                                                    parentTypes.Add(type);
-                                                                }
+                                                                parentTypes.Add(type);
+                                                            }
+                                                            else if (i == baseType)
+                                                            {
+                                                                parentTypes.Add(type);
                                                             }
                                                         }
                                                     }
@@ -240,6 +240,17 @@ namespace Alternatives.Extensions
                                                 }
                                             });
             return parentTypes;
+        }
+
+        private static bool DoesMatchBaseClass(Type t, Type baseType)
+        {
+            if (t == baseType)
+                return true;
+
+            if (t.BaseType != null)
+                return DoesMatchBaseClass(t.BaseType, baseType);
+
+            return false;
         }
 
 
