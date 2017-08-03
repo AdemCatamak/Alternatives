@@ -76,6 +76,7 @@
     <Compile Include="ExtensionTest\ToDoubleTest.cs" />
     <Compile Include="ExtensionTest\ToIntTest.cs" />
     <Compile Include="ExtensionTest\ToLongTest.cs" />
+    <Compile Include="ExtensionTest\GetFieldNameTest.cs" />
     <Compile Include="ExtensionTest\TrySetFieldNameTest.cs" />
     <Compile Include="ExtensionTest\TryGetFieldNameTest.cs" />
     <Compile Include="ExtensionTest\TryToDoubleTest.cs" />

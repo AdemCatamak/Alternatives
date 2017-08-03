@@ -10,11 +10,11 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 namespace Alternatives.UnitTest.ExtensionTest
 {
     [TestClass]
-    public class ModelCollectorTest
+    public class GetInheritedTypesTest
     {
 
         [TestMethod]
-        public void Alternatives_UnitTest_ExtensionsTest__GetCollection_BaseInterface()
+        public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseInterface()
         {
             // Act
             DateTime startTime = DateTime.Now;
@@ -31,7 +31,7 @@ namespace Alternatives.UnitTest.ExtensionTest
         }
 
         [TestMethod]
-        public void Alternatives_UnitTest_ExtensionsTest__GetCollection_BaseGenericInterface()
+        public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseGenericInterface()
         {
             // Act
             DateTime startTime = DateTime.Now;
@@ -49,7 +49,7 @@ namespace Alternatives.UnitTest.ExtensionTest
 
 
         [TestMethod]
-        public void Alternatives_UnitTest_ExtensionsTest__GetCollection_BaseGenericInterfaceSpesific()
+        public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseGenericInterfaceSpesific()
         {
             // Act
             DateTime startTime = DateTime.Now;
