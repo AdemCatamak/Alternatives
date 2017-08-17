@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
-<package >
+
+<package>
   <metadata>
     <id>Alternatives</id>
-    <version>1.0.5.0-beta</version>
+    <version>1.0.5.1-beta</version>
     <title>Alternatives</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
@@ -17,6 +18,7 @@
     <dependencies>
       <dependency id="AutoMapper" version="6.1.1" />
       <dependency id="Newtonsoft.Json" version="10.0.3" />
+      <dependency id="GitLink" version="3.0.0" developmentDependency="true" />
     </dependencies>
   </metadata>
   <files>
