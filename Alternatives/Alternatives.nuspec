@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Alternatives</id>
-    <version>1.0.4.2</version>
+    <version>1.0.4.3</version>
     <title>Alternatives</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
@@ -21,5 +21,6 @@
   </metadata>
   <files>
     <file src="bin\Release\Alternatives.dll" target="lib\net45"></file>
+    <file src="bin\Release\Alternatives.pdb" target="lib\net45"></file>
   </files>
 </package>
