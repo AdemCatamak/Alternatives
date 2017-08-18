@@ -3,7 +3,7 @@
 <package>
   <metadata>
     <id>Alternatives</id>
-    <version>1.0.5.3-beta</version>
+    <version>1.0.5.4-beta</version>
     <title>Alternatives</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
@@ -18,7 +18,7 @@
     <dependencies>
       <dependency id="AutoMapper" version="6.1.1" />
       <dependency id="Newtonsoft.Json" version="10.0.3" />
-      <dependency id="SourceLink.Create.CommandLine" version="2.1.2" />
+      <dependency id="GitLink" version="3.0.0" />
     </dependencies>
   </metadata>
   <files>
