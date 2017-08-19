@@ -7,11 +7,13 @@ namespace Alternatives.UnitTest
     public class CryptographyEngineTest
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "Argument is not null")]
         public void Alternatives_UnitTest__CryptographyEngineTest_Encrypte_Null()
         {
             CryptographyEngine engine = new CryptographyEngine();
-            engine.Encrypt(null);
+            Assert.ThrowsException<ArgumentNullException>(() =>
+                                                          {
+                                                              engine.Encrypt(null);
+                                                          });
         }
 
         [TestMethod]
@@ -46,11 +48,14 @@ namespace Alternatives.UnitTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "Argument is not null")]
         public void Alternatives_UnitTest__CryptographyEngineTest_Decrypte_Null()
         {
             CryptographyEngine engine = new CryptographyEngine();
-            engine.Decrypt(null);
+
+            Assert.ThrowsException<ArgumentNullException>(() =>
+                                                          {
+                                                              engine.Decrypt(null);
+                                                          });
         }
 
         [TestMethod]
@@ -86,11 +91,14 @@ namespace Alternatives.UnitTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "Argument is not null")]
         public void Alternatives_UnitTest__CryptographyEngineTest_Hash_Null()
         {
             CryptographyEngine engine = new CryptographyEngine();
-            engine.Hashing(null);
+
+            Assert.ThrowsException<ArgumentNullException>(() =>
+                                                          {
+                                                              engine.Hashing(null);
+                                                          });
         }
 
         [TestMethod]
@@ -98,7 +106,6 @@ namespace Alternatives.UnitTest
         {
             const string expected = "40-BD-00-15-63-08-5F-C3-51-65-32-9E-A1-FF-5C-5E-CB-DB-BE-EF";
             const string data = "123";
-
 
             CryptographyEngine engine = new CryptographyEngine();
             string actual = engine.Hashing(data);

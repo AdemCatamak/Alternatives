@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AdemCatamak.Utilities")]
+[assembly: AssemblyTitle("Alternatives")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Adem Catamak")]
-[assembly: AssemblyProduct("AdemCatamak.Utilities")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Alternatives")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d3a54b8b-f0d8-4b76-82df-6cff52e42ccc")]
+[assembly: Guid("43319258-f690-4da8-adb4-55b8d60d223d")]
 
 // Version information for an assembly consists of the following four values:
 //

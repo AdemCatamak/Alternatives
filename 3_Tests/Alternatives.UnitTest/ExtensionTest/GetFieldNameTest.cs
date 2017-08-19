@@ -9,30 +9,35 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class GetFieldNameTest
     {
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_Null()
         {
-            bool actualIsValid = ((string) null).GetFieldValue<bool>("Value");
+            Assert.ThrowsException<NullReferenceException>(() =>
+                                                           {
+                                                               ((string) null).GetFieldValue<bool>("Value");
+                                                           });
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FieldAccessException))]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_NotExistFieldNameForStruct()
         {
             DummyClass dummyClass = new DummyClass();
-            string actual = dummyClass.GetFieldValue<string>("NotExistColumn");
+            Assert.ThrowsException<FieldAccessException>(() =>
+                                                         {
+                                                             dummyClass.GetFieldValue<string>("NotExistColumn");
+                                                         });
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FieldAccessException))]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_NotExistFieldNameForClass()
         {
             DummyClass dummyClass = new DummyClass();
-            InnerDummyClass actualIsValid = dummyClass.GetFieldValue<InnerDummyClass>("NotExistColumn");
+            Assert.ThrowsException<FieldAccessException>(() =>
+                                                         {
+                                                             dummyClass.GetFieldValue<InnerDummyClass>("NotExistColumn");
+                                                         });
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidCastException))]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_NotConvertableTypeAndFieldMatch()
         {
             DummyClass dummyClass = new DummyClass
@@ -40,7 +45,11 @@ namespace Alternatives.UnitTest.ExtensionTest
                                         IntField = 5,
                                         StringField = "asd"
                                     };
-            int actual = dummyClass.GetFieldValue<int>(nameof(DummyClass.StringField));
+
+            Assert.ThrowsException<InvalidCastException>(() =>
+                                                         {
+                                                             dummyClass.GetFieldValue<int>(nameof(DummyClass.StringField));
+                                                         });
         }
 
         [TestMethod]

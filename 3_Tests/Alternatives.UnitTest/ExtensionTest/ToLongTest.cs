@@ -8,40 +8,46 @@ namespace Alternatives.UnitTest.ExtensionTest
     public class ToLongTest
     {
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException), "Argument not null")]
         public void Alternatives_UnitTest_ExtensionsTest__ToLong_Null()
         {
-            ((object) null).ToLong();
+            Assert.ThrowsException<NullReferenceException>(() =>
+                                                           {
+                                                               ((object) null).ToLong();
+                                                           });
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException), "Value cannot be converted")]
         public void Alternatives_UnitTest_ExtensionsTest__ToLong_Alphabet()
         {
             const string data = "123a123.24";
 
-
-            data.ToLong();
+            Assert.ThrowsException<FormatException>(() =>
+                                                    {
+                                                        data.ToLong();
+                                                    });
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException), "Value cannot be converted")]
         public void Alternatives_UnitTest_ExtensionsTest__ToLong_DotSeperator()
         {
             const string data = "12.15";
 
 
-            data.ToLong();
+            Assert.ThrowsException<FormatException>(() =>
+                                                    {
+                                                        data.ToLong();
+                                                    });
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException), "Value cannot be converted")]
         public void Alternatives_UnitTest_ExtensionsTest__ToLong_CommaSeperator()
         {
             const string data = "12,15";
 
-
-            data.ToLong();
+            Assert.ThrowsException<FormatException>(() =>
+                                                    {
+                                                        data.ToLong();
+                                                    });
         }
 
         [TestMethod]

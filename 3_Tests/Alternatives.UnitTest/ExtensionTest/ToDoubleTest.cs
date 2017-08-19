@@ -8,22 +8,24 @@ namespace Alternatives.UnitTest.ExtensionTest
     [TestClass]
     public class ToDoubleTest
     {
-
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException), "Argument not null")]
         public void Alternatives_UnitTest_ExtensionsTest__ToDouble_Null()
         {
-            ((object)null).ToDouble();
+            Assert.ThrowsException<NullReferenceException>(() =>
+                                                           {
+                                                               ((object) null).ToDouble();
+                                                           });
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException), "Value cannot be converted")]
         public void Alternatives_UnitTest_ExtensionsTest__ToDouble_Alphabet()
         {
             const string data = "123a123.24";
 
-
-            data.ToDouble(CultureInfo.GetCultureInfo("tr-TR"));
+            Assert.ThrowsException<FormatException>(() =>
+                                                    {
+                                                        data.ToDouble(CultureInfo.GetCultureInfo("tr-TR"));
+                                                    });
         }
 
         [TestMethod]

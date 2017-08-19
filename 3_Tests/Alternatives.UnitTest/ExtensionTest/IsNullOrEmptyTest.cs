@@ -21,12 +21,8 @@ namespace Alternatives.UnitTest.ExtensionTest
         [TestMethod]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Empty_NotFiltered()
         {
-            // Arrange
-            List<string> list = new List<string>();
-
-
             // Act
-            bool isNullOrEmpty = list.IsNullOrEmpty();
+            bool isNullOrEmpty = new List<string>().IsNullOrEmpty();
 
 
             // Assert
@@ -37,12 +33,8 @@ namespace Alternatives.UnitTest.ExtensionTest
         [TestMethod]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Empty_Filtered()
         {
-            // Arrange
-            List<string> list = new List<string>();
-
-
             // Act
-            bool isNullOrEmpty = list.IsNullOrEmpty(x=>x == "test");
+            bool isNullOrEmpty = new List<string>().IsNullOrEmpty(x=>x == "test");
 
 
             // Assert

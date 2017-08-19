@@ -5,34 +5,38 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Alternatives.UnitTest.ExtensionTest
 {
     [TestClass]
-   public  class ToIntTest
+    public class ToIntTest
     {
-
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException), "Argument not null")]
         public void Alternatives_UnitTest_ExtensionsTest__ToInt_Null()
         {
-            ((object)null).ToInt();
+            Assert.ThrowsException<NullReferenceException>(() =>
+                                                           {
+                                                               ((object) null).ToInt();
+                                                           });
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException), "Value cannot be converted")]
         public void Alternatives_UnitTest_ExtensionsTest__ToInt_Alphabet()
         {
             const string data = "123a123";
 
 
-            data.ToInt();
+            Assert.ThrowsException<FormatException>(() =>
+                                                    {
+                                                        data.ToInt();
+                                                    });
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException), "Value cannot be converted")]
         public void Alternatives_UnitTest_ExtensionsTest__ToInt_WithComma()
         {
             const string data = "12,3";
 
-
-            data.ToInt();
+            Assert.ThrowsException<FormatException>(() =>
+                                                    {
+                                                        data.ToInt();
+                                                    });
         }
 
         [TestMethod]
@@ -47,6 +51,5 @@ namespace Alternatives.UnitTest.ExtensionTest
 
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
-
     }
 }
