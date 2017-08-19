@@ -51,7 +51,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             object data = "12,3";
 
 
-            int actual = data.TryToInt(expected);
+            int actual = data.TryToInt(CultureInfo.GetCultureInfo("tr-TR"), expected);
 
 
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
