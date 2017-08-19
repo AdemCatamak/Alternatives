@@ -50,7 +50,7 @@
     <Compile Include="CryptographyEngine.cs" />
     <Compile Include="CustomDataAnnotations\TurkeyPhone.cs" />
     <Compile Include="CustomExceptions\FriendlyException.cs" />
-    <Compile Include="Extensions\ConverterExtensions.cs" />
+    <Compile Include="Extensions\ConvertionExtensions.cs" />
     <Compile Include="Extensions\GeneralExtensions.cs" />
     <Compile Include="Extensions\ReflectionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,7 +12,7 @@
     <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Shortcuts and General Extensions</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>New features added, Some class typos resolved</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>alternatives,shortcut,utilities,extensions</tags>
     <dependencies>
