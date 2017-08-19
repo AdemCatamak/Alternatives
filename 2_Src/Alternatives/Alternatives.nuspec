@@ -7,7 +7,7 @@
     <title>Alternatives</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
-    <licenseUrl><![CDATA[https://bitbucket.org/ademcatamak/alternatives/src/0701a77bfc66a3bcd0e204175b87282d75c1b6b3/Alternatives/LICENSE?at=master&fileviewer=file-view-default]]></licenseUrl>
+    <licenseUrl><![CDATA[https://bitbucket.org/ademcatamak/alternatives/src/853f9d190521d8443fcd7436298b5401557da3ae/1_Solution_Items/LICENSE.txt?at=master&fileviewer=file-view-default]]></licenseUrl>
     <projectUrl>https://bitbucket.org/ademcatamak/alternatives/wiki/Home</projectUrl>
     <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
@@ -22,5 +22,6 @@
   </metadata>
   <files>
     <file src="bin\Debug\Alternatives.dll" target="lib\net45"></file>
+    <file src="bin\Debug\Alternatives.pdb" target="lib\net45"></file>
   </files>
 </package>
