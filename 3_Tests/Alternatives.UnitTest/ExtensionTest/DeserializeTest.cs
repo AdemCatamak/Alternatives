@@ -1,6 +1,7 @@
 ﻿using System;
 using Alternatives.Extensions;
 using Alternatives.UnitTest.ExtensionsTestClass;
+using Alternatives.UnitTest.TestModel.Implementations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Alternatives.UnitTest.ExtensionTest
@@ -15,6 +16,23 @@ namespace Alternatives.UnitTest.ExtensionTest
 
 
             Assert.AreEqual(null, actual, $"{actual} is not expected");
+        }
+
+        [TestMethod]
+        public void Alternatives_UnitTest_ExtensionsTest__Deserialize_NotMatchClass()
+        {
+            string item = @"
+{""Phone"":null,
+""Email"":""ademcatamak@gmail.com"",
+""Username"":""ademcatamak"",
+""RequiredPhone"":null,
+""Id"":3,""ExtraData"":null}"
+                .Replace(" ", string.Empty)
+                .Replace(Environment.NewLine, string.Empty);
+
+            AnotherTestGenericInterface actual = item.Deserialize<AnotherTestGenericInterface>();
+
+            Assert.IsNull(actual.GenericField);
         }
 
         [TestMethod]

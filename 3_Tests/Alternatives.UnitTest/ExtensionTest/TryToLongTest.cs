@@ -97,5 +97,39 @@ namespace Alternatives.UnitTest.ExtensionTest
 
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
+
+        [TestMethod]
+        public void Alternatives_UnitTest_ExtensionsTest__TryToLong_With_SuccessInfo()
+        {
+            // Arrage
+            const string data = "123";
+            const long expected = 123;
+
+
+            // Act
+            long actual = data.TryToLong(out bool expectedSuccess);
+
+
+            // Assert
+            Assert.IsTrue(expectedSuccess);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Alternatives_UnitTest_ExtensionsTest__TryToLong_With_SuccessInfo_DeaultValue()
+        {
+            // Arrage
+            const string data = "123ad123";
+            const long expected = 92;
+
+
+            // Act
+            long actual = data.TryToLong(out bool expectedSuccess, expected);
+
+
+            // Assert
+            Assert.IsFalse(expectedSuccess);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

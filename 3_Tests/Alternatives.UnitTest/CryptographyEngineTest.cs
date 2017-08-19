@@ -47,6 +47,8 @@ namespace Alternatives.UnitTest
             Assert.AreNotEqual(notExpected, actual, $"{actual} is not expected");
         }
 
+
+
         [TestMethod]
         public void Alternatives_UnitTest__CryptographyEngineTest_Decrypte_Null()
         {
@@ -90,6 +92,8 @@ namespace Alternatives.UnitTest
             Assert.AreEqual(expected, defaultActual, $"{defaultActual} is not expected");
         }
 
+
+
         [TestMethod]
         public void Alternatives_UnitTest__CryptographyEngineTest_Hash_Null()
         {
@@ -99,6 +103,19 @@ namespace Alternatives.UnitTest
                                                           {
                                                               engine.Hashing(null);
                                                           });
+        }
+
+        [TestMethod]
+        public void Alternatives_UnitTest__CryptographyEngineTest_Hash_Empty()
+        {
+            const string expected = "DA-39-A3-EE-5E-6B-4B-0D-32-55-BF-EF-95-60-18-90-AF-D8-07-09";
+            const string data = "";
+
+            CryptographyEngine engine = new CryptographyEngine();
+            string actual = engine.Hashing(data);
+
+
+            Assert.AreEqual(expected, actual, $"{actual} is not expected");
         }
 
         [TestMethod]

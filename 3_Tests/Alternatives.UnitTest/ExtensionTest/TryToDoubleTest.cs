@@ -65,7 +65,7 @@ namespace Alternatives.UnitTest.ExtensionTest
             object data = "12,3";
 
 
-            double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"),defaultValue);
+            double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"), defaultValue);
 
 
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
@@ -92,10 +92,44 @@ namespace Alternatives.UnitTest.ExtensionTest
             object data = "111.8";
 
 
-            double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"),defaultValue);
+            double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"), defaultValue);
 
 
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+        }
+
+        [TestMethod]
+        public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_With_SuccessInfo()
+        {
+            // Arrage
+            const string data = "123";
+            const double expected = 123;
+
+
+            // Act
+            double actual = data.TryToDouble(out bool expectedSuccess);
+
+
+            // Assert
+            Assert.IsTrue(expectedSuccess);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_With_SuccessInfo_DeaultValue()
+        {
+            // Arrage
+            const string data = "123ad123";
+            const double expected = 92;
+
+
+            // Act
+            double actual = data.TryToDouble(out bool expectedSuccess, expected);
+
+
+            // Assert
+            Assert.IsFalse(expectedSuccess);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

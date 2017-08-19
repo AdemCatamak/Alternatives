@@ -39,6 +39,8 @@ namespace Alternatives.Extensions
             return result;
         }
 
+
+
         public static string FirstLetterToUpperAll(this string text)
         {
             if (text == null)
@@ -65,9 +67,6 @@ namespace Alternatives.Extensions
         }
 
 
-  
-
- 
 
         public static bool CheckIpInRange(this IPAddress ipAddress, IPAddress minIpAddress, IPAddress maxIpAddress)
         {
@@ -97,6 +96,8 @@ namespace Alternatives.Extensions
 
             return result;
         }
+
+
 
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> iEnumerable, Expression<Func<T, bool>> predicate = null)
         {

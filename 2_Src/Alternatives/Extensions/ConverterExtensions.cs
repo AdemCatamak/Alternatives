@@ -17,22 +17,47 @@ namespace Alternatives.Extensions
                        : int.Parse(value.ToString(), culture);
         }
 
+
         public static int TryToInt(this object value, int defaultValue = default(int))
         {
-            if (value == null || !int.TryParse(value.ToString(), out int result))
-                result = defaultValue;
-
-            return result;
+            return TryToInt(value, CultureInfo.CurrentCulture, defaultValue);
         }
 
         public static int TryToInt(this object value, CultureInfo culture, int defaultValue = default(int))
         {
             culture = culture ?? CultureInfo.CurrentCulture;
-            if (value == null || !int.TryParse(value.ToString(), NumberStyles.Any, culture, out int result))
-                result = defaultValue;
+            int result = defaultValue;
+            if (value != null)
+            {
+                bool success = int.TryParse(value.ToString(), NumberStyles.Any, culture, out result);
+                result = success
+                             ? result
+                             : defaultValue;
+            }
 
             return result;
         }
+
+        public static int TryToInt(this object value, out bool success, int defaultValue = default(int))
+        {
+            return TryToInt(value, out success, CultureInfo.CurrentCulture, defaultValue);
+        }
+
+        public static int TryToInt(this object value, out bool success, CultureInfo cultureInfo, int defaultValue = default(int))
+        {
+            int result = defaultValue;
+            success = false;
+            if (value != null)
+            {
+                success = int.TryParse(value.ToString(), NumberStyles.Any, cultureInfo, out result);
+                result = success
+                             ? result
+                             : defaultValue;
+            }
+
+            return result;
+        }
+
 
 
         public static double ToDouble(this object value, CultureInfo culture = null)
@@ -42,22 +67,47 @@ namespace Alternatives.Extensions
                        : double.Parse(value.ToString(), culture);
         }
 
+
         public static double TryToDouble(this object value, double defaultValue = default(double))
         {
-            if (value == null || !double.TryParse(value.ToString(), out double result))
-                result = defaultValue;
-
-            return result;
+            return TryToDouble(value, CultureInfo.CurrentCulture, defaultValue);
         }
 
         public static double TryToDouble(this object value, CultureInfo culture, double defaultValue = default(double))
         {
-            culture = culture ?? CultureInfo.CurrentCulture;
-            if (value == null || !double.TryParse(value.ToString(), NumberStyles.Any, culture, out double result))
-                result = defaultValue;
+            double result = defaultValue;
+            if (value != null)
+            {
+                bool success = double.TryParse(value.ToString(), NumberStyles.Any, culture, out result);
+                result = success
+                             ? result
+                             : defaultValue;
+            }
 
             return result;
         }
+
+        public static double TryToDouble(this object value, out bool success, double defaultValue = default(double))
+        {
+            return TryToDouble(value, out success, CultureInfo.CurrentCulture, defaultValue);
+        }
+
+        public static double TryToDouble(this object value, out bool success, CultureInfo cultureInfo, double defaultValue = default(double))
+        {
+            double result = defaultValue;
+            success = false;
+            if (value != null)
+            {
+                success = double.TryParse(value.ToString(), NumberStyles.Any, cultureInfo, out result);
+                result = success
+                             ? result
+                             : defaultValue;
+            }
+
+            return result;
+        }
+
+
 
 
         public static long ToLong(this object value, CultureInfo culture = null)
@@ -67,22 +117,46 @@ namespace Alternatives.Extensions
                        : long.Parse(value.ToString(), culture);
         }
 
+
         public static long TryToLong(this object value, long defaultValue = default(long))
         {
-            if (value == null || !long.TryParse(value.ToString(), out long result))
-                result = defaultValue;
-
-            return result;
+            return TryToLong(value, CultureInfo.CurrentCulture, defaultValue);
         }
 
         public static long TryToLong(this object value, CultureInfo culture, long defaultValue = default(long))
         {
-            culture = culture ?? CultureInfo.CurrentCulture;
-            if (value == null || !long.TryParse(value.ToString(), NumberStyles.Any, culture, out long result))
-                result = defaultValue;
+            long result = defaultValue;
+            if (value != null)
+            {
+                bool success = long.TryParse(value.ToString(), NumberStyles.Any, culture, out result);
+                result = success
+                             ? result
+                             : defaultValue;
+            }
 
             return result;
         }
+
+        public static long TryToLong(this object value, out bool success, long defaultValue = default(long))
+        {
+            return TryToLong(value, out success, CultureInfo.CurrentCulture, defaultValue);
+        }
+
+        public static long TryToLong(this object value, out bool success, CultureInfo cultureInfo, long defaultValue = default(long))
+        {
+            long result = defaultValue;
+            success = false;
+            if (value != null)
+            {
+                success = long.TryParse(value.ToString(), NumberStyles.Any, cultureInfo, out result);
+                result = success
+                             ? result
+                             : defaultValue;
+            }
+
+            return result;
+        }
+
 
 
         public static TDestination Deserialize<TDestination>(this string source)
@@ -107,6 +181,7 @@ namespace Alternatives.Extensions
         }
 
 
+
         public static T Copy<T>(this T source)
         {
             return Map<T, T>(source);
@@ -115,12 +190,16 @@ namespace Alternatives.Extensions
         public static TDestination Map<TSource, TDestination>(this TSource source)
         {
             AutoMapper.MapperConfiguration config =
-                new AutoMapper.MapperConfiguration(cfg => { cfg.CreateMap<TSource, TDestination>(); });
+                new AutoMapper.MapperConfiguration(cfg =>
+                                                   {
+                                                       cfg.CreateMap<TSource, TDestination>();
+                                                   });
 
             AutoMapper.IMapper mapper = config.CreateMapper();
 
             return mapper.Map<TSource, TDestination>(source);
         }
+
 
 
         public static Dictionary<int, string> EnumToDictionary(Type type, ResourceManager resourceManager = null)
@@ -131,7 +210,7 @@ namespace Alternatives.Extensions
 
             foreach (string enumName in enumNameArray)
             {
-                int enumValue = (int)Enum.Parse(type, enumName);
+                int enumValue = (int) Enum.Parse(type, enumName);
                 if (enumValue < 0)
                     continue;
 
@@ -152,6 +231,7 @@ namespace Alternatives.Extensions
 
             return dictionary;
         }
+
 
 
         public static object GetDbValue<T>(this T parameter)

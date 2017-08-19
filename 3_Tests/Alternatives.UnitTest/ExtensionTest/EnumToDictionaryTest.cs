@@ -21,6 +21,8 @@ namespace Alternatives.UnitTest.ExtensionTest
 
             Dictionary<int, string> actual = ConverterExtensions.EnumToDictionary(typeof(TestEnumWithNegative));
 
+
+            Assert.AreEqual(2, actual.Count);
             for (int i = 0; i < actual.Count; i++)
             {
                 Assert.AreEqual(expected.ElementAt(i), actual.ElementAt(i), $"Actual[{i}] value is not expected");
