@@ -12,9 +12,20 @@ namespace Alternatives
 
         private readonly byte[] _initVectorBytes = Encoding.ASCII.GetBytes("tu89geji340t89u2");
 
+        public CryptographyEngine(string keyCode = null)
+        {
+            if (keyCode != null)
+            {
+                _keyCode = keyCode;
+            }
+        }
+
         public void SetKeyCode(string keyCode)
         {
-            _keyCode = keyCode;
+            if (keyCode != null)
+            {
+                _keyCode = keyCode;
+            }
         }
 
         public string Encrypt(string plainText)

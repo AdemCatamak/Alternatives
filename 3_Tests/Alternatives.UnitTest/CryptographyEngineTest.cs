@@ -47,6 +47,20 @@ namespace Alternatives.UnitTest
             Assert.AreNotEqual(notExpected, actual, $"{actual} is not expected");
         }
 
+        [TestMethod]
+        public void Alternatives_UnitTest__CryptographyEngineTest_Encrypte_DifferentKey_KeyIsEmpty()
+        {
+            const string plainText = "adem";
+
+
+            CryptographyEngine engine = new CryptographyEngine(string.Empty);
+            string actual = engine.Encrypt(plainText);
+
+            Assert.IsNotNull(actual);
+            Assert.AreNotEqual(actual, string.Empty);
+            Assert.AreNotEqual(plainText, actual);
+        }
+
 
 
         [TestMethod]

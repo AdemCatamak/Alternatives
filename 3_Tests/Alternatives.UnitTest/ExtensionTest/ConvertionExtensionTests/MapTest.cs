@@ -37,5 +37,22 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
             Assert.AreEqual(expected.Id, actual.Id, $"{actual} is not expected");
         }
+
+        [TestMethod]
+        public void Alternatives_UnitTest_ExtensionsTest__Map_DifferentClassItemMap()
+        {
+            IsValidTestClass data = new IsValidTestClass
+                                    {
+                                        Id = 5,
+                                        Username = "ademcatamak"
+                                    };
+
+
+            DummyClass actual = data.Map<IsValidTestClass, DummyClass>();
+
+            Assert.IsNotNull(actual);
+            Assert.IsNull(actual.InnerClassField);
+            Assert.AreEqual(actual.IntField, default(int));
+        }
     }
 }

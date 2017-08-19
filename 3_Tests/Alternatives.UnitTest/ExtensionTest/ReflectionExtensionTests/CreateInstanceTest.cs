@@ -23,11 +23,11 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         [TestMethod]
         public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InDifferentAssembly_Type()
         {
-            object actual = ReflectionExtensions.CreateInstance(typeof(CryptographyEngine));
+            object actual = ReflectionExtensions.CreateInstance(typeof(DummyClass));
 
 
             Assert.IsNotNull(actual, "Actual is null");
-            Assert.IsNotNull(actual as CryptographyEngine,
+            Assert.IsNotNull(actual as DummyClass,
                              "Cast operation show that IsValidClass instance cannot be created");
         }
 
@@ -48,14 +48,14 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         [TestMethod]
         public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InDifferentAssembly()
         {
-            string fullName = typeof(CryptographyEngine).FullName;
+            string fullName = typeof(DummyClass).FullName;
 
 
             object actual = ReflectionExtensions.CreateInstance(fullName);
 
 
             Assert.IsNotNull(actual, "Actual is null");
-            Assert.IsNotNull(actual as CryptographyEngine,
+            Assert.IsNotNull(actual as DummyClass,
                              "Cast operation show that IsValidClass instance cannot be created");
         }
     }
