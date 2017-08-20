@@ -57,7 +57,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         [TestMethod]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_WordWithSpace()
         {
-            const string expected = "Adem",
+            const string expected = "Adem ",
                          data = "adem ";
 
             string actual = data.FirstLetterToUpper();

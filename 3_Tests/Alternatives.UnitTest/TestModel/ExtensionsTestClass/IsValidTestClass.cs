@@ -2,8 +2,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Alternatives.CustomDataAnnotations;
 
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-
 namespace Alternatives.UnitTest.TestModel.ExtensionsTestClass
 {
     [Table("asd")]

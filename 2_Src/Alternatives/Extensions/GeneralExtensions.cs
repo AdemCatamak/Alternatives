@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 
 namespace Alternatives.Extensions
@@ -41,29 +43,50 @@ namespace Alternatives.Extensions
 
 
 
-        public static string FirstLetterToUpperAll(this string text)
+        public static string FirstLetterToUpperAll(this string text, params char[] markers)
         {
+            if (markers.IsNullOrEmpty())
+            {
+                markers = new[] {' '};
+            }
+
             if (text == null)
+            {
                 text = string.Empty;
+            }
 
-            string[] split = text.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-            for (int i = 0; i < split.Length; i++)
-                split[i] = split[i].FirstLetterToUpper();
+            foreach (char marker in markers)
+            {
+                string[] split = text.Split(new[] {marker}, StringSplitOptions.RemoveEmptyEntries);
+                Parallel.For(0, split.Length, i =>
+                                              {
+                                                  split[i] = split[i].FirstLetterToUpper();
+                                              }
+                            );
 
-            return string.Join(" ", split);
+
+                text = string.Join(marker.ToString(), split);
+            }
+
+            return text;
         }
 
         public static string FirstLetterToUpper(this string text)
         {
             if (text == null)
+            {
                 text = string.Empty;
+            }
 
-            text = text.Trim();
+            int firstLetterIndex = text.IndexOf(text.FirstOrDefault(char.IsLetter));
+            if (firstLetterIndex >= 0)
+            {
+                StringBuilder sb = new StringBuilder(text);
+                sb[firstLetterIndex] = char.ToUpper(text[firstLetterIndex]);
+                text = sb.ToString();
+            }
 
-            return text.Length == 0
-                       ? text
-                       : text.First().ToString().ToUpper() +
-                         text.Substring(1);
+            return text;
         }
 
 
