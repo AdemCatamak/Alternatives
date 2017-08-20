@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CryptographyEngineTest.cs" />
+    <Compile Include="CustomExceptionTest\BusinessException.cs" />
+    <Compile Include="CustomExceptionTest\FriendlyExceptionTest.cs" />
     <Compile Include="TestModel\ExtensionsTestClass\DataTableTestClass.cs" />
     <Compile Include="TestModel\ExtensionsTestClass\DummyClass.cs" />
     <Compile Include="TestModel\ExtensionsTestClass\IsValidTestClass.cs" />
@@ -76,8 +78,8 @@
     <Compile Include="ExtensionTest\ConvertionExtensionTests\ToDoubleTest.cs" />
     <Compile Include="ExtensionTest\ConvertionExtensionTests\ToIntTest.cs" />
     <Compile Include="ExtensionTest\ConvertionExtensionTests\ToLongTest.cs" />
-    <Compile Include="ExtensionTest\ConvertionExtensionTests\TryGetFieldNameTest.cs" />
-    <Compile Include="ExtensionTest\ConvertionExtensionTests\TrySetFieldNameTest.cs" />
+    <Compile Include="ExtensionTest\ReflectionExtensionTests\TryGetFieldNameTest.cs" />
+    <Compile Include="ExtensionTest\ReflectionExtensionTests\TrySetFieldNameTest.cs" />
     <Compile Include="ExtensionTest\ConvertionExtensionTests\TryToDoubleTest.cs" />
     <Compile Include="ExtensionTest\ConvertionExtensionTests\TryToIntTest.cs" />
     <Compile Include="ExtensionTest\ConvertionExtensionTests\TryToLongTest.cs" />

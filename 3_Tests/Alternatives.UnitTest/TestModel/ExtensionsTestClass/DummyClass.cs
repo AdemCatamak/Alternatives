@@ -6,6 +6,8 @@
         public int IntField { get; set; }
 
         public InnerDummyClass InnerClassField { get; set; }
+
+        private InnerDummyClass InnerPrivateFild { get; set; } = new InnerDummyClass {InnerDummyStringField = "private"};
     }
 
     public class InnerDummyClass

@@ -32,6 +32,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
             AnotherTestGenericInterface actual = item.Deserialize<AnotherTestGenericInterface>();
 
+            Assert.IsNotNull(actual);
             Assert.IsNull(actual.GenericField);
         }
 

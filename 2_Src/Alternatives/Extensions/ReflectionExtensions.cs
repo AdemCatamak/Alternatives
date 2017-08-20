@@ -244,13 +244,21 @@ namespace Alternatives.Extensions
 
         private static bool DoesMatchBaseClass(Type t, Type baseType)
         {
-            if (t == baseType)
-                return true;
+            while (true)
+            {
+                if (t == baseType)
+                {
+                    return true;
+                }
 
-            if (t.BaseType != null)
-                return DoesMatchBaseClass(t.BaseType, baseType);
+                if (t.BaseType != null)
+                {
+                    t = t.BaseType;
+                    continue;
+                }
 
-            return false;
+                return false;
+            }
         }
 
 

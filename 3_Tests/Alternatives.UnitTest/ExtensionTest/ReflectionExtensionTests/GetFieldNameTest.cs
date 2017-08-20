@@ -68,6 +68,21 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             Assert.AreEqual(expectedResult, actualResult, $"{actualResult} is not expected");
         }
 
+        [TestMethod]
+        public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_PrivateField()
+        {
+            DummyClass dummyClass = new DummyClass
+                                    {
+                                        IntField = 5,
+                                        StringField = "asd"
+                                    };
+
+            Assert.ThrowsException<FieldAccessException>(() =>
+                                                         {
+                                                             dummyClass.GetFieldValue<InnerDummyClass>("InnerPrivateFild");
+                                                         });
+        }
+
 
         [TestMethod]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_SuccessForClassField()
