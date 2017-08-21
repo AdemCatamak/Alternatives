@@ -70,7 +70,5 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\SourceLink.Create.CommandLine.2.1.2\build\SourceLink.Create.CommandLine.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SourceLink.Create.CommandLine.2.1.2\build\SourceLink.Create.CommandLine.targets'))" />
-    <Error Condition="!Exists('..\..\packages\SourceLink.Create.BitBucket.2.1.2\build\SourceLink.Create.BitBucket.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SourceLink.Create.BitBucket.2.1.2\build\SourceLink.Create.BitBucket.targets'))" />
   </Target>
-  <Import Project="..\..\packages\SourceLink.Create.BitBucket.2.1.2\build\SourceLink.Create.BitBucket.targets" Condition="Exists('..\..\packages\SourceLink.Create.BitBucket.2.1.2\build\SourceLink.Create.BitBucket.targets')" />
 </Project>
