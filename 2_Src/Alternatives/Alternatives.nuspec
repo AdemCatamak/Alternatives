@@ -3,11 +3,11 @@
 <package>
   <metadata>
     <id>Alternatives</id>
-    <version>1.0.6.8-CodeOnDemandTest</version>
+    <version>1.0.6.9-CodeOnDemandTest</version>
     <title>Alternatives</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
-    <licenseUrl><![CDATA[https://bitbucket.org/ademcatamak/alternatives/src/853f9d190521d8443fcd7436298b5401557da3ae/1_Solution_Items/LICENSE.txt?at=master&fileviewer=file-view-default]]></licenseUrl>
+    <licenseUrl><![CDATA[https://github.com/AdemCatamak/Alternatives/blob/master/1_Solution_Items/LICENSE.txt]]></licenseUrl>
     <projectUrl>https://bitbucket.org/ademcatamak/alternatives/wiki/Home</projectUrl>
     <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
