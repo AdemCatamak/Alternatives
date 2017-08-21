@@ -21,7 +21,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Debug\Alternatives.dll" target="lib\net45"></file>
-    <file src="bin\Release\Alternatives.dll" target="lib\net45"></file>
+    <file src="bin\*\Alternatives.dll" target="lib\net45"></file>
   </files>
 </package>
