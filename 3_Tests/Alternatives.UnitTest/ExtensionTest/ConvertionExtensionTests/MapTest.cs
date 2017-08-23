@@ -1,15 +1,15 @@
 ﻿using Alternatives.Extensions;
 using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    [TestClass]
+    
     public class MapTest
     {
         //NOTE : Parametresiz constructor sahibi olmayan sınıflar için kullanılamaz
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__Map_Null()
         {
             object actual = ((object) null).Map<object, object>();
@@ -18,7 +18,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.IsNull(actual, "Expected value is null");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__Map_ClassItemMap()
         {
             IsValidTestClassPartial expected = new IsValidTestClassPartial
@@ -38,7 +38,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected.Id, actual.Id, $"{actual} is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__Map_DifferentClassItemMap()
         {
             IsValidTestClass data = new IsValidTestClass

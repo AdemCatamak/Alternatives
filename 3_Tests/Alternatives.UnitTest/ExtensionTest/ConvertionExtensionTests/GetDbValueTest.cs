@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using Alternatives.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    [TestClass]
+    
     public class GetDbValueTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetDbValue_Null()
         {
             DBNull expected = DBNull.Value;
@@ -19,7 +19,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetDbValue_NullInt()
         {
             DBNull expected = DBNull.Value;
@@ -33,7 +33,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetDbValue_EmptyString()
         {
             string expected = string.Empty;
@@ -46,7 +46,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetDbValue_Int()
         {
             const int expected = 5;

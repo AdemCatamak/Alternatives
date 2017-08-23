@@ -1,12 +1,11 @@
 ﻿using Alternatives.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 {
-    [TestClass]
     public class FirstLetterUpperTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_Null()
         {
             string expected = string.Empty;
@@ -18,7 +17,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_Empty()
         {
             string expected = string.Empty;
@@ -30,7 +29,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_OneCharacter()
         {
             const string expected = "A",
@@ -42,7 +41,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_Word()
         {
             const string expected = "Adem",
@@ -54,7 +53,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_WordWithSpace()
         {
             const string expected = "Adem ",
@@ -66,7 +65,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_Words()
         {
             const string expected = "Adem catamak",

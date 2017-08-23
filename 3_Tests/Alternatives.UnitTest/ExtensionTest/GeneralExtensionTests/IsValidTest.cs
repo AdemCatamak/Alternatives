@@ -1,13 +1,12 @@
 ﻿using Alternatives.Extensions;
 using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 {
-    [TestClass]
     public class IsValidTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__IsValid_NullTest()
         {
             bool isValid = ((object)null).IsValid();
@@ -16,7 +15,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.IsFalse(isValid, "Item is valid");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__IsValid_EmailFormat()
         {
             bool isValid = SetEmailAndTest("ademcatamak@gmail.com");
@@ -52,7 +51,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             return item.IsValid();
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__IsValid_Required()
         {
             bool isValid = SetUsernameAndTest("ademcatamak@gmail.com");
@@ -77,7 +76,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__IsValid_TurkeyPhoneFormat()
         {
             bool isValid = SetPhoneNumberAndTest("+90 555 555 55 55");

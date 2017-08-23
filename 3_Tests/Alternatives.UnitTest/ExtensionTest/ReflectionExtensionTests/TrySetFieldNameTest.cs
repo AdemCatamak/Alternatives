@@ -1,13 +1,12 @@
 ﻿using Alternatives.Extensions;
 using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
-namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
+namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 {
-    [TestClass]
     public class TrySetFieldNameTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TrySetFieldName_Null()
         {
             bool actualIsValid = ((string) null).TrySetFieldValue("Value", "");
@@ -16,7 +15,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TrySetFieldName_NotExistFieldName()
         {
             DummyClass dummyClass = new DummyClass();
@@ -26,7 +25,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.IsFalse(actualIsValid);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TrySetFieldName_NotConvertableTypeAndFieldMatch()
         {
             const int expectedValue = 5;
@@ -43,7 +42,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expectedValue, dummyClass.IntField);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TrySetFieldName_SuccessForStructField()
         {
             const int expectedResult = 1;
@@ -61,7 +60,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TrySetFieldName_SuccessForClassField()
         {
             InnerDummyClass expectedResult = new InnerDummyClass()

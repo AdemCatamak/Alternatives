@@ -1,13 +1,13 @@
 ﻿using Alternatives.Extensions;
 using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
-namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
+namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 {
-    [TestClass]
+    
     public class TryGetFieldNameTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryGetFieldName_NullForClass()
         {
             bool actualIsValid = ((string) null).TryGetFieldValue("Value", out string actualResult);
@@ -17,7 +17,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.IsFalse(actualIsValid, $"{actualIsValid} is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryGetFieldName_NullForStruct()
         {
             bool actualIsValid = ((string)null).TryGetFieldValue("Value", out int? actualResult);
@@ -27,7 +27,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.IsFalse(actualIsValid, $"{actualIsValid} is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryGetFieldName_NotExistFieldNameForStruct()
         {
             const bool expectedIsValid = false;
@@ -40,7 +40,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expectedIsValid, actualIsValid, $"{actualIsValid} is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryGetFieldName_NotExistFieldNameForClass()
         {
             const InnerDummyClass expectedResult = null;
@@ -54,7 +54,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expectedIsValid, actualIsValid, $"{actualIsValid} is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryGetFieldName_NotConvertableTypeAndFieldMatch()
         {
             const string expectedResult = null;
@@ -72,7 +72,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expectedIsValid, actualIsValid, $"{actualIsValid} is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryGetFieldName_SuccessForStructField()
         {
             const int expectedResult = 5;
@@ -91,7 +91,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryGetFieldName_SuccessForClassField()
         {
             InnerDummyClass expectedResult = new InnerDummyClass()

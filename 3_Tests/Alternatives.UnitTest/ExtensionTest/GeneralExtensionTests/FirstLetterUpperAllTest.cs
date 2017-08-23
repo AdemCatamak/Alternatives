@@ -1,12 +1,11 @@
 ﻿using Alternatives.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 {
-    [TestClass]
     public class FirstLetterUpperAllTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Null()
         {
             string expected = string.Empty;
@@ -18,7 +17,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Empty()
         {
             string expected = string.Empty;
@@ -30,7 +29,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_DigitNotEffected()
         {
             const string expected = "2131";
@@ -42,7 +41,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Word()
         {
             const string expected = "Adem",
@@ -54,7 +53,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_WordWithSpace()
         {
             const string expected = "Adem",
@@ -66,7 +65,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Words()
         {
             const string expected = "Adem Catamak",
@@ -78,7 +77,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Words_GivenSplitter_NotMatch()
         {
             const string expected = "All first letter is change upper version of all sentences after FirstLetterToUpperAll function run. Try it if you do not believe",
@@ -90,7 +89,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Words_GivenSplitter_OnlyLetter()
         {
             const string expected = "Adem, Catamak",
@@ -102,7 +101,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Words_GivenSplitter_OneAfterAnother()
         {
             const string expected = "Adem, Catamak",

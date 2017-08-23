@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using Alternatives.Extensions;
 using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    [TestClass]
+    
     public class ConvertToDataTableTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__ToDataTable()
         {
             DataTable expected = new DataTable()

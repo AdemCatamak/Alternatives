@@ -1,13 +1,12 @@
 ﻿using System.Net;
 using Alternatives.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 {
-    [TestClass]
     public class CheckIpInRangeTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__CheckIpInRange()
         {
             bool result;

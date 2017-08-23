@@ -1,13 +1,12 @@
 ﻿using System.Globalization;
 using Alternatives.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    [TestClass]
     public class TryToLongTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_Null()
         {
             const long expected = default(long);
@@ -19,7 +18,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_NullWithDefault()
         {
             const long expected = 5;
@@ -31,7 +30,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithComma()
         {
             const long expected = default(long);
@@ -44,7 +43,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithDotAndComma()
         {
             const long expected = default(long);
@@ -57,7 +56,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithCommaAndDefault()
         {
             const long expected = 8,
@@ -71,7 +70,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong()
         {
             const long expected = 1237;
@@ -84,7 +83,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithDefault()
         {
             const double expected = 1118,
@@ -98,7 +97,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_With_SuccessInfo()
         {
             // Arrage
@@ -115,7 +114,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_With_SuccessInfo_DeaultValue()
         {
             // Arrage

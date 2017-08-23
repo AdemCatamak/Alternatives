@@ -1,34 +1,33 @@
 ﻿using System;
 using System.Globalization;
 using Alternatives.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    [TestClass]
     public class ToDoubleTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__ToDouble_Null()
         {
-            Assert.ThrowsException<NullReferenceException>(() =>
+            Assert.Throws<NullReferenceException>(() =>
                                                            {
                                                                ((object) null).ToDouble();
                                                            });
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__ToDouble_Alphabet()
         {
             const string data = "123a123.24";
 
-            Assert.ThrowsException<FormatException>(() =>
+            Assert.Throws<FormatException>(() =>
                                                     {
                                                         data.ToDouble(CultureInfo.GetCultureInfo("tr-TR"));
                                                     });
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__ToDouble_WithComma()
         {
             const double expected = 12.5;
@@ -41,7 +40,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.AreEqual(expected, actual, $"{actual} value is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__ToDouble_WithDot()
         {
             const double expected = 1215;

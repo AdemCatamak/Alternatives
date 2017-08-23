@@ -1,15 +1,14 @@
 ﻿using Alternatives.Extensions;
 using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 {
-    [TestClass]
     public class CreateInstanceTest
     {
         //NOTE : Parametresiz constructor sahibi olmayan sınıflarda kullanılamaz
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InSameAssembly_Type()
         {
             object actual = ReflectionExtensions.CreateInstance(typeof(IsValidTestClass));
@@ -20,7 +19,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
                              "Cast operation show that IsValidClass instance cannot be created");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InDifferentAssembly_Type()
         {
             object actual = ReflectionExtensions.CreateInstance(typeof(DummyClass));
@@ -31,7 +30,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
                              "Cast operation show that IsValidClass instance cannot be created");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InSameAssembly()
         {
             string fullName = typeof(IsValidTestClass).AssemblyQualifiedName;
@@ -45,7 +44,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
                              "Cast operation show that IsValidClass instance cannot be created");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InDifferentAssembly()
         {
             string fullName = typeof(DummyClass).FullName;

@@ -1,13 +1,13 @@
 ﻿using System;
 using Alternatives.CustomExceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.CustomExceptionTest
 {
-    [TestClass]
+    
     public class FriendlyExceptionTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_CustomExceptionTest__FriendlyExceptionCreation_WithMessage()
         {
             FriendlyException friendlyException = new FriendlyException("Friendly Message");
@@ -16,7 +16,7 @@ namespace Alternatives.UnitTest.CustomExceptionTest
             Assert.IsNotNull(friendlyException.FriendlyMessage);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_CustomExceptionTest__FriendlyExceptionCreation_WithMessageAndException()
         {
             Exception ex = new Exception("Common Exception");

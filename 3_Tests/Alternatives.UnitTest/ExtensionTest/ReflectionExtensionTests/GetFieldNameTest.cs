@@ -1,43 +1,42 @@
 ﻿using System;
 using Alternatives.Extensions;
 using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 {
-    [TestClass]
     public class GetFieldNameTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_Null()
         {
-            Assert.ThrowsException<NullReferenceException>(() =>
+            Assert.Throws<NullReferenceException>(() =>
                                                            {
                                                                ((string) null).GetFieldValue<bool>("Value");
                                                            });
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_NotExistFieldNameForStruct()
         {
             DummyClass dummyClass = new DummyClass();
-            Assert.ThrowsException<FieldAccessException>(() =>
+            Assert.Throws<FieldAccessException>(() =>
                                                          {
                                                              dummyClass.GetFieldValue<string>("NotExistColumn");
                                                          });
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_NotExistFieldNameForClass()
         {
             DummyClass dummyClass = new DummyClass();
-            Assert.ThrowsException<FieldAccessException>(() =>
+            Assert.Throws<FieldAccessException>(() =>
                                                          {
                                                              dummyClass.GetFieldValue<InnerDummyClass>("NotExistColumn");
                                                          });
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_NotConvertableTypeAndFieldMatch()
         {
             DummyClass dummyClass = new DummyClass
@@ -46,13 +45,13 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
                                         StringField = "asd"
                                     };
 
-            Assert.ThrowsException<InvalidCastException>(() =>
+            Assert.Throws<InvalidCastException>(() =>
                                                          {
                                                              dummyClass.GetFieldValue<int>(nameof(DummyClass.StringField));
                                                          });
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_SuccessForStructField()
         {
             const int expectedResult = 5;
@@ -68,7 +67,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             Assert.AreEqual(expectedResult, actualResult, $"{actualResult} is not expected");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_PrivateField()
         {
             DummyClass dummyClass = new DummyClass
@@ -77,14 +76,14 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
                                         StringField = "asd"
                                     };
 
-            Assert.ThrowsException<FieldAccessException>(() =>
+            Assert.Throws<FieldAccessException>(() =>
                                                          {
                                                              dummyClass.GetFieldValue<InnerDummyClass>("InnerPrivateFild");
                                                          });
         }
 
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_SuccessForClassField()
         {
             InnerDummyClass expectedResult = new InnerDummyClass()

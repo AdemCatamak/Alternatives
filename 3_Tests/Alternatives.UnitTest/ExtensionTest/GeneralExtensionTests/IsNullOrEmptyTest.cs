@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using Alternatives.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 {
-    [TestClass]
     public class IsNullOrEmptyTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Null()
         {
             // Act
@@ -18,7 +17,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.IsTrue(isNullOrEmpty);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Empty_NotFiltered()
         {
             // Act
@@ -30,7 +29,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Empty_Filtered()
         {
             // Act
@@ -41,7 +40,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.IsTrue(isNullOrEmpty);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_NotEmpty_Filtered_NotMatch()
         {
             // Arrange
@@ -56,7 +55,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.IsTrue(isNullOrEmpty);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_NotEmpty_Filtered_Match()
         {
             // Arrange
@@ -71,7 +70,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.IsFalse(isNullOrEmpty);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_NotEmpty_NotFiltered()
         {
             // Arrange

@@ -4,16 +4,13 @@ using System.Linq;
 using Alternatives.Extensions;
 using Alternatives.UnitTest.TestModel;
 using Alternatives.UnitTest.TestModel.Implementations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 {
-    [TestClass]
     public class GetInheritedTypesTest
     {
-
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseInterface()
         {
             // Act
@@ -30,7 +27,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             Assert.IsTrue(typeList.Contains(typeof(AnotherTestInterface)));
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseGenericInterface()
         {
             // Act
@@ -48,7 +45,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseGenericInterfaceSpesific()
         {
             // Act
@@ -66,7 +63,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 
 
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseAbstractClassImplemetor_Parent()
         {
             // Act
@@ -82,7 +79,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             Assert.IsTrue(typeList.Contains(typeof(TestAbstract)));
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseAbstractClassImplemetor_GrandParent()
         {
             // Act

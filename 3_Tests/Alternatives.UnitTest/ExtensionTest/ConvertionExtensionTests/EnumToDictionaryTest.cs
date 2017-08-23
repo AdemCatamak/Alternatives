@@ -2,14 +2,14 @@
 using System.Linq;
 using Alternatives.Extensions;
 using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    [TestClass]
+    
     public class EnumToDictionaryTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__EnumToDictionary_WithNegativeValue()
         {
             Dictionary<int, string> expected = new Dictionary<int, string>()
@@ -29,7 +29,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__EnumToDictionary()
         {
             Dictionary<int, string> expected = new Dictionary<int, string>()

@@ -1,13 +1,12 @@
 ﻿using System;
 using Alternatives.CustomExceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.CustomExceptionTest
 {
-    [TestClass]
     public class BusinessExceptionTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_CustomExceptionTest__BusinessExceptionCreation_WithMessage()
         {
             BusinessException businessException = new BusinessException("Business Message");
@@ -16,15 +15,15 @@ namespace Alternatives.UnitTest.CustomExceptionTest
             Assert.IsNotNull(businessException.ErrorMessage);
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_CustomExceptionTest__BusinessExceptionCreation_WithMessageAndException()
         {
             Exception ex = new Exception("Common Exception");
             BusinessException businessException = new BusinessException("Business Message", ex);
 
-            Assert.IsNotNull(businessException.InnerException , "BusinessException's inner exception is null");
+            Assert.IsNotNull(businessException.InnerException, "BusinessException's inner exception is null");
             Assert.IsFalse(string.IsNullOrEmpty(businessException.ErrorMessage), "BusinessException's error message is null or empty");
-            Assert.AreEqual(ex.Message, businessException.InnerException.Message , "Business ex's inner exception message and ex's message are not equal");
+            Assert.AreEqual(ex.Message, businessException.InnerException.Message, "Business ex's inner exception message and ex's message are not equal");
         }
     }
 }

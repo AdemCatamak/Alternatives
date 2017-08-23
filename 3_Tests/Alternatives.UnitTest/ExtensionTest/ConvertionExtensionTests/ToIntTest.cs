@@ -1,45 +1,45 @@
 ﻿using System;
 using Alternatives.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    [TestClass]
+    
     public class ToIntTest
     {
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__ToInt_Null()
         {
-            Assert.ThrowsException<NullReferenceException>(() =>
+            Assert.Throws<NullReferenceException>(() =>
                                                            {
                                                                ((object) null).ToInt();
                                                            });
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__ToInt_Alphabet()
         {
             const string data = "123a123";
 
 
-            Assert.ThrowsException<FormatException>(() =>
+            Assert.Throws<FormatException>(() =>
                                                     {
                                                         data.ToInt();
                                                     });
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__ToInt_WithComma()
         {
             const string data = "12,3";
 
-            Assert.ThrowsException<FormatException>(() =>
+            Assert.Throws<FormatException>(() =>
                                                     {
                                                         data.ToInt();
                                                     });
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__ToInt()
         {
             const int expected = 123;

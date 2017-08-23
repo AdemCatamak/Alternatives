@@ -1,15 +1,15 @@
 ﻿using Alternatives.Extensions;
 using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    [TestClass]
+    
     public class CopyTest
     {
         //NOTE: Parametresiz constructor sahibi olmayan sınıflar için kullanılamaz
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__Copy_Null()
         {
             object actual = ((object) null).Copy();
@@ -18,7 +18,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Assert.IsNull(actual, "Expected value is null");
         }
 
-        [TestMethod]
+        [Test]
         public void Alternatives_UnitTest_ExtensionsTest__Copy_ClassItemCopy()
         {
             IsValidTestClass expected = new IsValidTestClass()
