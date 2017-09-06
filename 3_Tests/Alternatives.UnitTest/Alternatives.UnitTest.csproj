@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
-            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-      <ProjectGuid>{A98BF1B4-EC15-4780-B383-794ABBEDBDB3}</ProjectGuid>
-      <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{A98BF1B4-EC15-4780-B383-794ABBEDBDB3}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Alternatives.UnitTest</RootNamespace>
@@ -15,7 +14,7 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-      <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-      <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-      <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
-          <HintPath>..\..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
+      <HintPath>..\..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -60,23 +59,24 @@
     <Compile Include="ExtensionTest\ConvertionExtensionTests\TryToDoubleTest.cs" />
     <Compile Include="ExtensionTest\ConvertionExtensionTests\TryToIntTest.cs" />
     <Compile Include="ExtensionTest\ConvertionExtensionTests\TryToLongTest.cs" />
-      <Compile Include="ExtensionTest\GeneralExtensionTests\CheckIpInRangeTest.cs"/>
-      <Compile Include="ExtensionTest\GeneralExtensionTests\FirstLetterUpperAllTest.cs"/>
-      <Compile Include="ExtensionTest\GeneralExtensionTests\FirstLetterUpperTest.cs"/>
-      <Compile Include="ExtensionTest\GeneralExtensionTests\IsNullOrEmptyTest.cs"/>
-      <Compile Include="ExtensionTest\GeneralExtensionTests\IsValidTest.cs"/>
-      <Compile Include="ExtensionTest\ReflectionExtensionTests\CreateInstanceTest.cs"/>
-      <Compile Include="ExtensionTest\ReflectionExtensionTests\GetFieldNameTest.cs"/>
-      <Compile Include="ExtensionTest\ReflectionExtensionTests\GetInheritedTypesTest.cs"/>
-      <Compile Include="ExtensionTest\ReflectionExtensionTests\TryGetFieldNameTest.cs"/>
-      <Compile Include="ExtensionTest\ReflectionExtensionTests\TrySetFieldNameTest.cs"/>
-      <Compile Include="Properties\AssemblyInfo.cs"/>
-      <Compile Include="TestModel\ExtensionsTestClass\DataTableTestClass.cs"/>
-      <Compile Include="TestModel\ExtensionsTestClass\DummyClass.cs"/>
-      <Compile Include="TestModel\ExtensionsTestClass\IsValidTestClass.cs"/>
-      <Compile Include="TestModel\ExtensionsTestClass\IsValidTestClassPartial.cs"/>
-      <Compile Include="TestModel\ExtensionsTestClass\TestEnum.cs"/>
-      <Compile Include="TestModel\ExtensionsTestClass\TestEnumWithNegative.cs"/>
+    <Compile Include="ExtensionTest\GeneralExtensionTests\CheckIpInRangeTest.cs" />
+    <Compile Include="ExtensionTest\GeneralExtensionTests\FirstLetterUpperAllTest.cs" />
+    <Compile Include="ExtensionTest\GeneralExtensionTests\FirstLetterUpperTest.cs" />
+    <Compile Include="ExtensionTest\GeneralExtensionTests\GetSolutionNameTest.cs" />
+    <Compile Include="ExtensionTest\GeneralExtensionTests\IsNullOrEmptyTest.cs" />
+    <Compile Include="ExtensionTest\GeneralExtensionTests\IsValidTest.cs" />
+    <Compile Include="ExtensionTest\ReflectionExtensionTests\CreateInstanceTest.cs" />
+    <Compile Include="ExtensionTest\ReflectionExtensionTests\GetFieldNameTest.cs" />
+    <Compile Include="ExtensionTest\ReflectionExtensionTests\GetInheritedTypesTest.cs" />
+    <Compile Include="ExtensionTest\ReflectionExtensionTests\TryGetFieldNameTest.cs" />
+    <Compile Include="ExtensionTest\ReflectionExtensionTests\TrySetFieldNameTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestModel\ExtensionsTestClass\DataTableTestClass.cs" />
+    <Compile Include="TestModel\ExtensionsTestClass\DummyClass.cs" />
+    <Compile Include="TestModel\ExtensionsTestClass\IsValidTestClass.cs" />
+    <Compile Include="TestModel\ExtensionsTestClass\IsValidTestClassPartial.cs" />
+    <Compile Include="TestModel\ExtensionsTestClass\TestEnum.cs" />
+    <Compile Include="TestModel\ExtensionsTestClass\TestEnumWithNegative.cs" />
     <Compile Include="TestModel\FirstLevelAbstract.cs" />
     <Compile Include="TestModel\IGenericInterface.cs" />
     <Compile Include="TestModel\IInterface.cs" />
@@ -97,7 +97,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">
     </Target>

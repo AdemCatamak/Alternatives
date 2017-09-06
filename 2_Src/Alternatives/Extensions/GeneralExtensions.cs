@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
@@ -145,6 +146,18 @@ namespace Alternatives.Extensions
             }
 
             return result;
+        }
+
+
+        public static string SolutionName
+        {
+            get
+            {
+                AssemblyProductAttribute productAttribute = (AssemblyProductAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(),
+                                                                                                                    typeof(AssemblyProductAttribute));
+
+                return productAttribute.Product;
+            }
         }
     }
 }
