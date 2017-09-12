@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
@@ -43,12 +44,11 @@ namespace Alternatives.Extensions
         }
 
 
-
         public static string FirstLetterToUpperAll(this string text, params char[] markers)
         {
             if (markers.IsNullOrEmpty())
             {
-                markers = new[] {' '};
+                markers = new[] { ' ' };
             }
 
             if (text == null)
@@ -58,11 +58,8 @@ namespace Alternatives.Extensions
 
             foreach (char marker in markers)
             {
-                string[] split = text.Split(new[] {marker}, StringSplitOptions.RemoveEmptyEntries);
-                Parallel.For(0, split.Length, i =>
-                                              {
-                                                  split[i] = split[i].FirstLetterToUpper();
-                                              }
+                string[] split = text.Split(new[] { marker }, StringSplitOptions.RemoveEmptyEntries);
+                Parallel.For(0, split.Length, i => { split[i] = split[i].FirstLetterToUpper(); }
                             );
 
 
@@ -89,7 +86,6 @@ namespace Alternatives.Extensions
 
             return text;
         }
-
 
 
         public static bool CheckIpInRange(this IPAddress ipAddress, IPAddress minIpAddress, IPAddress maxIpAddress)
@@ -120,7 +116,6 @@ namespace Alternatives.Extensions
 
             return result;
         }
-
 
 
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> iEnumerable, Expression<Func<T, bool>> predicate = null)

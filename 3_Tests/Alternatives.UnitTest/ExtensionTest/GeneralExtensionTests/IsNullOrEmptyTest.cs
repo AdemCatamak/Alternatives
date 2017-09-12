@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Alternatives.Extensions;
 using NUnit.Framework;
 
@@ -7,10 +8,21 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
     public class IsNullOrEmptyTest
     {
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Null()
+        public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Null__IEnumarable()
         {
             // Act
             bool isNullOrEmpty = ((List<string>) null).IsNullOrEmpty();
+
+
+            // Assert
+            Assert.IsTrue(isNullOrEmpty);
+        }
+
+        [Test]
+        public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Null__IQuaryable()
+        {
+            // Act
+            bool isNullOrEmpty = ((IQueryable<int>)null).IsNullOrEmpty();
 
 
             // Assert
