@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Linq;
@@ -153,6 +154,27 @@ namespace Alternatives.Extensions
 
                 return productAttribute.Product;
             }
+        }
+
+
+        public static T ReadAppSettingsRealTime<T>(string key)
+        {
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key), "cannot be null");
+            }
+
+            const string sectionName = "appSettings";
+            ConfigurationManager.RefreshSection(sectionName);
+
+            if (!ConfigurationManager.AppSettings.AllKeys.Contains(key))
+            {
+                throw new KeyNotFoundException($"{key} is not exist in appSettings");
+            }
+
+            string value = ConfigurationManager.AppSettings[key];
+
+            return (T)Convert.ChangeType(value, typeof(T));
         }
     }
 }

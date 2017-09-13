@@ -10,7 +10,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         {
             string expected = string.Empty;
 
-
+            
             string actual = ((string) null).FirstLetterToUpper();
 
 
