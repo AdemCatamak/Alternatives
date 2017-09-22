@@ -44,8 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CryptographyEngineTest.cs" />
-    <Compile Include="CustomExceptionTest\BusinessException.cs" />
-    <Compile Include="CustomExceptionTest\FriendlyExceptionTest.cs" />
     <Compile Include="ExtensionTest\ConvertionExtensionTests\ConvertToDataTableTest.cs" />
     <Compile Include="ExtensionTest\ConvertionExtensionTests\CopyTest.cs" />
     <Compile Include="ExtensionTest\ConvertionExtensionTests\DeserializeTest.cs" />
