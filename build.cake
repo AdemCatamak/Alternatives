@@ -44,14 +44,11 @@ Task(NugetPackStage)
         var nuGetPackSettings = new NuGetPackSettings
                                     {
                                         Id                      = "Alternatives",
-                                        //Version                 = "0.0.0.1",
                                         Title                   = "Alternatives",
                                         Authors                 = new[] {"Adem Catamak"},
                                         Owners                  = new[] {"Adem Catamak"},
                                         Description             = "Common Extensions",
-                                        //Summary                 = "Excellent summary of what the package does",
                                         ProjectUrl              = new Uri("https://github.com/AdemCatamak/Alternatives.git"),
-                                        //IconUrl                 = new Uri("http://cdn.rawgit.com/SomeUser/TestNuget/master/icons/testnuget.png"),
                                         LicenseUrl              = new Uri("https://github.com/AdemCatamak/Alternatives/blob/master/LICENSE"),
                                         Tags                    = new [] {"C#", "Extensions"},
                                         RequireLicenseAcceptance= true,
@@ -81,6 +78,7 @@ Task(TestStage)
 .Does(()=>
 {
     var testDlls = GetFiles("./3_Tests/**/bin/**/*Test.dll");
+    bool success = true;
     foreach(var testDll in testDlls)
     {
         Console.WriteLine(testDll.FullPath);
@@ -90,9 +88,14 @@ Task(TestStage)
         }
         catch(Exception e)
         {
+            success = false;
             Console.WriteLine(e);
-            throw;
         }
+    }
+
+    if(!success)
+    {
+        throw new Exception(BuildStage + " FAIL");
     }
 });
 
