@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-jenkins.branch.WorkspaceLocatorImpl.PATH_MAX=1
+#!jenkins.branch.WorkspaceLocatorImpl.PATH_MAX=1
 branchName = env.BRANCH_NAME
 buildId = env.BUILD_ID;
 
