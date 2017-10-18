@@ -3,7 +3,7 @@ node('master'){
     try { checkout scm } catch(caughtError) { deleteDir(); checkout scm }
     }
     stage('Run') {
-      posh "./build.ps1 -experimental -branch=\"${branchName}\" -buildNumber=\"${buildId}\""
+      posh "./build.ps1 -experimental"
     } 
 }
 
