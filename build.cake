@@ -8,15 +8,15 @@
 
 string solutionName = "Alternatives";
 string solutionFullName = $"{solutionName}.sln";
+string BuildConfig = "Release";
 
 string toolPath = "./tools";
 string nugetPath = toolPath + "/nuget.exe";
 
-
-
 // STAGE NAMES
 
 string DefaultStage = "RESULT";
+string NugetPackStage = "Nuget Pack";
 string TestStage = "Test";
 string AnalysisStage = "Analysis";
 string BuildStage = "Build";
@@ -30,7 +30,38 @@ var target = Argument("target", DefaultStage);
 Task(DefaultStage)
 .IsDependentOn(TestStage)
 .IsDependentOn(AnalysisStage)
+.IsDependentOn(NugetPackStage)
 .Does(() =>{});
+
+Task(NugetPackStage)
+.IsDependentOn(BuildStage)
+.Does(()=> 
+{
+    var nuspecFiles = GetFiles("./**/*.nuspec");
+    foreach(var nuspecFile in nuspecFiles)
+    {
+        Console.WriteLine(nuspecFile);
+        var nuGetPackSettings = new NuGetPackSettings
+                                    {
+                                        Id                      = "Alternatives",
+                                        //Version                 = "0.0.0.1",
+                                        Title                   = "Alternatives",
+                                        Authors                 = new[] {"Adem Catamak"},
+                                        Owners                  = new[] {"Adem Catamak"},
+                                        Description             = "Common Extensions",
+                                        //Summary                 = "Excellent summary of what the package does",
+                                        ProjectUrl              = new Uri("https://github.com/AdemCatamak/Alternatives.git"),
+                                        //IconUrl                 = new Uri("http://cdn.rawgit.com/SomeUser/TestNuget/master/icons/testnuget.png"),
+                                        LicenseUrl              = new Uri("https://github.com/AdemCatamak/Alternatives/blob/master/LICENSE"),
+                                        Tags                    = new [] {"C#", "Extensions"},
+                                        RequireLicenseAcceptance= true,
+                                        Symbols                 = true,
+                                        OutputDirectory         = "./NugetPackages"
+                                    };
+                                    
+        NuGetPack(nuspecFile, nuGetPackSettings);
+    }
+});
 
 Task(AnalysisStage)
 .IsDependentOn(BuildStage)
@@ -69,7 +100,13 @@ Task(BuildStage)
 .IsDependentOn(NugetRestoreStage)
 .Does(()=>
 {
-    MSBuild(solutionFullName);
+    MSBuild(solutionFullName, new MSBuildSettings
+        {
+            Verbosity = Verbosity.Minimal,
+            ToolVersion = MSBuildToolVersion.VS2017,
+            Configuration = BuildConfig,
+            PlatformTarget = PlatformTarget.MSIL
+        });
 });
 
 Task(NugetRestoreStage)
