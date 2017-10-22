@@ -6,6 +6,11 @@ node('master'){
     }
     stage('Run') 
     {
-      sh "./build.sh"
+        steps
+        {
+            echo 'Jenkins starts to executing build.sh'
+            sh './build.sh'
+            echo 'Jenkins completes to executing build.sh'
+        }
     } 
 }
