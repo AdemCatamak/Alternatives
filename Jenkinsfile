@@ -6,6 +6,6 @@ node('master'){
     }
     stage('Run') 
     {
-      sh('build.sh')
+      sh "./build.sh"
     } 
 }
