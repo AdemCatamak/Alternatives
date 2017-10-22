@@ -6,11 +6,6 @@ node('master'){
     }
     stage('Run') 
     {
-      posh "./build.ps1 -experimental"
+      ./build.sh
     } 
-}
-
-def posh(cmd) 
-{
-  bat 'powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "& ' + cmd + '"'
 }
