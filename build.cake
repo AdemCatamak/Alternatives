@@ -1,6 +1,5 @@
 // TOOLS
 
-//#tool "nuget:?package=NuGet.CommandLine"
 #tool "nuget:?package=NUnit.Runners&version=2.6.4"
 #tool "nuget:?package=JetBrains.dotCover.CommandLineTools"
 
