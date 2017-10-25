@@ -9,6 +9,7 @@
 string solutionName = "Alternatives";
 string solutionFullName = $"{solutionName}.sln";
 string BuildConfig = "Release";
+string NugetPackageOutputDirectory = "./NugetPackages";
 
 string toolPath = "./tools";
 string nugetPath = toolPath + "/nuget.exe";
@@ -16,6 +17,7 @@ string nugetPath = toolPath + "/nuget.exe";
 // STAGE NAMES
 
 string DefaultStage = "RESULT";
+string NugetPushStage = "Nuget Push";
 string NugetPackStage = "Nuget Pack";
 string TestStage = "Test";
 string AnalysisStage = "Analysis";
@@ -25,13 +27,35 @@ string NugetRestoreStage = "Nuget Restore";
 
 // RUN OPERATION
 
+//var NugetApiKey = Argument("NugetApiKey", "");
 var target = Argument("target", DefaultStage);
 
 Task(DefaultStage)
 .IsDependentOn(TestStage)
 .IsDependentOn(AnalysisStage)
+//.IsDependentOn(NugetPushStage)
 .IsDependentOn(NugetPackStage)
 .Does(() =>{});
+
+
+Task(NugetPushStage)
+.IsDependentOn(NugetPackStage)
+.Does(()=> 
+{
+    Console.WriteLine(NugetApiKey);
+    Console.WriteLine();
+    
+    var npkgFiles = GetFiles(NugetPackageOutputDirectory+"/*.nupkg");
+    foreach(var nupkgFile in npkgFiles)
+    {
+        var nugetPushSettings = new NuGetPushSettings
+        {
+            ApiKey = NugetApiKey
+        };
+        
+        NugetPush(nupkgFile, );        
+    }
+});
 
 Task(NugetPackStage)
 .IsDependentOn(BuildStage)
@@ -53,7 +77,7 @@ Task(NugetPackStage)
                                         Tags                    = new [] {"C#", "Extensions"},
                                         RequireLicenseAcceptance= true,
                                         Symbols                 = true,
-                                        OutputDirectory         = "./NugetPackages"
+                                        OutputDirectory         = NugetPackageOutputDirectory
                                     };
                                     
         NuGetPack(nuspecFile, nuGetPackSettings);
