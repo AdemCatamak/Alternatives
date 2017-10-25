@@ -1,6 +1,6 @@
 // TOOLS
 
-#tool "nuget:?package=NuGet.CommandLine"
+//#tool "nuget:?package=NuGet.CommandLine"
 #tool "nuget:?package=NUnit.Runners&version=2.6.4"
 #tool "nuget:?package=JetBrains.dotCover.CommandLineTools"
 
@@ -10,9 +10,7 @@ string solutionName = "Alternatives";
 string solutionFullName = $"{solutionName}.sln";
 string BuildConfig = "Release";
 string NugetPackageOutputDirectory = "./NugetPackages";
-
-string toolPath = "./tools";
-string nugetPath = toolPath + "/nuget.exe";
+string NugetSourceUrl = "https://www.nuget.org/api/v2/package";
 
 // STAGE NAMES
 
@@ -27,33 +25,31 @@ string NugetRestoreStage = "Nuget Restore";
 
 // RUN OPERATION
 
-//var NugetApiKey = Argument("NugetApiKey", "");
+var NugetApiKey = Argument("NugetApiKey", "");
 var target = Argument("target", DefaultStage);
 
 Task(DefaultStage)
 .IsDependentOn(TestStage)
 .IsDependentOn(AnalysisStage)
-//.IsDependentOn(NugetPushStage)
-.IsDependentOn(NugetPackStage)
+.IsDependentOn(NugetPushStage)
 .Does(() =>{});
 
 
 Task(NugetPushStage)
 .IsDependentOn(NugetPackStage)
+.ContinueOnError()
 .Does(()=> 
 {
-    Console.WriteLine(NugetApiKey);
-    Console.WriteLine();
-    
-    var npkgFiles = GetFiles(NugetPackageOutputDirectory+"/*.nupkg");
+    var npkgFiles = GetFiles(NugetPackageOutputDirectory + "/*.nupkg");
     foreach(var nupkgFile in npkgFiles)
     {
         var nugetPushSettings = new NuGetPushSettings
         {
-            ApiKey = NugetApiKey
+            ApiKey = NugetApiKey,
+            Source = NugetSourceUrl 
         };
         
-        NugetPush(nupkgFile, );        
+        NuGetPush(nupkgFile.FullPath, nugetPushSettings);        
     }
 });
 
@@ -174,6 +170,13 @@ Task(CleanStage)
             Recursive  = true
         });
     }
+    
+    Console.WriteLine(NugetPackageOutputDirectory);
+    DeleteDirectory(NugetPackageOutputDirectory, new DeleteDirectorySettings {
+        Force = true,
+        Recursive  = true
+    });
+    
 });
 
 
