@@ -7,6 +7,8 @@ namespace Alternatives.CustomDataAnnotations
     {
         public override bool IsValid(object value)
         {
+            value = value ?? string.Empty;
+
             string strValue = value.ToString()
                                    .Replace("-", "")
                                    .Replace(" ", "");

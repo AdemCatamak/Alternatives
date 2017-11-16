@@ -8,6 +8,8 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation;
+using FluentValidation.Attributes;
 using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 
 namespace Alternatives.Extensions
@@ -30,17 +32,44 @@ namespace Alternatives.Extensions
             }
             else
             {
+                result = DetectValidator(obj, out message);
+
                 ICollection<ValidationResult> validateMessages = new List<ValidationResult>();
                 ValidationContext validationContext = new ValidationContext(obj);
 
-                result = Validator.TryValidateObject(obj,
-                                                     validationContext,
-                                                     validateMessages,
-                                                     true);
+                bool dataAnnotationResult = Validator.TryValidateObject(obj,
+                                                                        validationContext,
+                                                                        validateMessages,
+                                                                        true);
+                result = result && dataAnnotationResult;
 
-                message = string.Join(Environment.NewLine, validateMessages.Select(v => v.ErrorMessage));
+                if (!dataAnnotationResult)
+                {
+                    message += Environment.NewLine + string.Join(Environment.NewLine, validateMessages.Select(v => v.ErrorMessage));
+                }
             }
             return result;
+        }
+
+        private static bool DetectValidator<T>(T obj, out string message)
+        {
+            message = string.Empty;
+
+            if (!(typeof(T).GetCustomAttributes(typeof(ValidatorAttribute), true).FirstOrDefault() is ValidatorAttribute validatorAttribute))
+            {
+                return true;
+            }
+
+            AbstractValidator<T> validator = Activator.CreateInstance(validatorAttribute.ValidatorType) as AbstractValidator<T>;
+
+            if (validator == null)
+            {
+                return true;
+            }
+
+            FluentValidation.Results.ValidationResult validationResult = validator.Validate(obj);
+            message = string.Join(Environment.NewLine, validationResult.Errors.Select(e => e.ErrorMessage));
+            return validationResult.IsValid;
         }
 
 
@@ -173,7 +202,7 @@ namespace Alternatives.Extensions
 
             string value = ConfigurationManager.AppSettings[key];
 
-            return (T)Convert.ChangeType(value, typeof(T));
+            return (T) Convert.ChangeType(value, typeof(T));
         }
     }
 }

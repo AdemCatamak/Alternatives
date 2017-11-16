@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Alternatives.CustomDataAnnotations;
 using Alternatives.Extensions;
+using FluentValidation;
+using FluentValidation.Attributes;
 using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
@@ -10,16 +11,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
     {
         #region TestModel
 
-        private class IsValidTestClassPartial
-        {
-            [Key]
-            public int Id { get; set; }
-
-            public int? ExtraData { get; set; }
-        }
-
-        [Table("asd")]
-        private class IsValidTestClass : IsValidTestClassPartial
+        private class IsValidTestClass
         {
             [TurkeyPhone]
             public string Phone { get; set; }
@@ -34,10 +26,33 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             public string RequiredPhone { get; set; }
         }
 
+        [Validator(typeof(ValidatorOfIsValidTestClassWithValidator))]
+        private class IsValidTestClassWithValidator
+        {
+            [TurkeyPhone]
+            public string Phone { get; set; }
+
+            public string Email { get; set; }
+
+            public string Username { get; set; }
+
+            [Phone, Required]
+            public string RequiredPhone { get; set; }
+        }
+
+        private class ValidatorOfIsValidTestClassWithValidator : AbstractValidator<IsValidTestClassWithValidator>
+        {
+            public ValidatorOfIsValidTestClassWithValidator()
+            {
+                RuleFor(obj => obj.Email).EmailAddress();
+                RuleFor(obj => obj.Username).NotNull().When(obj => obj.Email == null);
+            }
+        }
+
         #endregion
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__IsValid_NullTest()
+        public void IsValid_WhenIsValidFuctionExecuteForNull_ResponseMustBeFalse()
         {
             bool isValid = ((object) null).IsValid();
 
@@ -45,8 +60,9 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             Assert.IsFalse(isValid, "Item is valid");
         }
 
+
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__IsValid_EmailFormat()
+        public void IsValid_ExecuteIsValidFunctionForDifferentKindOfEmailFormat()
         {
             bool isValid = SetEmailAndTest("ademcatamak@gmail.com");
             Assert.IsTrue(isValid, "Email-1 format must be valid");
@@ -81,8 +97,9 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             return item.IsValid();
         }
 
+
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__IsValid_Required()
+        public void IsValid_ExecuteIsValidFunctionForRequiredField()
         {
             bool isValid = SetUsernameAndTest("ademcatamak@gmail.com");
             Assert.IsTrue(isValid, "Username-1 format must be valid");
@@ -107,7 +124,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__IsValid_TurkeyPhoneFormat()
+        public void IsValid_ExecuteIsValidFunctionForDifferentKindOfTurkeyPhoneFormat()
         {
             bool isValid = SetPhoneNumberAndTest("+90 555 555 55 55");
             Assert.IsTrue(isValid, "Phone-1 format is not valid");
@@ -145,6 +162,57 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
                                     };
 
             return item.IsValid();
+        }
+
+
+        [Test]
+        public void IsValid_WhenClassHasValidator_IsValidFunctionTakeNoticeBothValidatorClassAndDataAnnotaions()
+        {
+            IsValidTestClassWithValidator testClassWithValidator = new IsValidTestClassWithValidator();
+            bool isValid = testClassWithValidator.IsValid(out string errorMessage);
+
+            Assert.IsFalse(isValid);
+            Assert.IsTrue(errorMessage.Contains("Phone"));
+            Assert.IsTrue(errorMessage.Contains("RequiredPhone"));
+            Assert.IsTrue(errorMessage.Contains("Username"));
+
+
+            testClassWithValidator = new IsValidTestClassWithValidator
+                                     {
+                                         Email = "adm"
+                                     };
+
+            isValid = testClassWithValidator.IsValid(out errorMessage);
+
+            Assert.IsFalse(isValid);
+            Assert.IsTrue(errorMessage.Contains("Phone"));
+            Assert.IsTrue(errorMessage.Contains("RequiredPhone"));
+            Assert.IsTrue(errorMessage.Contains("Email"));
+
+
+            testClassWithValidator = new IsValidTestClassWithValidator
+                                     {
+                                         Email = "a@a"
+                                     };
+
+            isValid = testClassWithValidator.IsValid(out errorMessage);
+
+            Assert.IsFalse(isValid);
+            Assert.IsTrue(errorMessage.Contains("Phone"));
+            Assert.IsTrue(errorMessage.Contains("RequiredPhone"));
+            Assert.IsTrue(errorMessage.Contains("Email"));
+
+
+            testClassWithValidator = new IsValidTestClassWithValidator
+                                     {
+                                         Email = "a@a.com"
+                                     };
+
+            isValid = testClassWithValidator.IsValid(out errorMessage);
+
+            Assert.IsFalse(isValid);
+            Assert.IsTrue(errorMessage.Contains("Phone"));
+            Assert.IsTrue(errorMessage.Contains("RequiredPhone"));
         }
     }
 }
