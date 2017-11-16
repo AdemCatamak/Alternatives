@@ -6,7 +6,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
     public class FirstLetterUpperAllTest
     {
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Null()
+        public void FirstLetterUpperAll_WhenNullAsObject_ResponseMustBeEmptyString()
         {
             string expected = string.Empty;
 
@@ -18,7 +18,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Empty()
+        public void FirstLetterUpperAll_WhenEmptyStringAsObj_ResponseMustBeEmptyString()
         {
             string expected = string.Empty;
 
@@ -30,7 +30,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_DigitNotEffected()
+        public void FirstLetterUpperAll_WhenFirstLetterIsDigit_CharacterMustNotEffected()
         {
             const string expected = "2131";
             const string data = "2131";
@@ -42,7 +42,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Word()
+        public void FirstLetterUpperAll_WhenFirstCharacterIsLetter_CharacterMustBeCapitalized()
         {
             const string expected = "Adem",
                          data = "adem";
@@ -54,7 +54,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_WordWithSpace()
+        public void FirstLetterUpperAll_WhenHasSpaceAtTheEnd_ResponseHasCapitalizedFirstLetterAndRemovedSpaceAtTheEnd()
         {
             const string expected = "Adem",
                          data = "adem ";
@@ -66,7 +66,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Words()
+        public void FirstLetterUpperAll_WhenStringHasSpaceBetweenCharacter_EachWordHasCapitalizedFirstLetter()
         {
             const string expected = "Adem Catamak",
                          data = "adem catamak ";

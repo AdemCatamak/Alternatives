@@ -7,7 +7,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
     public class CheckIpInRangeTest
     {
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__CheckIpInRange()
+        public void CheckIpInRange_TestExecuteWithDifferentCase()
         {
             bool result;
 
