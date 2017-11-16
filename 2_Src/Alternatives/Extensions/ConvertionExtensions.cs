@@ -162,7 +162,7 @@ namespace Alternatives.Extensions
         public static TDestination Deserialize<TDestination>(this string source)
         {
             TDestination result = JsonConvert.DeserializeObject<TDestination>(source,
-                                                                              new JsonSerializerSettings()
+                                                                              new JsonSerializerSettings
                                                                               {
                                                                                   ReferenceLoopHandling = ReferenceLoopHandling.Serialize
                                                                               });
@@ -172,7 +172,7 @@ namespace Alternatives.Extensions
         public static string Serialize<TSource>(this TSource source)
         {
             string result = JsonConvert.SerializeObject(source,
-                                                        new JsonSerializerSettings()
+                                                        new JsonSerializerSettings
                                                         {
                                                             ReferenceLoopHandling = ReferenceLoopHandling.Serialize
                                                         });

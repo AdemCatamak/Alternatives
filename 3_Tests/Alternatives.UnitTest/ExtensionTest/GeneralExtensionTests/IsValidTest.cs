@@ -1,15 +1,45 @@
-﻿using Alternatives.Extensions;
-using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Alternatives.CustomDataAnnotations;
+using Alternatives.Extensions;
 using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 {
     public class IsValidTest
     {
+        #region TestModel
+
+        private class IsValidTestClassPartial
+        {
+            [Key]
+            public int Id { get; set; }
+
+            public int? ExtraData { get; set; }
+        }
+
+        [Table("asd")]
+        private class IsValidTestClass : IsValidTestClassPartial
+        {
+            [TurkeyPhone]
+            public string Phone { get; set; }
+
+            [EmailAddress]
+            public string Email { get; set; }
+
+            [Required]
+            public string Username { get; set; }
+
+            [Phone, Required]
+            public string RequiredPhone { get; set; }
+        }
+
+        #endregion
+
         [Test]
         public void Alternatives_UnitTest_ExtensionsTest__IsValid_NullTest()
         {
-            bool isValid = ((object)null).IsValid();
+            bool isValid = ((object) null).IsValid();
 
 
             Assert.IsFalse(isValid, "Item is valid");
@@ -40,7 +70,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
         private static bool SetEmailAndTest(string emailAddress)
         {
-            IsValidTestClass item = new IsValidTestClass()
+            IsValidTestClass item = new IsValidTestClass
                                     {
                                         Phone = "555 555 55 55",
                                         RequiredPhone = "123",
@@ -106,7 +136,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
         private static bool SetPhoneNumberAndTest(string phoneNumber)
         {
-            IsValidTestClass item = new IsValidTestClass()
+            IsValidTestClass item = new IsValidTestClass
                                     {
                                         RequiredPhone = "123",
                                         Username = "ademcatamak",

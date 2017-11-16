@@ -1,16 +1,39 @@
 ﻿using Alternatives.Extensions;
-using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
 using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    
     public class MapTest
     {
         //NOTE : Parametresiz constructor sahibi olmayan sınıflar için kullanılamaz
 
+        #region TestModel
+
+        private class DummyClass
+        {
+            public string StringField { get; set; }
+            public int IntField { get; set; }
+
+            public InnerDummyClass InnerClassField { get; set; }
+
+            private InnerDummyClass InnerPrivateFild { get; set; } = new InnerDummyClass { InnerDummyStringField = "private" };
+        }
+
+        private class InnerDummyClass
+        {
+            public string InnerDummyStringField { get; set; }
+        }
+
+        private class AnotherDummyClass
+        {
+            public string StrField { get; set; }
+            public double DoubleField { get; set; }
+        }
+
+        #endregion
+
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__Map_Null()
+        public void Map_WhenMapNullAsObject_ResponseMustBeNull()
         {
             object actual = ((object) null).Map<object, object>();
 
@@ -19,40 +42,50 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__Map_ClassItemMap()
+        public void Map_WhenMapSameKindOfClassObject_ItemsFieldMustBeEqual()
         {
-            IsValidTestClassPartial expected = new IsValidTestClassPartial
-                                               {
-                                                   Id = 5
-                                               };
-            IsValidTestClass data = new IsValidTestClass
-                                    {
-                                        Id = 5,
-                                        Username = "ademcatamak"
-                                    };
+            DummyClass expected = new DummyClass
+                                  {
+                                      IntField = 5,
+                                      StringField = "ademcatamak",
+                                      InnerClassField = new InnerDummyClass { InnerDummyStringField = "inner" }
+                                  };
+            DummyClass data = new DummyClass
+                              {
+                                  IntField = 5,
+                                  StringField = "ademcatamak",
+                                  InnerClassField = new InnerDummyClass { InnerDummyStringField = "inner" }
+                              };
 
 
-            IsValidTestClassPartial actual = data.Map<IsValidTestClass, IsValidTestClassPartial>();
+            DummyClass actual = data.Map<DummyClass, DummyClass>();
 
 
-            Assert.AreEqual(expected.Id, actual.Id, $"{actual} is not expected");
+            Assert.AreEqual(expected.IntField, actual.IntField);
+            Assert.AreEqual(expected.StringField, actual.StringField);
+            Assert.AreEqual(expected.InnerClassField.InnerDummyStringField, actual.InnerClassField.InnerDummyStringField);
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__Map_DifferentClassItemMap()
+        public void Map_WhenMapDifferentKindOfClassObject_DestinationObjectFieldMustBeDefault()
         {
-            IsValidTestClass data = new IsValidTestClass
-                                    {
-                                        Id = 5,
-                                        Username = "ademcatamak"
-                                    };
+            DummyClass data = new DummyClass
+                              {
+                                  IntField = 5,
+                                  StringField = "ademcatamak"
+                              };
 
+            AnotherDummyClass actual = new AnotherDummyClass
+                                       {
+                                           DoubleField = 11,
+                                           StrField = "another"
+                                       };
 
-            DummyClass actual = data.Map<IsValidTestClass, DummyClass>();
+            actual = data.Map<DummyClass, AnotherDummyClass>();
 
             Assert.IsNotNull(actual);
-            Assert.IsNull(actual.InnerClassField);
-            Assert.AreEqual(actual.IntField, default(int));
+            Assert.AreEqual(0, actual.DoubleField);
+            Assert.IsNull(actual.StrField);
         }
     }
 }

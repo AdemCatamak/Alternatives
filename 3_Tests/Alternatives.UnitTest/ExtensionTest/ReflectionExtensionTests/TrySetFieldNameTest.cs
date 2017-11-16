@@ -1,11 +1,29 @@
 ﻿using Alternatives.Extensions;
-using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
 using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 {
     public class TrySetFieldNameTest
     {
+        #region TestModel
+
+        private class DummyClass
+        {
+            public string StringField { get; set; }
+            public int IntField { get; set; }
+
+            public InnerDummyClass InnerClassField { get; set; }
+
+            private InnerDummyClass InnerPrivateFild { get; set; } = new InnerDummyClass { InnerDummyStringField = "private" };
+        }
+
+        private class InnerDummyClass
+        {
+            public string InnerDummyStringField { get; set; }
+        }
+
+        #endregion
+
         [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TrySetFieldName_Null()
         {
@@ -63,16 +81,16 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TrySetFieldName_SuccessForClassField()
         {
-            InnerDummyClass expectedResult = new InnerDummyClass()
+            InnerDummyClass expectedResult = new InnerDummyClass
                                              {
                                                  InnerDummyStringField = "TestInner"
                                              };
 
-            DummyClass dummyClass = new DummyClass()
+            DummyClass dummyClass = new DummyClass
                                     {
                                         IntField = 5,
                                         StringField = "asd",
-                                        InnerClassField = new InnerDummyClass()
+                                        InnerClassField = new InnerDummyClass
                                                           {
                                                               InnerDummyStringField = "asd"
                                                           }

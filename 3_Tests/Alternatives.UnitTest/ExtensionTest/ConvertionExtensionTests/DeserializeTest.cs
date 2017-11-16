@@ -1,25 +1,41 @@
 ﻿using System;
 using Alternatives.Extensions;
-using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
-using Alternatives.UnitTest.TestModel.Implementations;
 using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    
     public class DeserializeTest
     {
-        [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__Deserialize_Null()
+        #region TestModel
+
+        private class DummyClass
         {
-            IsValidTestClass actual = @"null".Deserialize<IsValidTestClass>();
+            public string StringField { get; set; }
+            public int IntField { get; set; }
+
+            public InnerDummyClass InnerClassField { get; set; }
+
+            private InnerDummyClass InnerPrivateFild { get; set; } = new InnerDummyClass { InnerDummyStringField = "private" };
+        }
+
+        private class InnerDummyClass
+        {
+            public string InnerDummyStringField { get; set; }
+        }
+
+        #endregion
+
+        [Test]
+        public void Deserialize_WhenDeserializeNullAsObject_ResultMustBeNull()
+        {
+            DummyClass actual = @"null".Deserialize<DummyClass>();
 
 
             Assert.AreEqual(null, actual, $"{actual} is not expected");
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__Deserialize_NotMatchClass()
+        public void Deserialize_WhenDeserializeJson_IfClassNotMatch_ResponseMustBeDefaultObject()
         {
             string item = @"
 {""Phone"":null,
@@ -30,40 +46,37 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
                 .Replace(" ", string.Empty)
                 .Replace(Environment.NewLine, string.Empty);
 
-            AnotherTestGenericInterface actual = item.Deserialize<AnotherTestGenericInterface>();
+            DummyClass actual = item.Deserialize<DummyClass>();
 
             Assert.IsNotNull(actual);
-            Assert.IsNull(actual.GenericField);
+            Assert.IsNull(actual.StringField);
+            Assert.AreEqual(0, actual.IntField);
+            Assert.IsNull(actual.InnerClassField);
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__Deserialize()
+        public void Deserialize_WhenDeserializeJson_IfClassPropertiesMathc_ResponseMustBeFilled()
         {
-            IsValidTestClass expected = new IsValidTestClass
-                                        {
-                                            Id = 3,
-                                            Username = "ademcatamak",
-                                            Email = "ademcatamak@gmail.com"
-                                        };
+            DummyClass expected = new DummyClass
+                                  {
+                                      IntField = 3,
+                                      StringField = "ademcatamak",
+                                      InnerClassField = new InnerDummyClass { InnerDummyStringField = "ademcatamak@gmail.com" }
+                                  };
             string item = @"
-{""Phone"":null,
-""Email"":""ademcatamak@gmail.com"",
-""Username"":""ademcatamak"",
-""RequiredPhone"":null,
-""Id"":3,""ExtraData"":null}"
+{""IntField"":3,
+""StringField"":""ademcatamak"",
+""InnerClassField"":{""InnerDummyStringField"":""ademcatamak@gmail.com""}}"
                 .Replace(" ", string.Empty)
                 .Replace(Environment.NewLine, string.Empty);
 
 
-            IsValidTestClass actual = item.Deserialize<IsValidTestClass>();
+            DummyClass actual = item.Deserialize<DummyClass>();
 
 
-            Assert.AreEqual(expected.Id, actual.Id, $"{actual.Id} is not expected");
-            Assert.AreEqual(expected.Username, actual.Username, $"{actual.Username} is not expected");
-            Assert.AreEqual(expected.Email, actual.Email, $"{actual.Email} is not expected");
-            Assert.AreEqual(expected.ExtraData, actual.ExtraData, $"{actual.ExtraData} is not expected");
-            Assert.AreEqual(expected.Phone, actual.Phone, $"{actual.Phone} is not expected");
-            Assert.AreEqual(expected.RequiredPhone, actual.RequiredPhone, $"{actual.RequiredPhone} is not expected");
+            Assert.AreEqual(expected.IntField, actual.IntField);
+            Assert.AreEqual(expected.StringField, actual.StringField);
+            Assert.AreEqual(expected.InnerClassField.InnerDummyStringField, actual.InnerClassField.InnerDummyStringField);
         }
     }
 }
