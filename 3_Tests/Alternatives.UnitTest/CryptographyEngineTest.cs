@@ -6,17 +6,14 @@ namespace Alternatives.UnitTest
     public class CryptographyEngineTest
     {
         [Test]
-        public void Alternatives_UnitTest__CryptographyEngineTest_Encrypte_Null()
+        public void CryptographyEngineTest_WhenEncrypteNullAsObject_ThrowsArgumentNullException()
         {
             CryptographyEngine engine = new CryptographyEngine();
-            Assert.Throws<ArgumentNullException>(() =>
-                                                          {
-                                                              engine.Encrypt(null);
-                                                          });
+            Assert.Throws<ArgumentNullException>(() => { engine.Encrypt(null); });
         }
 
         [Test]
-        public void Alternatives_UnitTest__CryptographyEngineTest_Encrypte()
+        public void CryptographyEngineTest_WhenEncrypteValidStringAsObject_ResponseMustBeSuccessfull()
         {
             const string expected = "wKxS9gMmJL5ali85zkBcsA==";
             const string plainText = "adem";
@@ -26,11 +23,11 @@ namespace Alternatives.UnitTest
             string actual = engine.Encrypt(plainText);
 
 
-            Assert.AreEqual(expected, actual, $"{actual} is not expected");
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void Alternatives_UnitTest__CryptographyEngineTest_Encrypte_DifferentKey()
+        public void CryptographyEngineTest_WhenEncrypteWithDifferentKey_ResultMustBeDifferentFromDefaultResult()
         {
             const string expected = "21LHLh9bVDumyVE/A8RAzw==";
             const string notExpected = "wKxS9gMmJL5ali85zkBcsA==";
@@ -42,12 +39,12 @@ namespace Alternatives.UnitTest
             string actual = engine.Encrypt(plainText);
 
 
-            Assert.AreEqual(expected, actual, $"{actual} is not expected");
-            Assert.AreNotEqual(notExpected, actual, $"{actual} is not expected");
+            Assert.AreEqual(expected, actual);
+            Assert.AreNotEqual(notExpected, actual);
         }
 
         [Test]
-        public void Alternatives_UnitTest__CryptographyEngineTest_Encrypte_DifferentKey_KeyIsEmpty()
+        public void CryptographyEngineTest_WhenEncrypteWithEmptyStringAsKey_ResponseMustBeEncrypteWithLastValidKey()
         {
             const string plainText = "adem";
 
@@ -61,20 +58,16 @@ namespace Alternatives.UnitTest
         }
 
 
-
         [Test]
-        public void Alternatives_UnitTest__CryptographyEngineTest_Decrypte_Null()
+        public void CryptographyEngineTest_WhenDecrypteNullAsObject_ThrowsArgumentNullException()
         {
             CryptographyEngine engine = new CryptographyEngine();
 
-            Assert.Throws<ArgumentNullException>(() =>
-                                                          {
-                                                              engine.Decrypt(null);
-                                                          });
+            Assert.Throws<ArgumentNullException>(() => { engine.Decrypt(null); });
         }
 
         [Test]
-        public void Alternatives_UnitTest__CryptographyEngineTest_Decrypte()
+        public void CryptographyEngineTest_WhenDecrypteStringWithValidForm_ResponseMustBeSuccessfull()
         {
             const string expected = "adem";
             const string cipherText = "wKxS9gMmJL5ali85zkBcsA==";
@@ -88,7 +81,7 @@ namespace Alternatives.UnitTest
         }
 
         [Test]
-        public void Alternatives_UnitTest__CryptographyEngineTest_Decrypte_DifferentKey()
+        public void CryptographyEngineTest_WhenDecrypteWithDifferentKey_ResponseMustBeDifferentFromDefaultResponse()
         {
             const string cipherText = "21LHLh9bVDumyVE/A8RAzw==";
             const string defaultCipherText = "wKxS9gMmJL5ali85zkBcsA==";
@@ -106,20 +99,16 @@ namespace Alternatives.UnitTest
         }
 
 
-
         [Test]
-        public void Alternatives_UnitTest__CryptographyEngineTest_Hash_Null()
+        public void CryptographyEngineTest_WhenHashNullAsObject_ThrowsArgumentNullException()
         {
             CryptographyEngine engine = new CryptographyEngine();
 
-            Assert.Throws<ArgumentNullException>(() =>
-                                                          {
-                                                              engine.Hashing(null);
-                                                          });
+            Assert.Throws<ArgumentNullException>(() => { engine.Hashing(null); });
         }
 
         [Test]
-        public void Alternatives_UnitTest__CryptographyEngineTest_Hash_Empty()
+        public void CryptographyEngineTest_WhenHashEmptyStringAsObject_ResponseMustBeSuccessfullAndDifferentFromEmptyString()
         {
             const string expected = "DA-39-A3-EE-5E-6B-4B-0D-32-55-BF-EF-95-60-18-90-AF-D8-07-09";
             const string data = "";
@@ -132,7 +121,7 @@ namespace Alternatives.UnitTest
         }
 
         [Test]
-        public void Alternatives_UnitTest__CryptographyEngineTest_Hash()
+        public void CryptographyEngineTest_WhenHashStringAsObject_ResponseMustBeSuccessfull()
         {
             const string expected = "40-BD-00-15-63-08-5F-C3-51-65-32-9E-A1-FF-5C-5E-CB-DB-BE-EF";
             const string data = "123";
