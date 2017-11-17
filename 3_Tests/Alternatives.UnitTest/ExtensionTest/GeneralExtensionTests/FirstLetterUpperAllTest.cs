@@ -78,7 +78,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Words_GivenSplitter_NotMatch()
+        public void FirstLetterUpperAll_WhenStringHasGivenSplitter_EachLetterHasCapitalized()
         {
             const string expected = "All first letter is change upper version of all sentences after FirstLetterToUpperAll function run. Try it if you do not believe",
                          data = "all first letter is change upper version of all sentences after FirstLetterToUpperAll function run. try it if you do not believe";
@@ -90,19 +90,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Words_GivenSplitter_OnlyLetter()
-        {
-            const string expected = "Adem, Catamak",
-                         data = "adem, catamak";
-
-            string actual = data.FirstLetterToUpperAll(',');
-
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpperAll_Words_GivenSplitter_OneAfterAnother()
+        public void FirstLetterUpperAll_WhenGivenSplitterOneAfterAnother_ResponseMustBeSuccessfully()
         {
             const string expected = "Adem, Catamak",
                          data = "adem, catamak";
