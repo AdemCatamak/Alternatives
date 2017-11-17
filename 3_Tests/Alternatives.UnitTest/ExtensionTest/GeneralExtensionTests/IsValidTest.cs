@@ -15,7 +15,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         private class IsValidTestClass
         {
             [TurkeyPhone]
-            public string Phone { get; set; }
+            public string TurkeyPhone { get; set; }
 
             [EmailAddress]
             public string Email { get; set; }
@@ -30,7 +30,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         private class IsValidTestClassWithCustomIsValid
         {
             [TurkeyPhone]
-            public string Phone { get; set; }
+            public string TurkeyPhone { get; set; }
 
             public string Email { get; set; }
 
@@ -108,7 +108,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         {
             IsValidTestClass item = new IsValidTestClass
                                     {
-                                        Phone = "555 555 55 55",
+                                        TurkeyPhone = "555 555 55 55",
                                         RequiredPhone = "123",
                                         Username = "ademcatamak",
                                         Email = emailAddress
@@ -130,7 +130,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         {
             IsValidTestClass item = new IsValidTestClass
                                     {
-                                        Phone = "555-555-55-55",
+                                        TurkeyPhone = "555-555-55-55",
                                         RequiredPhone = "123",
                                         Email = "ademcatamak@gmail.com",
                                         Username = username
@@ -167,47 +167,58 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
                                         RequiredPhone = "123",
                                         Username = "ademcatamak",
                                         Email = "ademcatamak@gmail.com",
-                                        Phone = phoneNumber
+                                        TurkeyPhone = phoneNumber
                                     };
             return item.IsValid();
         }
 
 
         [Test]
-        public void IsValid_WhenClassHasValidator_IsValidFunctionTakeNoticeBothValidatorClassAndDataAnnotaions()
+        public void IsValid_WhenClassHasCustomIsValidMethod_IsValidFunctionTakeNoticeInCustomIsValidMethod()
         {
             IsValidTestClassWithCustomIsValid testClassWithValidator = new IsValidTestClassWithCustomIsValid();
-            bool isValid = testClassWithValidator.IsValid(out string errorMessage);
+            bool isValid;
+            string validationMessage;
+
+            isValid = testClassWithValidator.IsValid(out validationMessage);
             Assert.IsFalse(isValid);
-            Assert.IsTrue(errorMessage.Contains("Phone"));
-            Assert.IsTrue(errorMessage.Contains("RequiredPhone"));
-            Assert.IsTrue(errorMessage.Contains("Username"));
+            Assert.IsTrue(validationMessage.Contains("RequiredPhone"));
+            Assert.IsTrue(validationMessage.Contains("Username"));
+
             testClassWithValidator = new IsValidTestClassWithCustomIsValid
-            {
+                                     {
                                          Email = "adm"
                                      };
-            isValid = testClassWithValidator.IsValid(out errorMessage);
+            isValid = testClassWithValidator.IsValid(out validationMessage);
             Assert.IsFalse(isValid);
-            Assert.IsTrue(errorMessage.Contains("Phone"));
-            Assert.IsTrue(errorMessage.Contains("RequiredPhone"));
-            Assert.IsTrue(errorMessage.Contains("Email"));
+            Assert.IsTrue(validationMessage.Contains("RequiredPhone"));
+            Assert.IsTrue(validationMessage.Contains("Email"));
             testClassWithValidator = new IsValidTestClassWithCustomIsValid
-            {
-                                         Email = "a@a"
+                                     {
+                                         Email = "a@a",
+                                         TurkeyPhone = "2342"
                                      };
-            isValid = testClassWithValidator.IsValid(out errorMessage);
+            isValid = testClassWithValidator.IsValid(out validationMessage);
             Assert.IsFalse(isValid);
-            Assert.IsTrue(errorMessage.Contains("Phone"));
-            Assert.IsTrue(errorMessage.Contains("RequiredPhone"));
-            Assert.IsTrue(errorMessage.Contains("Email"));
+            Assert.IsTrue(validationMessage.Contains("TurkeyPhone"));
+            Assert.IsTrue(validationMessage.Contains("RequiredPhone"));
+            Assert.IsTrue(validationMessage.Contains("Email"));
+
             testClassWithValidator = new IsValidTestClassWithCustomIsValid
-            {
+                                     {
                                          Email = "a@a.com"
                                      };
-            isValid = testClassWithValidator.IsValid(out errorMessage);
+            isValid = testClassWithValidator.IsValid(out validationMessage);
             Assert.IsFalse(isValid);
-            Assert.IsTrue(errorMessage.Contains("Phone"));
-            Assert.IsTrue(errorMessage.Contains("RequiredPhone"));
+            Assert.IsTrue(validationMessage.Contains("RequiredPhone"));
+
+            testClassWithValidator = new IsValidTestClassWithCustomIsValid
+                                     {
+                                         Email = "a@a.com",
+                                         RequiredPhone = "555 555 55 55"
+                                     };
+            isValid = testClassWithValidator.IsValid(out validationMessage);
+            Assert.IsTrue(isValid);
         }
     }
 }
