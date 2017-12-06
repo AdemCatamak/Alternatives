@@ -108,21 +108,16 @@ namespace Alternatives.Extensions
         }
 
 
-        public static IEnumerable<Type> GetInheritedTypes(Type baseType)
+        public static IEnumerable<Type> GetInheritedTypes(Type baseType, bool writeErrorToConsole = false)
         {
-            Task<IEnumerable<Type>> dllTask = Task.Factory.StartNew(() => GetInheritedTypesFromDll(baseType));
-            Task<IEnumerable<Type>> appDomainTask = Task.Factory.StartNew(() => GetInheritedTypesFromAppDomain(baseType));
+            Task<IEnumerable<Type>> appDomainTask = Task.Factory.StartNew(() => GetInheritedTypesFromAppDomain(baseType, writeErrorToConsole));
 
             IEnumerable<Type> typesFromAppDomain = appDomainTask.Result;
-            IEnumerable<Type> typesFromDll = dllTask.Result;
 
-            List<Type> typeList = new List<Type>();
-            typeList.AddRange(typesFromDll);
-            typeList.AddRange(typesFromAppDomain);
-            return typeList.Distinct().Where(t => t != baseType);
+            return typesFromAppDomain.Distinct().Where(t => t != baseType);
         }
 
-        private static IEnumerable<Type> GetInheritedTypesFromAppDomain(Type baseType)
+        private static IEnumerable<Type> GetInheritedTypesFromAppDomain(Type baseType, bool writeErrorToConsole)
         {
             ConcurrentBag<Type> concurrentBag = new ConcurrentBag<Type>();
             AppDomain domain = AppDomain.CurrentDomain;
@@ -134,9 +129,12 @@ namespace Alternatives.Extensions
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"AppDomain - GetAssemblies fail{Environment.NewLine}" +
-                                  $"Exception Message : {ex.Message}{Environment.NewLine}" +
-                                  $"Exception : {ex}");
+                if (writeErrorToConsole)
+                {
+                    Console.WriteLine($"AppDomain - GetAssemblies fail{Environment.NewLine}" +
+                                      $"Exception Message : {ex.Message}{Environment.NewLine}" +
+                                      $"Exception : {ex}");
+                }
                 assemblies = new Assembly[]
                              {
                              };
@@ -144,51 +142,14 @@ namespace Alternatives.Extensions
 
             Parallel.ForEach(assemblies, assembly =>
                                          {
-                                             List<Type> typeList = SearchAssembly(assembly, baseType).ToList();
+                                             List<Type> typeList = SearchAssembly(assembly, baseType, writeErrorToConsole).ToList();
                                              typeList.ForEach(t => concurrentBag.Add(t));
                                          }
                             );
             return concurrentBag;
         }
 
-        private static IEnumerable<Type> GetInheritedTypesFromDll(Type baseType)
-        {
-            ConcurrentBag<Type> concurrentBag = new ConcurrentBag<Type>();
-            string[] files;
-            try
-            {
-                files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll");
-            }
-            catch (Exception ex)
-            {
-                files = new string[] { };
-                Console.WriteLine($"FromDll - files cannot be reached{Environment.NewLine}" +
-                                  $"Exception Message : {ex.Message}{Environment.NewLine}" +
-                                  $"Exception : {ex}");
-            }
-            Parallel.ForEach(files, file =>
-                                    {
-                                        Assembly assembly = null;
-                                        try
-                                        {
-                                            assembly = Assembly.LoadFrom(file);
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            Console.WriteLine($"FromDll - File : {file} {Environment.NewLine}" +
-                                                              $"Exception Message : {ex.Message} {Environment.NewLine}" +
-                                                              $"Exception : {ex}");
-                                        }
-                                        if (assembly != null)
-                                        {
-                                            List<Type> types = SearchAssembly(assembly, baseType).ToList();
-                                            types.ForEach(t => concurrentBag.Add(t));
-                                        }
-                                    });
-            return concurrentBag;
-        }
-
-        private static IEnumerable<Type> SearchAssembly(Assembly assembly, Type baseType)
+        private static IEnumerable<Type> SearchAssembly(Assembly assembly, Type baseType, bool writeErrorToConsole)
         {
             ConcurrentBag<Type> parentTypes = new ConcurrentBag<Type>();
             Type[] assemblyTypes;
@@ -198,9 +159,12 @@ namespace Alternatives.Extensions
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Assembly's types cannot be read : {assembly} {Environment.NewLine}" +
-                                  $"Exception Message : {ex.Message} {Environment.NewLine}" +
-                                  $"Exception : {ex}");
+                if (writeErrorToConsole)
+                {
+                    Console.WriteLine($"Assembly's types cannot be read : {assembly} {Environment.NewLine}" +
+                                      $"Exception Message : {ex.Message} {Environment.NewLine}" +
+                                      $"Exception : {ex}");
+                }
                 assemblyTypes = new Type[] { };
             }
 
@@ -233,10 +197,13 @@ namespace Alternatives.Extensions
                                                 }
                                                 catch (Exception ex)
                                                 {
-                                                    Console.WriteLine($"Assembly : {assembly} {Environment.NewLine}" +
-                                                                      $"Type : {type} {Environment.NewLine}" +
-                                                                      $"Exception Message : {ex.Message} {Environment.NewLine}" +
-                                                                      $"Exception : {ex}");
+                                                    if (writeErrorToConsole)
+                                                    {
+                                                        Console.WriteLine($"Assembly : {assembly} {Environment.NewLine}" +
+                                                                          $"Type : {type} {Environment.NewLine}" +
+                                                                          $"Exception Message : {ex.Message} {Environment.NewLine}" +
+                                                                          $"Exception : {ex}");
+                                                    }
                                                 }
                                             });
             return parentTypes;

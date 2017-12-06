@@ -3,7 +3,9 @@
 <package>
   <metadata>
     <id>Alternatives</id>
+
     <version>1.0.7.4</version>
+
     <title>Alternatives</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
