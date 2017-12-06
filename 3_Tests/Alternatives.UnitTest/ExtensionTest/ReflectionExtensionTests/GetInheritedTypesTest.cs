@@ -2,14 +2,55 @@
 using System.Collections.Generic;
 using System.Linq;
 using Alternatives.Extensions;
-using Alternatives.UnitTest.TestModel;
-using Alternatives.UnitTest.TestModel.Implementations;
 using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 {
     public class GetInheritedTypesTest
     {
+        #region TestModel
+
+        private interface IInterface
+        {
+        }
+
+        private interface IGenericInterface<T>
+        {
+            T GenericField { get; set; }
+        }
+
+        private abstract class FirstLevelAbstract
+        {
+        }
+
+        private abstract class SecondLevelAbstractClass : FirstLevelAbstract
+        {
+        }
+
+        private class TestAbstract : SecondLevelAbstractClass
+        {
+        }
+
+        private class TestInterface : IInterface
+        {
+        }
+
+        private class TestGenericInterface : IGenericInterface<int>
+        {
+            public int GenericField { get; set; }
+        }
+
+        private class AnotherTestInterface : IInterface
+        {
+        }
+
+        private class AnotherTestGenericInterface : IGenericInterface<string>
+        {
+            public string GenericField { get; set; }
+        }
+
+        #endregion
+
         [Test]
         public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseInterface()
         {
@@ -60,7 +101,6 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             Assert.AreEqual(1, typeList.Count, $"{string.Join(" - ", typeList.Select(t => t.Name))}");
             Assert.IsTrue(typeList.Contains(typeof(TestGenericInterface)));
         }
-
 
 
         [Test]

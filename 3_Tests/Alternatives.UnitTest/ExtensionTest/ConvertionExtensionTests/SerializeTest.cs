@@ -1,38 +1,67 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Alternatives.CustomDataAnnotations;
 using Alternatives.Extensions;
-using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
 using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    
     public class SerializeTest
     {
+        #region TestModel
+
+        private class DummyClassPartial
+        {
+            [Key]
+            public int Id { get; set; }
+
+            public int? ExtraData { get; set; }
+        }
+
+        [Table("asd")]
+        private class DummyClass : DummyClassPartial
+        {
+            [TurkeyPhone]
+            public string Phone { get; set; }
+
+            [EmailAddress]
+            public string Email { get; set; }
+
+            [Required]
+            public string Username { get; set; }
+
+            [Phone, Required]
+            public string RequiredPhone { get; set; }
+        }
+
+        #endregion
+
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__Serialize_Null()
+        public void Serialize_WhenSerializeNullAsObject_ResponseMustBeStringThatNULL()
         {
             const string expected = @"null";
 
 
-            string actual = ((IsValidTestClass) null).Serialize();
+            string actual = ((DummyClass) null).Serialize();
 
 
             Assert.AreEqual(expected, actual, $"{actual} is not expected");
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__Serialize()
+        public void Serialize_WhenSerializeJson_IfFieldMathc_ResponseContainsValue()
         {
             string expected = @"{""Phone"":null,""Email"":""ademcatamak@gmail.com"",""Username"":""ademcatamak"",""RequiredPhone"":null,""Id"":3,""ExtraData"":null}"
                 .Replace(" ", string.Empty)
                 .Replace(Environment.NewLine, string.Empty);
 
-            IsValidTestClass item = new IsValidTestClass
-                                    {
-                                        Id = 3,
-                                        Username = "ademcatamak",
-                                        Email = "ademcatamak@gmail.com"
-                                    };
+            DummyClass item = new DummyClass
+                              {
+                                  Id = 3,
+                                  Username = "ademcatamak",
+                                  Email = "ademcatamak@gmail.com"
+                              };
 
 
             string actual = item.Serialize()

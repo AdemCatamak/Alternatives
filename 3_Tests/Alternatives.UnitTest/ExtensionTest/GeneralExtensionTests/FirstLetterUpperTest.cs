@@ -6,7 +6,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
     public class FirstLetterUpperTest
     {
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_Null()
+        public void FirstLetterUpper_WhenNullAsObject_ResponseMustBeEmpty()
         {
             string expected = string.Empty;
 
@@ -18,7 +18,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_Empty()
+        public void FirstLetterUpper_WhenEmptyAsObject_ResponseMustBeEmpty()
         {
             string expected = string.Empty;
             string data = string.Empty;
@@ -30,7 +30,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_OneCharacter()
+        public void FirstLetterUpper_WhenOneLetterAsObject_ResponseMustBeCapitalized()
         {
             const string expected = "A",
                          data = "a";
@@ -42,7 +42,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_Word()
+        public void FirstLetterUpper_WhenWordHasMultipleLetter_OnlyFirstLetterCapitalized()
         {
             const string expected = "Adem",
                          data = "adem";
@@ -54,7 +54,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_WordWithSpace()
+        public void FirstLetterUpper_WhenWordHasMultipleLetterAndWhiteSpace_OnlyFirstLetterCapitalized()
         {
             const string expected = "Adem ",
                          data = "adem ";
@@ -66,7 +66,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__FirstLetterUpper_Words()
+        public void FirstLetterUpper_WhenWordsAsObject_OnlyFirstLetterCapitalized()
         {
             const string expected = "Adem catamak",
                          data = "adem catamak";

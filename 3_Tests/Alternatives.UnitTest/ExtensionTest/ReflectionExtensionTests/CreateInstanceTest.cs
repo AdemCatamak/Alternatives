@@ -1,5 +1,4 @@
 ﻿using Alternatives.Extensions;
-using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
 using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
@@ -8,19 +7,27 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
     {
         //NOTE : Parametresiz constructor sahibi olmayan sınıflarda kullanılamaz
 
-        [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InSameAssembly_Type()
+        #region TestModel
+
+        private class DummyClass
         {
-            object actual = ReflectionExtensions.CreateInstance(typeof(IsValidTestClass));
+            public string StringField { get; set; }
+            public int IntField { get; set; }
 
+            public InnerDummyClass InnerClassField { get; set; }
 
-            Assert.IsNotNull(actual, "Actual is null");
-            Assert.IsNotNull(actual as IsValidTestClass,
-                             "Cast operation show that IsValidClass instance cannot be created");
+            private InnerDummyClass InnerPrivateFild { get; set; } = new InnerDummyClass { InnerDummyStringField = "private" };
         }
 
+        private class InnerDummyClass
+        {
+            public string InnerDummyStringField { get; set; }
+        }
+
+        #endregion
+
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InDifferentAssembly_Type()
+        public void CreateInstance_WhenTypeGiven()
         {
             object actual = ReflectionExtensions.CreateInstance(typeof(DummyClass));
 
@@ -31,23 +38,9 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         }
 
         [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InSameAssembly()
+        public void CreateInstance_WhenFullNameGiven()
         {
-            string fullName = typeof(IsValidTestClass).AssemblyQualifiedName;
-
-
-            object actual = ReflectionExtensions.CreateInstance(fullName);
-
-
-            Assert.IsNotNull(actual, "Actual is null");
-            Assert.IsNotNull(actual as IsValidTestClass,
-                             "Cast operation show that IsValidClass instance cannot be created");
-        }
-
-        [Test]
-        public void Alternatives_UnitTest_ExtensionsTest__CreateInstance_InDifferentAssembly()
-        {
-            string fullName = typeof(DummyClass).FullName;
+            string fullName = typeof(DummyClass).AssemblyQualifiedName;
 
 
             object actual = ReflectionExtensions.CreateInstance(fullName);

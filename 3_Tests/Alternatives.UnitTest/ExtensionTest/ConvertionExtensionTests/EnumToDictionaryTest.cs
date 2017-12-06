@@ -1,21 +1,36 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Alternatives.Extensions;
-using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
 using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    
     public class EnumToDictionaryTest
     {
+        #region TestModel
+
+        private enum TestEnum
+        {
+            TestValue1 = 1,
+            TestValue2 = 2
+        }
+
+        private enum TestEnumWithNegative
+        {
+            TestValueNegative1 = -1,
+            TestValue0 = 0,
+            TestValue1 = 1
+        }
+
+        #endregion
+
         [Test]
         public void Alternatives_UnitTest_ExtensionsTest__EnumToDictionary_WithNegativeValue()
         {
-            Dictionary<int, string> expected = new Dictionary<int, string>()
+            Dictionary<int, string> expected = new Dictionary<int, string>
                                                {
-                                                   {0, "TestValue0"},
-                                                   {1, "TestValue1"}
+                                                   { 0, "TestValue0" },
+                                                   { 1, "TestValue1" }
                                                };
 
 
@@ -32,10 +47,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
         [Test]
         public void Alternatives_UnitTest_ExtensionsTest__EnumToDictionary()
         {
-            Dictionary<int, string> expected = new Dictionary<int, string>()
+            Dictionary<int, string> expected = new Dictionary<int, string>
                                                {
-                                                   {1, "TestValue1"},
-                                                   {2, "TestValue2"}
+                                                   { 1, "TestValue1" },
+                                                   { 2, "TestValue2" }
                                                };
 
 

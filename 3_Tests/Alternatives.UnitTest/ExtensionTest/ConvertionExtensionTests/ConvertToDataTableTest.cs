@@ -1,19 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
+using Alternatives.CustomDataAnnotations;
 using Alternatives.Extensions;
-using Alternatives.UnitTest.TestModel.ExtensionsTestClass;
 using NUnit.Framework;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    
     public class ConvertToDataTableTest
     {
+        #region TestModel
+
+        private class DataTableTestClass
+        {
+            [Key]
+            public int Id { get; set; }
+
+            [TurkeyPhone]
+            public string Phone { get; set; }
+
+            [EmailAddress]
+            public string Email { get; set; }
+
+            [Required]
+            public string Username { get; set; }
+
+            public int? ExtraData { get; set; }
+        }
+
+        #endregion
+
         [Test]
         public void Alternatives_UnitTest_ExtensionsTest__ToDataTable()
         {
-            DataTable expected = new DataTable()
+            DataTable expected = new DataTable
                                  {
                                      Columns =
                                      {

@@ -3,7 +3,9 @@
 <package>
   <metadata>
     <id>Alternatives</id>
-    <version>1.0.7.2-CakeTestPreRelease</version>
+
+    <version>1.0.7.3</version>
+
     <title>Alternatives</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
@@ -17,6 +19,7 @@
     <tags>alternatives,shortcut,utilities,extensions</tags>
     <dependencies>
       <dependency id="AutoMapper" version="6.1.1" />
+      <dependency id="FluentValidation" version="7.2.1" />
       <dependency id="Newtonsoft.Json" version="10.0.3" />
     </dependencies>
   </metadata>

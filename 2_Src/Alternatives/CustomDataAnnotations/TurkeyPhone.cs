@@ -7,6 +7,8 @@ namespace Alternatives.CustomDataAnnotations
     {
         public override bool IsValid(object value)
         {
+            value = value ?? string.Empty;
+
             string strValue = value.ToString()
                                    .Replace("-", "")
                                    .Replace(" ", "");
@@ -15,8 +17,9 @@ namespace Alternatives.CustomDataAnnotations
                                .TrimStart('9')
                                .TrimStart('0');
 
-            bool isValid = strValue.All(char.IsDigit) &&
-                           strValue.Length == 10;
+            bool isValid = strValue == string.Empty
+                           || (strValue.All(char.IsDigit) &&
+                               strValue.Length == 10);
 
             return isValid;
         }

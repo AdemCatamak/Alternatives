@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Linq;
@@ -38,18 +37,16 @@ namespace Alternatives.Extensions
                                                      validationContext,
                                                      validateMessages,
                                                      true);
-
-                message = string.Join(Environment.NewLine, validateMessages.Select(v => v.ErrorMessage));
+                message = Environment.NewLine + string.Join(Environment.NewLine, validateMessages.Select(v => v.ErrorMessage));
             }
             return result;
         }
-
 
         public static string FirstLetterToUpperAll(this string text, params char[] markers)
         {
             if (markers.IsNullOrEmpty())
             {
-                markers = new[] { ' ' };
+                markers = new[] {' '};
             }
 
             if (text == null)
@@ -59,7 +56,7 @@ namespace Alternatives.Extensions
 
             foreach (char marker in markers)
             {
-                string[] split = text.Split(new[] { marker }, StringSplitOptions.RemoveEmptyEntries);
+                string[] split = text.Split(new[] {marker}, StringSplitOptions.RemoveEmptyEntries);
                 Parallel.For(0, split.Length, i => { split[i] = split[i].FirstLetterToUpper(); }
                             );
 
@@ -174,7 +171,7 @@ namespace Alternatives.Extensions
 
             string value = ConfigurationManager.AppSettings[key];
 
-            return (T)Convert.ChangeType(value, typeof(T));
+            return (T) Convert.ChangeType(value, typeof(T));
         }
     }
 }
