@@ -9,8 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alternatives.UnitTest", "Al
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CCB3E073-12A0-449D-B83F-8936DEAE2E35}"
 	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		build.cake = build.cake
+		build.ps1 = build.ps1
+		build.sh = build.sh
+		CONTRIBUTING.md = CONTRIBUTING.md
 		Jenkinsfile = Jenkinsfile
+		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
