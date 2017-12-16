@@ -107,7 +107,7 @@ namespace Alternatives.Extensions
         }
 
 
-        public static IEnumerable<Type> GetInheritedTypes(Type baseType, bool writeErrorToConsole = false)
+        public static IEnumerable<Type> GetInheritedTypes(this Type baseType, bool writeErrorToConsole = false)
         {
             Task<IEnumerable<Type>> appDomainTask = Task.Factory.StartNew(() => GetInheritedTypesFromAppDomain(baseType, writeErrorToConsole));
 
@@ -228,7 +228,7 @@ namespace Alternatives.Extensions
         }
 
 
-        public static object CreateInstance(Type type)
+        public static object CreateInstance(this Type type)
         {
             return Activator.CreateInstance(type);
         }

@@ -5,7 +5,15 @@ using System.Text;
 
 namespace Alternatives
 {
-    public class CryptographyEngine
+    public interface ICryptoEngine
+    {
+        string Encrypt(string plainText);
+        string Decrypt(string cipherText);
+        string Hashing(string plainText);
+    }
+
+
+    public class CryptographyEngine : ICryptoEngine
     {
         private const int KEYSIZE = 256;
         private string _keyCode = "N+qg88QJ)2r%]_u";
