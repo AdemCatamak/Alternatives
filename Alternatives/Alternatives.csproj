@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>1.0.8.2</Version>
+    <Authors>Adem Catamak</Authors>
+    <Company />
+    <PackageLicenseUrl>https://github.com/AdemCatamak/Alternatives/blob/master/1_Solution_Items/LICENSE.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/AdemCatamak/Alternatives.git</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AdemCatamak/Alternatives.git</RepositoryUrl>
+    <Description>Shortcuts and General Extensions</Description>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageTags>alternatives,shortcut,utilities,extensions</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
