@@ -60,10 +60,8 @@
     <Compile Include="ExtensionTest\GeneralExtensionTests\CheckIpInRangeTest.cs" />
     <Compile Include="ExtensionTest\GeneralExtensionTests\FirstLetterUpperAllTest.cs" />
     <Compile Include="ExtensionTest\GeneralExtensionTests\FirstLetterUpperTest.cs" />
-    <Compile Include="ExtensionTest\GeneralExtensionTests\GetSolutionNameTest.cs" />
     <Compile Include="ExtensionTest\GeneralExtensionTests\IsNullOrEmptyTest.cs" />
     <Compile Include="ExtensionTest\GeneralExtensionTests\IsValidTest.cs" />
-    <Compile Include="ExtensionTest\GeneralExtensionTests\ReadAppSettingsRealTimeTest.cs" />
     <Compile Include="ExtensionTest\ReflectionExtensionTests\CreateInstanceTest.cs" />
     <Compile Include="ExtensionTest\ReflectionExtensionTests\GetFieldNameTest.cs" />
     <Compile Include="ExtensionTest\ReflectionExtensionTests\GetInheritedTypesTest.cs" />

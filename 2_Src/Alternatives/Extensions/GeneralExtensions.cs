@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
@@ -139,39 +137,6 @@ namespace Alternatives.Extensions
             }
 
             return result;
-        }
-
-
-        public static string SolutionName
-        {
-            get
-            {
-                AssemblyProductAttribute productAttribute = (AssemblyProductAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(),
-                                                                                                                    typeof(AssemblyProductAttribute));
-
-                return productAttribute.Product;
-            }
-        }
-
-
-        public static T ReadAppSettingsRealTime<T>(string key)
-        {
-            if (key == null)
-            {
-                throw new ArgumentNullException(nameof(key), "cannot be null");
-            }
-
-            const string sectionName = "appSettings";
-            ConfigurationManager.RefreshSection(sectionName);
-
-            if (!ConfigurationManager.AppSettings.AllKeys.Contains(key))
-            {
-                throw new KeyNotFoundException($"{key} is not exist in appSettings");
-            }
-
-            string value = ConfigurationManager.AppSettings[key];
-
-            return (T) Convert.ChangeType(value, typeof(T));
         }
     }
 }
