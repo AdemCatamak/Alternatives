@@ -73,7 +73,7 @@ namespace Alternatives.Extensions
             PropertyInfo propertyInfo = obj.GetType().GetProperty(fieldName);
             if (propertyInfo != null)
             {
-                result = (T) propertyInfo.GetValue(obj);
+                result = (T)propertyInfo.GetValue(obj);
             }
             else
             {
@@ -140,10 +140,10 @@ namespace Alternatives.Extensions
             }
 
             Parallel.ForEach(assemblies, assembly =>
-                                         {
-                                             List<Type> typeList = SearchAssembly(assembly, baseType, writeErrorToConsole).ToList();
-                                             typeList.ForEach(t => concurrentBag.Add(t));
-                                         }
+            {
+                List<Type> typeList = SearchAssembly(assembly, baseType, writeErrorToConsole).ToList();
+                typeList.ForEach(t => concurrentBag.Add(t));
+            }
                             );
             return concurrentBag;
         }
@@ -168,43 +168,43 @@ namespace Alternatives.Extensions
             }
 
             Parallel.ForEach(assemblyTypes, type =>
-                                            {
-                                                try
-                                                {
-                                                    if (baseType.IsClass)
-                                                    {
-                                                        if (DoesMatchBaseClass(type, baseType))
-                                                        {
-                                                            parentTypes.Add(type);
-                                                        }
-                                                    }
-                                                    else if (baseType.IsInterface)
-                                                    {
-                                                        bool isGeneric = baseType.IsGenericTypeDefinition;
-                                                        foreach (Type i in type.GetInterfaces())
-                                                        {
-                                                            if (isGeneric && i.GetGenericTypeDefinition() == baseType)
-                                                            {
-                                                                parentTypes.Add(type);
-                                                            }
-                                                            else if (i == baseType)
-                                                            {
-                                                                parentTypes.Add(type);
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                catch (Exception ex)
-                                                {
-                                                    if (writeErrorToConsole)
-                                                    {
-                                                        Console.WriteLine($"Assembly : {assembly} {Environment.NewLine}" +
-                                                                          $"Type : {type} {Environment.NewLine}" +
-                                                                          $"Exception Message : {ex.Message} {Environment.NewLine}" +
-                                                                          $"Exception : {ex}");
-                                                    }
-                                                }
-                                            });
+            {
+                try
+                {
+                    if (baseType.IsClass)
+                    {
+                        if (DoesMatchBaseClass(type, baseType))
+                        {
+                            parentTypes.Add(type);
+                        }
+                    }
+                    else if (baseType.IsInterface)
+                    {
+                        bool isGeneric = baseType.IsGenericTypeDefinition;
+                        foreach (Type i in type.GetInterfaces())
+                        {
+                            if (isGeneric && i.GetGenericTypeDefinition() == baseType)
+                            {
+                                parentTypes.Add(type);
+                            }
+                            else if (i == baseType)
+                            {
+                                parentTypes.Add(type);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (writeErrorToConsole)
+                    {
+                        Console.WriteLine($"Assembly : {assembly} {Environment.NewLine}" +
+                                          $"Type : {type} {Environment.NewLine}" +
+                                          $"Exception Message : {ex.Message} {Environment.NewLine}" +
+                                          $"Exception : {ex}");
+                    }
+                }
+            });
             return parentTypes;
         }
 

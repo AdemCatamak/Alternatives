@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Alternatives.CustomDataAnnotations;
+using Alternatives.CustomAnnotations;
 using Alternatives.Extensions;
 using NUnit.Framework;
 

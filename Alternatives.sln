@@ -3,24 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_Solution_Items", "1_Solution_Items", "{5FDABD34-7D69-4E78-8979-A20EF79F3895}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alternatives", "Alternatives\Alternatives.csproj", "{24321693-7E12-4031-8B5D-5DDD8859BFF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alternatives.UnitTest", "Alternatives.UnitTest\Alternatives.UnitTest.csproj", "{FA70F6B1-6714-4862-89F5-D449EE0FAF07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CCB3E073-12A0-449D-B83F-8936DEAE2E35}"
 	ProjectSection(SolutionItems) = preProject
 		build.cake = build.cake
-		build.ps1 = build.ps1
-		build.sh = build.sh
-		CONTRIBUTING.md = CONTRIBUTING.md
 		Jenkinsfile = Jenkinsfile
-		LICENSE.txt = LICENSE.txt
-		README.md = README.md
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_Src", "2_Src", "{8F17BA69-A4CB-4776-9E06-8EE16166C4EC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_Tests", "3_Tests", "{71B30615-84AE-4D1B-90D6-08882B886A62}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alternatives", "2_Src\Alternatives\Alternatives.csproj", "{43319258-F690-4DA8-ADB4-55B8D60D223D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alternatives.UnitTest", "3_Tests\Alternatives.UnitTest\Alternatives.UnitTest.csproj", "{A98BF1B4-EC15-4780-B383-794ABBEDBDB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,23 +19,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{43319258-F690-4DA8-ADB4-55B8D60D223D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43319258-F690-4DA8-ADB4-55B8D60D223D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43319258-F690-4DA8-ADB4-55B8D60D223D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43319258-F690-4DA8-ADB4-55B8D60D223D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A98BF1B4-EC15-4780-B383-794ABBEDBDB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A98BF1B4-EC15-4780-B383-794ABBEDBDB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A98BF1B4-EC15-4780-B383-794ABBEDBDB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A98BF1B4-EC15-4780-B383-794ABBEDBDB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24321693-7E12-4031-8B5D-5DDD8859BFF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24321693-7E12-4031-8B5D-5DDD8859BFF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24321693-7E12-4031-8B5D-5DDD8859BFF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24321693-7E12-4031-8B5D-5DDD8859BFF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA70F6B1-6714-4862-89F5-D449EE0FAF07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA70F6B1-6714-4862-89F5-D449EE0FAF07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA70F6B1-6714-4862-89F5-D449EE0FAF07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA70F6B1-6714-4862-89F5-D449EE0FAF07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{43319258-F690-4DA8-ADB4-55B8D60D223D} = {8F17BA69-A4CB-4776-9E06-8EE16166C4EC}
-		{A98BF1B4-EC15-4780-B383-794ABBEDBDB3} = {71B30615-84AE-4D1B-90D6-08882B886A62}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6A16B9B4-C0FB-4F21-9B3E-C5B69FC4BEFF}
+		SolutionGuid = {30CBD952-6787-4B0A-A65C-2DF6BD03C9A9}
 	EndGlobalSection
 EndGlobal

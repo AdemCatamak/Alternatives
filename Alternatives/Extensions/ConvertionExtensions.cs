@@ -191,9 +191,9 @@ namespace Alternatives.Extensions
         {
             AutoMapper.MapperConfiguration config =
                 new AutoMapper.MapperConfiguration(cfg =>
-                                                   {
-                                                       cfg.CreateMap<TSource, TDestination>();
-                                                   });
+                {
+                    cfg.CreateMap<TSource, TDestination>();
+                });
 
             AutoMapper.IMapper mapper = config.CreateMapper();
 
@@ -210,7 +210,7 @@ namespace Alternatives.Extensions
 
             foreach (string enumName in enumNameArray)
             {
-                int enumValue = (int) Enum.Parse(type, enumName);
+                int enumValue = (int)Enum.Parse(type, enumName);
                 if (enumValue < 0)
                     continue;
 

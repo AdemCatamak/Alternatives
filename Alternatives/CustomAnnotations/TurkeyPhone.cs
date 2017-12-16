@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace Alternatives.CustomDataAnnotations
+namespace Alternatives.CustomAnnotations
 {
     public class TurkeyPhone : ValidationAttribute
     {

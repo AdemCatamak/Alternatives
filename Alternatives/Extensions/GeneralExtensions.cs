@@ -6,7 +6,6 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 
 namespace Alternatives.Extensions
 {
@@ -44,7 +43,7 @@ namespace Alternatives.Extensions
         {
             if (markers.IsNullOrEmpty())
             {
-                markers = new[] {' '};
+                markers = new[] { ' ' };
             }
 
             if (text == null)
@@ -54,7 +53,7 @@ namespace Alternatives.Extensions
 
             foreach (char marker in markers)
             {
-                string[] split = text.Split(new[] {marker}, StringSplitOptions.RemoveEmptyEntries);
+                string[] split = text.Split(new[] { marker }, StringSplitOptions.RemoveEmptyEntries);
                 Parallel.For(0, split.Length, i => { split[i] = split[i].FirstLetterToUpper(); }
                             );
 
