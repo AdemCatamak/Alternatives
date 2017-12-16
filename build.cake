@@ -85,7 +85,7 @@ Task(AnalysisStage)
 {
     DotCoverAnalyse(tool => 
     {
-        tool.NUnit("./3_Tests/**/bin/**/*Test.dll");
+        tool.NUnit("./**/bin/**/*Test.dll");
     },
     new FilePath("./AnalysisResult.xml"),
     new DotCoverAnalyseSettings());
@@ -96,7 +96,7 @@ Task(TestStage)
 .IsDependentOn(BuildStage)
 .Does(()=>
 {
-    var testDlls = GetFiles("./3_Tests/**/bin/**/*Test.dll");
+    var testDlls = GetFiles("./**/bin/**/*Test.dll");
     bool success = true;
     foreach(var testDll in testDlls)
     {
@@ -169,12 +169,14 @@ Task(CleanStage)
             Recursive  = true
         });
     }
-    
-    Console.WriteLine(NugetPackageOutputDirectory);
-    DeleteDirectory(NugetPackageOutputDirectory, new DeleteDirectorySettings {
-        Force = true,
-        Recursive  = true
-    });
+    if(DirectoryExists(NugetPackageOutputDirectory))
+    {
+        Console.WriteLine(NugetPackageOutputDirectory);
+        DeleteDirectory(NugetPackageOutputDirectory, new DeleteDirectorySettings {
+            Force = true,
+            Recursive  = true
+        });
+    }
     
 });
 
