@@ -4,14 +4,14 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>2.0.1</Version>
+    <Version>2.0.2</Version>
     <Authors>Adem Catamak</Authors>
     <Company />
     <PackageLicenseUrl>https://github.com/AdemCatamak/Alternatives/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/AdemCatamak/Alternatives.git</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AdemCatamak/Alternatives.git</RepositoryUrl>
     <Description>Shortcuts and General Extensions</Description>
-    <PackageReleaseNotes>Custom Exception Types added</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <PackageTags>alternatives,shortcut,utilities,extensions</PackageTags>
   </PropertyGroup>
 

@@ -137,5 +137,16 @@ namespace Alternatives.Extensions
 
             return result;
         }
+
+        public static string AppendWithSeparator(this string source, string text)
+        {
+            return source.AppendWithSeparator(text, Environment.NewLine);
+        }
+
+        public static string AppendWithSeparator(this string source, string text, string separator)
+        {
+            source = string.IsNullOrEmpty(source) ? text : $"{source}{separator}{text}";
+            return source;
+        }
     }
 }

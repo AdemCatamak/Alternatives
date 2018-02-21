@@ -69,6 +69,7 @@
     <Compile Include="ExtensionTest\ConvertionExtensionTests\TryToDoubleTest.cs" />
     <Compile Include="ExtensionTest\ConvertionExtensionTests\TryToIntTest.cs" />
     <Compile Include="ExtensionTest\ConvertionExtensionTests\TryToLongTest.cs" />
+    <Compile Include="ExtensionTest\GeneralExtensionTests\AppendWithSeparatorTest.cs" />
     <Compile Include="ExtensionTest\GeneralExtensionTests\CheckIpInRangeTest.cs" />
     <Compile Include="ExtensionTest\GeneralExtensionTests\FirstLetterUpperAllTest.cs" />
     <Compile Include="ExtensionTest\GeneralExtensionTests\FirstLetterUpperTest.cs" />
