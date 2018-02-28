@@ -36,7 +36,7 @@ bld/
 TestResult.xml
 
 # CAKE
-*[Tt]ools/
+[Tt]ools/
 AnalysisResult.xml
 
 # Build Results of an ATL Project

@@ -12,9 +12,10 @@ namespace Alternatives.Extensions
     {
         public static int ToInt(this object value, CultureInfo culture = null)
         {
-            return culture == null
-                       ? int.Parse(value.ToString())
-                       : int.Parse(value.ToString(), culture);
+            if (value == null) throw new NullReferenceException($"{nameof(value)} Is Null");
+
+            CultureInfo currentCulture = culture ?? CultureInfo.CurrentCulture;
+            return Convert.ToInt32(value, currentCulture);
         }
 
 
@@ -25,17 +26,7 @@ namespace Alternatives.Extensions
 
         public static int TryToInt(this object value, CultureInfo culture, int defaultValue = default(int))
         {
-            culture = culture ?? CultureInfo.CurrentCulture;
-            int result = defaultValue;
-            if (value != null)
-            {
-                bool success = int.TryParse(value.ToString(), NumberStyles.Any, culture, out result);
-                result = success
-                             ? result
-                             : defaultValue;
-            }
-
-            return result;
+            return TryToInt(value, out bool _, culture, defaultValue);
         }
 
         public static int TryToInt(this object value, out bool success, int defaultValue = default(int))
@@ -45,26 +36,31 @@ namespace Alternatives.Extensions
 
         public static int TryToInt(this object value, out bool success, CultureInfo cultureInfo, int defaultValue = default(int))
         {
-            int result = defaultValue;
-            success = false;
-            if (value != null)
+            int result;
+            success = true;
+
+            try
             {
-                success = int.TryParse(value.ToString(), NumberStyles.Any, cultureInfo, out result);
-                result = success
-                             ? result
-                             : defaultValue;
+                result = value == null
+                             ? defaultValue
+                             : Convert.ToInt32(value, cultureInfo);
+            }
+            catch
+            {
+                success = false;
+                result = defaultValue;
             }
 
             return result;
         }
 
 
-
         public static double ToDouble(this object value, CultureInfo culture = null)
         {
-            return culture == null
-                       ? double.Parse(value.ToString())
-                       : double.Parse(value.ToString(), culture);
+            if (value == null) throw new NullReferenceException($"{nameof(value)} Is Null");
+
+            CultureInfo cultureInfo = culture ?? CultureInfo.CurrentCulture;
+            return Convert.ToDouble(value, cultureInfo);
         }
 
 
@@ -75,16 +71,7 @@ namespace Alternatives.Extensions
 
         public static double TryToDouble(this object value, CultureInfo culture, double defaultValue = default(double))
         {
-            double result = defaultValue;
-            if (value != null)
-            {
-                bool success = double.TryParse(value.ToString(), NumberStyles.Any, culture, out result);
-                result = success
-                             ? result
-                             : defaultValue;
-            }
-
-            return result;
+            return TryToDouble(value, out bool _, culture, defaultValue);
         }
 
         public static double TryToDouble(this object value, out bool success, double defaultValue = default(double))
@@ -94,27 +81,31 @@ namespace Alternatives.Extensions
 
         public static double TryToDouble(this object value, out bool success, CultureInfo cultureInfo, double defaultValue = default(double))
         {
-            double result = defaultValue;
-            success = false;
-            if (value != null)
+            double result;
+            success = true;
+
+            try
             {
-                success = double.TryParse(value.ToString(), NumberStyles.Any, cultureInfo, out result);
-                result = success
-                             ? result
-                             : defaultValue;
+                result = value == null
+                             ? defaultValue
+                             : Convert.ToDouble(value, cultureInfo);
+            }
+            catch
+            {
+                success = false;
+                result = defaultValue;
             }
 
             return result;
         }
 
 
-
-
         public static long ToLong(this object value, CultureInfo culture = null)
         {
-            return culture == null
-                       ? long.Parse(value.ToString())
-                       : long.Parse(value.ToString(), culture);
+            if (value == null) throw new NullReferenceException($"{nameof(value)} Is Null");
+
+            CultureInfo cultureInfo = culture ?? CultureInfo.CurrentCulture;
+            return Convert.ToInt64(value, cultureInfo);
         }
 
 
@@ -125,16 +116,7 @@ namespace Alternatives.Extensions
 
         public static long TryToLong(this object value, CultureInfo culture, long defaultValue = default(long))
         {
-            long result = defaultValue;
-            if (value != null)
-            {
-                bool success = long.TryParse(value.ToString(), NumberStyles.Any, culture, out result);
-                result = success
-                             ? result
-                             : defaultValue;
-            }
-
-            return result;
+            return TryToLong(value, out bool _, culture, defaultValue);
         }
 
         public static long TryToLong(this object value, out bool success, long defaultValue = default(long))
@@ -144,19 +126,23 @@ namespace Alternatives.Extensions
 
         public static long TryToLong(this object value, out bool success, CultureInfo cultureInfo, long defaultValue = default(long))
         {
-            long result = defaultValue;
-            success = false;
-            if (value != null)
+            long result;
+            success = true;
+
+            try
             {
-                success = long.TryParse(value.ToString(), NumberStyles.Any, cultureInfo, out result);
-                result = success
-                             ? result
-                             : defaultValue;
+                result = value == null
+                             ? defaultValue
+                             : Convert.ToInt64(value, cultureInfo);
+            }
+            catch
+            {
+                result = defaultValue;
+                success = false;
             }
 
             return result;
         }
-
 
 
         public static TDestination Deserialize<TDestination>(this string source)
@@ -181,7 +167,6 @@ namespace Alternatives.Extensions
         }
 
 
-
         public static T Copy<T>(this T source)
         {
             return Map<T, T>(source);
@@ -190,16 +175,12 @@ namespace Alternatives.Extensions
         public static TDestination Map<TSource, TDestination>(this TSource source)
         {
             AutoMapper.MapperConfiguration config =
-                new AutoMapper.MapperConfiguration(cfg =>
-                {
-                    cfg.CreateMap<TSource, TDestination>();
-                });
+                new AutoMapper.MapperConfiguration(cfg => { cfg.CreateMap<TSource, TDestination>(); });
 
             AutoMapper.IMapper mapper = config.CreateMapper();
 
             return mapper.Map<TSource, TDestination>(source);
         }
-
 
 
         public static Dictionary<int, string> EnumToDictionary(Type type, ResourceManager resourceManager = null)
@@ -210,7 +191,7 @@ namespace Alternatives.Extensions
 
             foreach (string enumName in enumNameArray)
             {
-                int enumValue = (int)Enum.Parse(type, enumName);
+                int enumValue = (int) Enum.Parse(type, enumName);
                 if (enumValue < 0)
                     continue;
 
@@ -231,7 +212,6 @@ namespace Alternatives.Extensions
 
             return dictionary;
         }
-
 
 
         public static object GetDbValue<T>(this T parameter)

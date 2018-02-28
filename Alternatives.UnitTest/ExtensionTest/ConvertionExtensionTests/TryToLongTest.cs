@@ -73,28 +73,26 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
         [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong()
         {
-            const long expected = 1237;
             object data = "123.7";
 
 
             long actual = data.TryToLong(CultureInfo.GetCultureInfo("tr-TR"));
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.AreEqual(default(long), actual, $"{actual} value is not expected");
         }
 
         [Test]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithDefault()
         {
-            const double expected = 1118,
-                         defaultValue = 15;
+            const long defaultValue = 15;
             object data = "111.8";
 
 
-            double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"), defaultValue);
+            double actual = data.TryToLong(CultureInfo.GetCultureInfo("tr-TR"), defaultValue);
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.AreEqual(defaultValue, actual, $"{actual} value is not expected");
         }
 
         [Test]
