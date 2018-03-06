@@ -1,11 +1,11 @@
 ﻿using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 {
     public class FirstLetterUpperAllTest
     {
-        [Test]
+        [Fact]
         public void FirstLetterUpperAll_WhenNullAsObject_ResponseMustBeEmptyString()
         {
             string expected = string.Empty;
@@ -14,10 +14,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = ((string) null).FirstLetterToUpperAll();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void FirstLetterUpperAll_WhenEmptyStringAsObj_ResponseMustBeEmptyString()
         {
             string expected = string.Empty;
@@ -26,10 +26,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = string.Empty.FirstLetterToUpperAll();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void FirstLetterUpperAll_WhenFirstLetterIsDigit_CharacterMustNotEffected()
         {
             const string expected = "2131";
@@ -38,10 +38,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = data.FirstLetterToUpperAll();
 
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void FirstLetterUpperAll_WhenFirstCharacterIsLetter_CharacterMustBeCapitalized()
         {
             const string expected = "Adem",
@@ -50,10 +50,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = data.FirstLetterToUpperAll();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void FirstLetterUpperAll_WhenHasSpaceAtTheEnd_ResponseHasCapitalizedFirstLetterAndRemovedSpaceAtTheEnd()
         {
             const string expected = "Adem",
@@ -62,10 +62,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = data.FirstLetterToUpperAll();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void FirstLetterUpperAll_WhenStringHasSpaceBetweenCharacter_EachWordHasCapitalizedFirstLetter()
         {
             const string expected = "Adem Catamak",
@@ -74,10 +74,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = data.FirstLetterToUpperAll();
 
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void FirstLetterUpperAll_WhenStringHasGivenSplitter_EachLetterHasCapitalized()
         {
             const string expected = "All first letter is change upper version of all sentences after FirstLetterToUpperAll function run. Try it if you do not believe",
@@ -86,10 +86,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = data.FirstLetterToUpperAll('.');
 
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void FirstLetterUpperAll_WhenGivenSplitterOneAfterAnother_ResponseMustBeSuccessfully()
         {
             const string expected = "Adem, Catamak",
@@ -98,7 +98,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = data.FirstLetterToUpperAll(',', ' ');
 
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
     }
 }

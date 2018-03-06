@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
@@ -24,7 +24,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
         #endregion
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__EnumToDictionary_WithNegativeValue()
         {
             Dictionary<int, string> expected = new Dictionary<int, string>
@@ -37,14 +37,14 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             Dictionary<int, string> actual = ConvertionExtensions.EnumToDictionary(typeof(TestEnumWithNegative));
 
 
-            Assert.AreEqual(2, actual.Count);
+            Assert.Equal(2, actual.Count);
             for (int i = 0; i < actual.Count; i++)
             {
-                Assert.AreEqual(expected.ElementAt(i), actual.ElementAt(i), $"Actual[{i}] value is not expected");
+                Assert.Equal(expected.ElementAt(i), actual.ElementAt(i));
             }
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__EnumToDictionary()
         {
             Dictionary<int, string> expected = new Dictionary<int, string>
@@ -58,7 +58,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
             for (int i = 0; i < actual.Count; i++)
             {
-                Assert.AreEqual(expected.ElementAt(i), actual.ElementAt(i), $"Actual[{i}] value is not expected");
+                Assert.Equal(expected.ElementAt(i), actual.ElementAt(i));
             }
         }
     }

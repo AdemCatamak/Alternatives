@@ -1,13 +1,13 @@
 using System;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
     
     public class GetDbValueTest
     {
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetDbValue_Null()
         {
             DBNull expected = DBNull.Value;
@@ -16,10 +16,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             object actual = ((object) null).GetDbValue();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetDbValue_NullInt()
         {
             DBNull expected = DBNull.Value;
@@ -30,10 +30,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             object actual = data.GetDbValue();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetDbValue_EmptyString()
         {
             string expected = string.Empty;
@@ -43,10 +43,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             object actual = data.GetDbValue();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetDbValue_Int()
         {
             const int expected = 5;
@@ -56,7 +56,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             object actual = data.GetDbValue();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
     }
 }

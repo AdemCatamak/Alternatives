@@ -1,13 +1,13 @@
 ﻿using System;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
     
     public class ToIntTest
     {
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__ToInt_Null()
         {
             Assert.Throws<NullReferenceException>(() =>
@@ -16,7 +16,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
                                                            });
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__ToInt_Alphabet()
         {
             const string data = "123a123";
@@ -28,7 +28,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
                                                     });
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__ToInt_WithComma()
         {
             const string data = "12,3";
@@ -39,7 +39,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
                                                     });
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__ToInt()
         {
             const int expected = 123;
@@ -49,7 +49,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             int actual = data.ToInt();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
     }
 }

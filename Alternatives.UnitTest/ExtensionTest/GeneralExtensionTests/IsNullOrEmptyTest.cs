@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 {
     public class IsNullOrEmptyTest
     {
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Null__IEnumarable()
         {
             // Act
@@ -15,10 +15,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
 
             // Assert
-            Assert.IsTrue(isNullOrEmpty);
+            Assert.True(isNullOrEmpty);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Null__IQuaryable()
         {
             // Act
@@ -26,10 +26,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
 
             // Assert
-            Assert.IsTrue(isNullOrEmpty);
+            Assert.True(isNullOrEmpty);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Empty_NotFiltered()
         {
             // Act
@@ -37,11 +37,11 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
 
             // Assert
-            Assert.IsTrue(isNullOrEmpty);
+            Assert.True(isNullOrEmpty);
         }
 
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_Empty_Filtered()
         {
             // Act
@@ -49,10 +49,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
 
             // Assert
-            Assert.IsTrue(isNullOrEmpty);
+            Assert.True(isNullOrEmpty);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_NotEmpty_Filtered_NotMatch()
         {
             // Arrange
@@ -64,10 +64,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
 
             // Assert
-            Assert.IsTrue(isNullOrEmpty);
+            Assert.True(isNullOrEmpty);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_NotEmpty_Filtered_Match()
         {
             // Arrange
@@ -79,10 +79,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
 
             // Assert
-            Assert.IsFalse(isNullOrEmpty);
+            Assert.False(isNullOrEmpty);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__IsNullOrEmpty_NotEmpty_NotFiltered()
         {
             // Arrange
@@ -94,7 +94,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
 
             // Assert
-            Assert.IsFalse(isNullOrEmpty);
+            Assert.False(isNullOrEmpty);
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System.Globalization;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
     public class TryToLongTest
     {
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_Null()
         {
             const long expected = default(long);
@@ -15,10 +15,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             long actual = ((object) null).TryToLong();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_NullWithDefault()
         {
             const long expected = 5;
@@ -27,10 +27,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             long actual = ((object) null).TryToLong(expected);
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithComma()
         {
             const long expected = default(long);
@@ -40,10 +40,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             long actual = data.TryToLong(CultureInfo.GetCultureInfo("tr-TR"));
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithDotAndComma()
         {
             const long expected = default(long);
@@ -53,10 +53,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             long actual = data.TryToLong(CultureInfo.GetCultureInfo("tr-TR"));
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithCommaAndDefault()
         {
             const long expected = 8,
@@ -67,10 +67,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             long actual = data.TryToLong(CultureInfo.GetCultureInfo("tr-TR"), defaultValue);
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong()
         {
             object data = "123.7";
@@ -79,10 +79,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             long actual = data.TryToLong(CultureInfo.GetCultureInfo("tr-TR"));
 
 
-            Assert.AreEqual(default(long), actual, $"{actual} value is not expected");
+            Assert.Equal(default(long), actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_WithDefault()
         {
             const long defaultValue = 15;
@@ -92,10 +92,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             double actual = data.TryToLong(CultureInfo.GetCultureInfo("tr-TR"), defaultValue);
 
 
-            Assert.AreEqual(defaultValue, actual, $"{actual} value is not expected");
+            Assert.Equal(defaultValue, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_With_SuccessInfo()
         {
             // Arrage
@@ -108,11 +108,11 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
 
             // Assert
-            Assert.IsTrue(expectedSuccess);
-            Assert.AreEqual(expected, actual);
+            Assert.True(expectedSuccess);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToLong_With_SuccessInfo_DeaultValue()
         {
             // Arrage
@@ -125,8 +125,8 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
 
             // Assert
-            Assert.IsFalse(expectedSuccess);
-            Assert.AreEqual(expected, actual);
+            Assert.False(expectedSuccess);
+            Assert.Equal(expected, actual);
         }
     }
 }

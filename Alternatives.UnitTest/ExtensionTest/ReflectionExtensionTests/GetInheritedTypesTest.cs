@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 {
@@ -51,7 +51,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 
         #endregion
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseInterface()
         {
             // Act
@@ -63,12 +63,12 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
 
             // Assert
-            Assert.AreEqual(2, typeList.Count, $"{string.Join(" - ", typeList.Select(t => t.Name))}");
-            Assert.IsTrue(typeList.Contains(typeof(TestInterface)));
-            Assert.IsTrue(typeList.Contains(typeof(AnotherTestInterface)));
+            Assert.Equal(2, typeList.Count);
+            Assert.True(typeList.Contains(typeof(TestInterface)));
+            Assert.True(typeList.Contains(typeof(AnotherTestInterface)));
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseGenericInterface()
         {
             // Act
@@ -80,13 +80,13 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
 
             // Assert
-            Assert.AreEqual(2, typeList.Count, $"{string.Join(" - ", typeList.Select(t => t.Name))}");
-            Assert.IsTrue(typeList.Contains(typeof(TestGenericInterface)));
-            Assert.IsTrue(typeList.Contains(typeof(AnotherTestGenericInterface)));
+            Assert.Equal(2, typeList.Count);
+            Assert.True(typeList.Contains(typeof(TestGenericInterface)));
+            Assert.True(typeList.Contains(typeof(AnotherTestGenericInterface)));
         }
 
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseGenericInterfaceSpesific()
         {
             // Act
@@ -98,12 +98,12 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
 
             // Assert
-            Assert.AreEqual(1, typeList.Count, $"{string.Join(" - ", typeList.Select(t => t.Name))}");
-            Assert.IsTrue(typeList.Contains(typeof(TestGenericInterface)));
+            Assert.Equal(1, typeList.Count);
+            Assert.True(typeList.Contains(typeof(TestGenericInterface)));
         }
 
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseAbstractClassImplemetor_Parent()
         {
             // Act
@@ -115,11 +115,11 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
 
             // Assert
-            Assert.AreEqual(1, typeList.Count, $"{string.Join(" - ", typeList.Select(t => t.Name))}");
-            Assert.IsTrue(typeList.Contains(typeof(TestAbstract)));
+            Assert.Equal(1, typeList.Count);
+            Assert.True(typeList.Contains(typeof(TestAbstract)));
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseAbstractClassImplemetor_GrandParent()
         {
             // Act
@@ -131,8 +131,8 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
 
             // Assert
-            Assert.AreEqual(2, typeList.Count, $"{string.Join(" - ", typeList.Select(t => t.Name))}");
-            Assert.IsTrue(typeList.Contains(typeof(TestAbstract)));
+            Assert.Equal(2, typeList.Count);
+            Assert.True(typeList.Contains(typeof(TestAbstract)));
         }
     }
 }

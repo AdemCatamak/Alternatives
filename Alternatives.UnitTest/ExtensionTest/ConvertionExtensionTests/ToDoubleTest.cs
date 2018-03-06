@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Globalization;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
     public class ToDoubleTest
     {
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__ToDouble_Null()
         {
             Assert.Throws<NullReferenceException>(() =>
-                                                           {
-                                                               ((object) null).ToDouble();
-                                                           });
+            {
+                ((object)null).ToDouble();
+            });
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__ToDouble_Alphabet()
         {
             const string data = "123a123.24";
@@ -27,7 +27,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
                                                     });
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__ToDouble_WithComma()
         {
             const double expected = 12.5;
@@ -37,10 +37,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             double actual = data.ToDouble(CultureInfo.GetCultureInfo("tr-TR"));
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__ToDouble_WithDot()
         {
             const double expected = 1215;
@@ -50,7 +50,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             double actual = data.ToDouble(CultureInfo.GetCultureInfo("tr-TR"));
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
     }
 }

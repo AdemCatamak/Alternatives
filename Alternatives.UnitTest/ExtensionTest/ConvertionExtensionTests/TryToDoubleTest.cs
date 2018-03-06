@@ -1,13 +1,13 @@
 ﻿using System.Globalization;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
     
     public class TryToDoubleTest
     {
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_Null()
         {
             const double expected = default(double);
@@ -16,10 +16,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             double actual = ((object) null).TryToDouble();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_NullWithDefault()
         {
             const double expected = 5.5;
@@ -28,10 +28,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             double actual = ((object) null).TryToDouble(expected);
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_WithComma()
         {
             const double expected = 12.3;
@@ -41,10 +41,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"));
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_WithDotAndComma()
         {
             const double expected = 15412.3;
@@ -54,10 +54,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"));
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_WithCommaAndDefault()
         {
             const double expected = 12.3,
@@ -68,10 +68,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"), defaultValue);
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToDouble()
         {
             const double expected = 1237;
@@ -81,10 +81,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"));
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_WithDefault()
         {
             const double expected = 1118,
@@ -95,10 +95,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             double actual = data.TryToDouble(CultureInfo.GetCultureInfo("tr-TR"), defaultValue);
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_With_SuccessInfo()
         {
             // Arrage
@@ -111,11 +111,11 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
 
             // Assert
-            Assert.IsTrue(expectedSuccess);
-            Assert.AreEqual(expected, actual);
+            Assert.True(expectedSuccess);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToDouble_With_SuccessInfo_DeaultValue()
         {
             // Arrage
@@ -128,8 +128,8 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
 
             // Assert
-            Assert.IsFalse(expectedSuccess);
-            Assert.AreEqual(expected, actual);
+            Assert.False(expectedSuccess);
+            Assert.Equal(expected, actual);
         }
     }
 }

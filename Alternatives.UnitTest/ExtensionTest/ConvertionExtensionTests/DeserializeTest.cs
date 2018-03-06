@@ -1,6 +1,6 @@
 ﻿using System;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
@@ -25,16 +25,16 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
         #endregion
 
-        [Test]
+        [Fact]
         public void Deserialize_WhenDeserializeNullAsObject_ResultMustBeNull()
         {
             DummyClass actual = @"null".Deserialize<DummyClass>();
 
 
-            Assert.AreEqual(null, actual, $"{actual} is not expected");
+            Assert.Null(actual);
         }
 
-        [Test]
+        [Fact]
         public void Deserialize_WhenDeserializeJson_IfClassNotMatch_ResponseMustBeDefaultObject()
         {
             string item = @"
@@ -48,13 +48,13 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
             DummyClass actual = item.Deserialize<DummyClass>();
 
-            Assert.IsNotNull(actual);
-            Assert.IsNull(actual.StringField);
-            Assert.AreEqual(0, actual.IntField);
-            Assert.IsNull(actual.InnerClassField);
+            Assert.NotNull(actual);
+            Assert.Null(actual.StringField);
+            Assert.Equal(0, actual.IntField);
+            Assert.Null(actual.InnerClassField);
         }
 
-        [Test]
+        [Fact]
         public void Deserialize_WhenDeserializeJson_IfClassPropertiesMathc_ResponseMustBeFilled()
         {
             DummyClass expected = new DummyClass
@@ -74,9 +74,9 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             DummyClass actual = item.Deserialize<DummyClass>();
 
 
-            Assert.AreEqual(expected.IntField, actual.IntField);
-            Assert.AreEqual(expected.StringField, actual.StringField);
-            Assert.AreEqual(expected.InnerClassField.InnerDummyStringField, actual.InnerClassField.InnerDummyStringField);
+            Assert.Equal(expected.IntField, actual.IntField);
+            Assert.Equal(expected.StringField, actual.StringField);
+            Assert.Equal(expected.InnerClassField.InnerDummyStringField, actual.InnerClassField.InnerDummyStringField);
         }
     }
 }
