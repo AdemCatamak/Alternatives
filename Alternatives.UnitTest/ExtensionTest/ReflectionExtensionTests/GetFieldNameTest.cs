@@ -1,6 +1,6 @@
 ﻿using System;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 {
@@ -25,7 +25,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 
         #endregion
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_Null()
         {
             Assert.Throws<NullReferenceException>(() =>
@@ -34,7 +34,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
                                                            });
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_NotExistFieldNameForStruct()
         {
             DummyClass dummyClass = new DummyClass();
@@ -44,7 +44,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
                                                          });
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_NotExistFieldNameForClass()
         {
             DummyClass dummyClass = new DummyClass();
@@ -54,7 +54,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
                                                          });
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_NotConvertableTypeAndFieldMatch()
         {
             DummyClass dummyClass = new DummyClass
@@ -69,7 +69,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
                                                          });
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_SuccessForStructField()
         {
             const int expectedResult = 5;
@@ -82,10 +82,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             int actualResult = dummyClass.GetFieldValue<int>(nameof(DummyClass.IntField));
 
 
-            Assert.AreEqual(expectedResult, actualResult, $"{actualResult} is not expected");
+            Assert.Equal(expectedResult, actualResult);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_PrivateField()
         {
             DummyClass dummyClass = new DummyClass
@@ -101,7 +101,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         }
 
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_SuccessForClassField()
         {
             InnerDummyClass expectedResult = new InnerDummyClass
@@ -121,7 +121,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             InnerDummyClass actualResult = dummyClass.GetFieldValue<InnerDummyClass>(nameof(DummyClass.InnerClassField));
 
 
-            Assert.AreEqual(expectedResult.InnerDummyStringField, actualResult.InnerDummyStringField, $"{actualResult.InnerDummyStringField} is not expected");
+            Assert.Equal(expectedResult.InnerDummyStringField, actualResult.InnerDummyStringField);
         }
     }
 }

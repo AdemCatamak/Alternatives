@@ -1,11 +1,11 @@
 ﻿using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 {
     public class FirstLetterUpperTest
     {
-        [Test]
+        [Fact]
         public void FirstLetterUpper_WhenNullAsObject_ResponseMustBeEmpty()
         {
             string expected = string.Empty;
@@ -14,10 +14,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = ((string) null).FirstLetterToUpper();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void FirstLetterUpper_WhenEmptyAsObject_ResponseMustBeEmpty()
         {
             string expected = string.Empty;
@@ -26,10 +26,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = data.FirstLetterToUpper();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void FirstLetterUpper_WhenOneLetterAsObject_ResponseMustBeCapitalized()
         {
             const string expected = "A",
@@ -38,10 +38,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = data.FirstLetterToUpper();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void FirstLetterUpper_WhenWordHasMultipleLetter_OnlyFirstLetterCapitalized()
         {
             const string expected = "Adem",
@@ -50,10 +50,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = data.FirstLetterToUpper();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void FirstLetterUpper_WhenWordHasMultipleLetterAndWhiteSpace_OnlyFirstLetterCapitalized()
         {
             const string expected = "Adem ",
@@ -62,10 +62,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = data.FirstLetterToUpper();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void FirstLetterUpper_WhenWordsAsObject_OnlyFirstLetterCapitalized()
         {
             const string expected = "Adem catamak",
@@ -74,7 +74,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
             string actual = data.FirstLetterToUpper();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
     }
 }

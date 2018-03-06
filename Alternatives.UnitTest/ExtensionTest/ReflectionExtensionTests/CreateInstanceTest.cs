@@ -1,5 +1,5 @@
 ﻿using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 {
@@ -26,18 +26,17 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 
         #endregion
 
-        [Test]
+        [Fact]
         public void CreateInstance_WhenTypeGiven()
         {
             object actual = ReflectionExtensions.CreateInstance(typeof(DummyClass));
 
 
-            Assert.IsNotNull(actual, "Actual is null");
-            Assert.IsNotNull(actual as DummyClass,
-                             "Cast operation show that IsValidClass instance cannot be created");
+            Assert.NotNull(actual);
+            Assert.NotNull(actual as DummyClass);
         }
 
-        [Test]
+        [Fact]
         public void CreateInstance_WhenFullNameGiven()
         {
             string fullName = typeof(DummyClass).AssemblyQualifiedName;
@@ -46,9 +45,8 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             object actual = ReflectionExtensions.CreateInstance(fullName);
 
 
-            Assert.IsNotNull(actual, "Actual is null");
-            Assert.IsNotNull(actual as DummyClass,
-                             "Cast operation show that IsValidClass instance cannot be created");
+            Assert.NotNull(actual);
+            Assert.NotNull(actual as DummyClass);
         }
     }
 }

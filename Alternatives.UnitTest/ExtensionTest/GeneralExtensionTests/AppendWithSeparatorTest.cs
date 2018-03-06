@@ -1,13 +1,13 @@
 using System;
 using System.Net;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 {
     public class AppendWithSeparatorTest
     {
-        [Test]
+        [Fact]
         public void AppendWithSeparatorTest_IfSourceIsNull_ResponseEqualsToText()
         {
             const string text = "new text";
@@ -15,10 +15,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
             string actual = source.AppendWithSeparator(text);
 
-            Assert.AreEqual(text, actual);
+            Assert.Equal(text, actual);
         }
 
-        [Test]
+        [Fact]
         public void AppendWithSeparatorTest_IfSourceIsNull_EvenCustomSeparatorGiven_ResponseEqualsToText()
         {
             const string text = "new text";
@@ -26,10 +26,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
             string actual = source.AppendWithSeparator(text, "custom separator");
 
-            Assert.AreEqual(text, actual);
+            Assert.Equal(text, actual);
         }
 
-        [Test]
+        [Fact]
         public void AppendWithSeparatorTest_IfSourceIsEmpty_ResponseEqualsToText()
         {
             const string text = "new text";
@@ -37,10 +37,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
             string actual = source.AppendWithSeparator(text);
 
-            Assert.AreEqual(text, actual);
+            Assert.Equal(text, actual);
         }
 
-        [Test]
+        [Fact]
         public void AppendWithSeparatorTest_IfSourceIsEmpty_EvenCustomSeparatorGiven_ResponseEqualsToText()
         {
             const string text = "new text";
@@ -48,10 +48,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
             string actual = source.AppendWithSeparator(text, " | ");
 
-            Assert.AreEqual(text, actual);
+            Assert.Equal(text, actual);
         }
 
-        [Test]
+        [Fact]
         public void AppendWithSeparatorTest_IfSourceHasMeaning_ResponseEqualsToCombineoOfSourceAndText()
         {
             const string text = "new text";
@@ -59,10 +59,10 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
             string actual = source.AppendWithSeparator(text);
 
-            Assert.AreEqual($"{source}{Environment.NewLine}{text}", actual);
+            Assert.Equal($"{source}{Environment.NewLine}{text}", actual);
         }
 
-        [Test]
+        [Fact]
         public void AppendWithSeparatorTest_IfSourceHasMeaning_CustomSeparatorMustBeBetweenSourceAndText()
         {
             const string text = "new text";
@@ -70,7 +70,7 @@ namespace Alternatives.UnitTest.ExtensionTest.GeneralExtensionTests
 
             string actual = source.AppendWithSeparator(text, " - ");
 
-            Assert.AreEqual($"{source} - {text}", actual);
+            Assert.Equal($"{source} - {text}", actual);
         }
     }
 }

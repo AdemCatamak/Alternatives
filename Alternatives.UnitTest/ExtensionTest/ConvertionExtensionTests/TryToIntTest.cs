@@ -1,12 +1,12 @@
 ﻿using System.Globalization;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
     public class TryToIntTest
     {
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToInt_Null()
         {
             const int expected = default(int);
@@ -15,10 +15,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             int actual = ((object)null).TryToInt();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToInt_NullWithDefault()
         {
             const int expected = 5;
@@ -27,10 +27,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             int actual = ((object)null).TryToInt(expected);
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToInt_WithComma()
         {
             const int expected = default(int);
@@ -40,10 +40,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             int actual = data.TryToInt(CultureInfo.GetCultureInfo("tr-TR"));
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToInt_WithCommaAndDefault()
         {
             const int expected = 5;
@@ -53,10 +53,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             int actual = data.TryToInt(CultureInfo.GetCultureInfo("tr-TR"), expected);
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToInt()
         {
             const int expected = 123;
@@ -66,10 +66,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             int actual = data.TryToInt();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToInt_WithDefault()
         {
             const int expected = 111,
@@ -80,10 +80,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             int actual = data.TryToInt(defaultValue);
 
 
-            Assert.AreEqual(expected, actual, $"{actual} value is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToInt_With_SuccessInfo()
         {
             // Arrage
@@ -96,11 +96,11 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
 
             // Assert
-            Assert.IsTrue(expectedSuccess);
-            Assert.AreEqual(expected, actual);
+            Assert.True(expectedSuccess);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TryToInt_With_SuccessInfo_DeaultValue()
         {
             // Arrage
@@ -113,8 +113,8 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
 
             // Assert
-            Assert.IsFalse(expectedSuccess);
-            Assert.AreEqual(expected, actual);
+            Assert.False(expectedSuccess);
+            Assert.Equal(expected, actual);
         }
     }
 }

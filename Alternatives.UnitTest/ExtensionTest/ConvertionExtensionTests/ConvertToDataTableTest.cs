@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using Alternatives.CustomAnnotations;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
@@ -31,7 +31,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
         #endregion
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__ToDataTable()
         {
             DataTable expected = new DataTable
@@ -113,11 +113,11 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
             for (int i = 0; i < actual.Rows.Count; i++)
             {
-                Assert.AreEqual(expected.Rows[i]["Id"], actual.Rows[i]["Id"], "Actual.Id is not expected");
-                Assert.AreEqual(expected.Rows[i]["Username"], actual.Rows[i]["Username"], "Actual.Username is not expected");
-                Assert.AreEqual(expected.Rows[i]["Email"], actual.Rows[i]["Email"], "Actual.Email is not expected");
-                Assert.AreEqual(expected.Rows[i]["Phone"], actual.Rows[i]["Phone"], "Actual.Phone is not expected");
-                Assert.AreEqual(expected.Rows[i]["ExtraData"], actual.Rows[i]["ExtraData"], "Actual.ExtraData is not expected");
+                Assert.Equal(expected.Rows[i]["Id"], actual.Rows[i]["Id"]);
+                Assert.Equal(expected.Rows[i]["Username"], actual.Rows[i]["Username"]);
+                Assert.Equal(expected.Rows[i]["Email"], actual.Rows[i]["Email"]);
+                Assert.Equal(expected.Rows[i]["Phone"], actual.Rows[i]["Phone"]);
+                Assert.Equal(expected.Rows[i]["ExtraData"], actual.Rows[i]["ExtraData"]);
             }
         }
     }

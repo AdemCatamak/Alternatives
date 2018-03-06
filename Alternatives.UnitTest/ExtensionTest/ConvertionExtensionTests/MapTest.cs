@@ -1,5 +1,5 @@
 ﻿using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
@@ -32,16 +32,16 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
         #endregion
 
-        [Test]
+        [Fact]
         public void Map_WhenMapNullAsObject_ResponseMustBeNull()
         {
             object actual = ((object) null).Map<object, object>();
 
 
-            Assert.IsNull(actual, "Expected value is null");
+            Assert.Null(actual);
         }
 
-        [Test]
+        [Fact]
         public void Map_WhenMapSameKindOfClassObject_ItemsFieldMustBeEqual()
         {
             DummyClass expected = new DummyClass
@@ -61,12 +61,12 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             DummyClass actual = data.Map<DummyClass, DummyClass>();
 
 
-            Assert.AreEqual(expected.IntField, actual.IntField);
-            Assert.AreEqual(expected.StringField, actual.StringField);
-            Assert.AreEqual(expected.InnerClassField.InnerDummyStringField, actual.InnerClassField.InnerDummyStringField);
+            Assert.Equal(expected.IntField, actual.IntField);
+            Assert.Equal(expected.StringField, actual.StringField);
+            Assert.Equal(expected.InnerClassField.InnerDummyStringField, actual.InnerClassField.InnerDummyStringField);
         }
 
-        [Test]
+        [Fact]
         public void Map_WhenMapDifferentKindOfClassObject_DestinationObjectFieldMustBeDefault()
         {
             DummyClass data = new DummyClass
@@ -83,9 +83,9 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
             actual = data.Map<DummyClass, AnotherDummyClass>();
 
-            Assert.IsNotNull(actual);
-            Assert.AreEqual(0, actual.DoubleField);
-            Assert.IsNull(actual.StrField);
+            Assert.NotNull(actual);
+            Assert.Equal(0, actual.DoubleField);
+            Assert.Null(actual.StrField);
         }
     }
 }

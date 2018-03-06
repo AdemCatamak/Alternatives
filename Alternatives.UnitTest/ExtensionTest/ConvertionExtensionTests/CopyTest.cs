@@ -1,5 +1,5 @@
 ﻿using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
@@ -26,16 +26,16 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
         #endregion
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__Copy_Null()
         {
             object actual = ((object) null).Copy();
 
 
-            Assert.IsNull(actual, "Expected value is null");
+            Assert.Null(actual);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__Copy_ClassItemCopy()
         {
             DummyClass expected = new DummyClass
@@ -49,8 +49,8 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             DummyClass actual = expected.Copy();
 
 
-            Assert.AreEqual(expected.Serialize(), actual.Serialize(), $"{actual} is not expected");
-            Assert.AreNotSame(expected, actual, $"{actual} is the same expected");
+            Assert.Equal(expected.Serialize(), actual.Serialize());
+            Assert.NotSame(expected, actual);
         }
     }
 }

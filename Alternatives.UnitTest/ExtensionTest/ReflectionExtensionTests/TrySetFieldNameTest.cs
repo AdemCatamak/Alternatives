@@ -1,5 +1,5 @@
 ﻿using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 {
@@ -24,26 +24,26 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 
         #endregion
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TrySetFieldName_Null()
         {
             bool actualIsValid = ((string) null).TrySetFieldValue("Value", "");
 
-            Assert.IsFalse(actualIsValid);
+            Assert.False(actualIsValid);
         }
 
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TrySetFieldName_NotExistFieldName()
         {
             DummyClass dummyClass = new DummyClass();
             bool actualIsValid = dummyClass.TrySetFieldValue("NotExistColumn", 5);
 
 
-            Assert.IsFalse(actualIsValid);
+            Assert.False(actualIsValid);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TrySetFieldName_NotConvertableTypeAndFieldMatch()
         {
             const int expectedValue = 5;
@@ -56,11 +56,11 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             bool actualIsValid = dummyClass.TrySetFieldValue(nameof(DummyClass.IntField), "asd");
 
 
-            Assert.IsFalse(actualIsValid);
-            Assert.AreEqual(expectedValue, dummyClass.IntField);
+            Assert.False(actualIsValid);
+            Assert.Equal(expectedValue, dummyClass.IntField);
         }
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TrySetFieldName_SuccessForStructField()
         {
             const int expectedResult = 1;
@@ -73,12 +73,12 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             bool actualIsValid = dummyClass.TrySetFieldValue(nameof(DummyClass.IntField), expectedResult);
 
 
-            Assert.IsTrue(actualIsValid);
-            Assert.AreEqual(expectedResult, dummyClass.IntField);
+            Assert.True(actualIsValid);
+            Assert.Equal(expectedResult, dummyClass.IntField);
         }
 
 
-        [Test]
+        [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__TrySetFieldName_SuccessForClassField()
         {
             InnerDummyClass expectedResult = new InnerDummyClass
@@ -98,8 +98,8 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             bool actualIsValid = dummyClass.TrySetFieldValue(nameof(DummyClass.InnerClassField), expectedResult);
 
 
-            Assert.IsTrue(actualIsValid);
-            Assert.AreEqual(expectedResult.InnerDummyStringField, dummyClass.InnerClassField.InnerDummyStringField);
+            Assert.True(actualIsValid);
+            Assert.Equal(expectedResult.InnerDummyStringField, dummyClass.InnerClassField.InnerDummyStringField);
         }
     }
 }

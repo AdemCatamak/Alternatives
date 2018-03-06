@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Alternatives.CustomAnnotations;
 using Alternatives.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
@@ -37,7 +37,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 
         #endregion
 
-        [Test]
+        [Fact]
         public void Serialize_WhenSerializeNullAsObject_ResponseMustBeStringThatNULL()
         {
             const string expected = @"null";
@@ -46,10 +46,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             string actual = ((DummyClass) null).Serialize();
 
 
-            Assert.AreEqual(expected, actual, $"{actual} is not expected");
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void Serialize_WhenSerializeJson_IfFieldMathc_ResponseContainsValue()
         {
             string expected = @"{""Phone"":null,""Email"":""ademcatamak@gmail.com"",""Username"":""ademcatamak"",""RequiredPhone"":null,""Id"":3,""ExtraData"":null}"
@@ -69,7 +69,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
                                 .Replace(Environment.NewLine, string.Empty);
 
 
-            Assert.AreEqual(expected, actual, $"{actual} is not expected");
+            Assert.Equal(expected, actual);
         }
     }
 }
