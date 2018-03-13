@@ -4,16 +4,12 @@ using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    
     public class ToLongTest
     {
         [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__ToLong_Null()
         {
-            Assert.Throws<NullReferenceException>(() =>
-                                                           {
-                                                               ((object) null).ToLong();
-                                                           });
+            Assert.Throws<NullReferenceException>(() => ((object) null).ToLong());
         }
 
         [Fact]
@@ -21,10 +17,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
         {
             const string data = "123a123.24";
 
-            Assert.Throws<FormatException>(() =>
-                                                    {
-                                                        data.ToLong();
-                                                    });
+            Assert.Throws<FormatException>(() => data.ToLong());
         }
 
         [Fact]
@@ -33,10 +26,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             const string data = "12.15";
 
 
-            Assert.Throws<FormatException>(() =>
-                                                    {
-                                                        data.ToLong();
-                                                    });
+            Assert.Throws<FormatException>(() => data.ToLong());
         }
 
         [Fact]
@@ -44,10 +34,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
         {
             const string data = "12,15";
 
-            Assert.Throws<FormatException>(() =>
-                                                    {
-                                                        data.ToLong();
-                                                    });
+            Assert.Throws<FormatException>(() => data.ToLong());
         }
 
         [Fact]

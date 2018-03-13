@@ -4,16 +4,12 @@ using Xunit;
 
 namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
 {
-    
     public class ToIntTest
     {
         [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__ToInt_Null()
         {
-            Assert.Throws<NullReferenceException>(() =>
-                                                           {
-                                                               ((object) null).ToInt();
-                                                           });
+            Assert.Throws<NullReferenceException>(() => ((object) null).ToInt());
         }
 
         [Fact]
@@ -22,10 +18,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             const string data = "123a123";
 
 
-            Assert.Throws<FormatException>(() =>
-                                                    {
-                                                        data.ToInt();
-                                                    });
+            Assert.Throws<FormatException>(() => data.ToInt());
         }
 
         [Fact]
@@ -33,10 +26,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
         {
             const string data = "12,3";
 
-            Assert.Throws<FormatException>(() =>
-                                                    {
-                                                        data.ToInt();
-                                                    });
+            Assert.Throws<FormatException>(() => data.ToInt());
         }
 
         [Fact]

@@ -15,7 +15,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 
             public InnerDummyClass InnerClassField { get; set; }
 
-            private InnerDummyClass InnerPrivateFild { get; set; } = new InnerDummyClass { InnerDummyStringField = "private" };
+            private InnerDummyClass InnerPrivateFild { get; set; } = new InnerDummyClass {InnerDummyStringField = "private"};
         }
 
         private class InnerDummyClass
@@ -29,29 +29,22 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_Null()
         {
             Assert.Throws<NullReferenceException>(() =>
-                                                           {
-                                                               ((string) null).GetFieldValue<bool>("Value");
-                                                           });
+                                                      ((string) null).GetFieldValue<bool>("Value")
+                                                 );
         }
 
         [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_NotExistFieldNameForStruct()
         {
             DummyClass dummyClass = new DummyClass();
-            Assert.Throws<FieldAccessException>(() =>
-                                                         {
-                                                             dummyClass.GetFieldValue<string>("NotExistColumn");
-                                                         });
+            Assert.Throws<FieldAccessException>(() => dummyClass.GetFieldValue<string>("NotExistColumn"));
         }
 
         [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_NotExistFieldNameForClass()
         {
             DummyClass dummyClass = new DummyClass();
-            Assert.Throws<FieldAccessException>(() =>
-                                                         {
-                                                             dummyClass.GetFieldValue<InnerDummyClass>("NotExistColumn");
-                                                         });
+            Assert.Throws<FieldAccessException>(() => dummyClass.GetFieldValue<InnerDummyClass>("NotExistColumn"));
         }
 
         [Fact]
@@ -63,10 +56,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
                                         StringField = "asd"
                                     };
 
-            Assert.Throws<InvalidCastException>(() =>
-                                                         {
-                                                             dummyClass.GetFieldValue<int>(nameof(DummyClass.StringField));
-                                                         });
+            Assert.Throws<InvalidCastException>(() => dummyClass.GetFieldValue<int>(nameof(DummyClass.StringField)));
         }
 
         [Fact]
@@ -94,10 +84,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
                                         StringField = "asd"
                                     };
 
-            Assert.Throws<FieldAccessException>(() =>
-                                                         {
-                                                             dummyClass.GetFieldValue<InnerDummyClass>("InnerPrivateFild");
-                                                         });
+            Assert.Throws<FieldAccessException>(() => dummyClass.GetFieldValue<InnerDummyClass>("InnerPrivateFild"));
         }
 
 

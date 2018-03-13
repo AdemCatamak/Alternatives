@@ -9,7 +9,6 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
     public class GetInheritedTypesTest
     {
         #region TestModel
-
         private interface IInterface
         {
         }

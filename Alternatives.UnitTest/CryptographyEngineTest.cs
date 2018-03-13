@@ -9,7 +9,7 @@ namespace Alternatives.UnitTest
         public void CryptographyEngineTest_WhenEncrypteNullAsObject_ThrowsArgumentNullException()
         {
             CryptographyEngine engine = new CryptographyEngine();
-            Assert.Throws<ArgumentNullException>(() => { engine.Encrypt(null); });
+            Assert.Throws<ArgumentNullException>(() => engine.Encrypt(null));
         }
 
         [Fact]
@@ -104,7 +104,7 @@ namespace Alternatives.UnitTest
         {
             CryptographyEngine engine = new CryptographyEngine();
 
-            Assert.Throws<ArgumentNullException>(() => { engine.Hashing(null); });
+            Assert.Throws<ArgumentNullException>(() => engine.Hashing(null));
         }
 
         [Fact]
