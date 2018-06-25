@@ -43,7 +43,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             const string expected = @"null";
 
 
-            string actual = ((DummyClass) null).Serialize();
+            string actual = ((DummyClass)null).Serialize();
 
 
             Assert.Equal(expected, actual);
@@ -57,11 +57,13 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
                 .Replace(Environment.NewLine, string.Empty);
 
             DummyClass item = new DummyClass
-                              {
-                                  Id = 3,
-                                  Username = "ademcatamak",
-                                  Email = "ademcatamak@gmail.com"
-                              };
+            {
+                Id = 3,
+                Username = "ademcatamak",
+                Email = "ademcatamak@gmail.com",
+                Phone = null,
+                RequiredPhone = null
+            };
 
 
             string actual = item.Serialize()

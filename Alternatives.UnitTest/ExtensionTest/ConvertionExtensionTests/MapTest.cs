@@ -15,8 +15,6 @@ namespace Alternatives.UnitTest.ExtensionTest.ConvertionExtensionTests
             public int IntField { get; set; }
 
             public InnerDummyClass InnerClassField { get; set; }
-
-            private InnerDummyClass InnerPrivateFild { get; set; } = new InnerDummyClass { InnerDummyStringField = "private" };
         }
 
         private class InnerDummyClass
