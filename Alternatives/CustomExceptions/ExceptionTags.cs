@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Alternatives.CustomExceptions
+﻿namespace Alternatives.CustomExceptions
 {
     public enum ExceptionTags
     {

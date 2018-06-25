@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+﻿using Xunit;
 
 namespace Alternatives.UnitTest
 {
@@ -70,6 +67,28 @@ namespace Alternatives.UnitTest
             valid.IsFalse(() => operationGetHit = true);
 
             Assert.True(operationGetHit);
+        }
+
+        [Fact]
+        public void IsConditionMeet_IfConditionIsTrue_ActionWillBeWork()
+        {
+            const int value = 5;
+            bool operationGetHit = false;
+
+            Guard.IsConditionMeet(() => value > 0, () => operationGetHit = true);
+
+            Assert.True(operationGetHit);
+        }
+
+        [Fact]
+        public void IsConditionMeet_IfConditionIsFalse_ActionWillNotBeWork()
+        {
+            const int value = 5;
+            bool operationGetHit = false;
+
+            Guard.IsConditionMeet(() => value < 0, () => operationGetHit = true);
+
+            Assert.False(operationGetHit);
         }
     }
 }

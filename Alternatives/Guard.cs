@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alternatives
 {
@@ -19,6 +17,12 @@ namespace Alternatives
         public static void IsFalse(this bool condition, Action action)
         {
             IfConditionMeet(!condition, action);
+        }
+
+        public static void IsConditionMeet(Func<bool> conditionFunc, Action action)
+        {
+            bool result = conditionFunc();
+            IfConditionMeet(result, action);
         }
 
         private static void IfConditionMeet(bool condition, Action action)
