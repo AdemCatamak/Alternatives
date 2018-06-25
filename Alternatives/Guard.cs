@@ -25,7 +25,7 @@ namespace Alternatives
             IfConditionMeet(result, action);
         }
 
-        private static void IfConditionMeet(bool condition, Action action)
+        public static void IfConditionMeet(bool condition, Action action)
         {
             if (condition)
             {
