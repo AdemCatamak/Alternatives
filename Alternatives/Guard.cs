@@ -13,6 +13,15 @@ namespace Alternatives
             IfConditionMeet(instance == null, action);
         }
 
+        public static void IsNotNull<T>(object instance, T exception) where T : Exception
+        {
+            IsNotNull(instance, () => throw exception);
+        }
+        public static void IsNotNull(object instance, Action action)
+        {
+            IfConditionMeet(instance != null, action);
+        }
+
         public static void IsTrue<T>(bool condition, T exception) where T : Exception
         {
             IsTrue(condition, () => throw exception);

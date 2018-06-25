@@ -44,6 +44,43 @@ namespace Alternatives.UnitTest
 
 
         [Fact]
+        public void IsNotNull_IfObjectIsNull_ActionWillNotBeExecuted()
+        {
+            int value = 0;
+            object obj = null;
+
+            // ReSharper disable once ExpressionIsAlwaysNull
+            Guard.IsNotNull(obj, () => value++);
+
+            Assert.Equal(0, value);
+        }
+
+        [Fact]
+        public void IsNotNull_IfObjectIsNotNull_ActionWillBeExecuted()
+        {
+            int value = 0;
+
+            Guard.IsNotNull(42, () => value++);
+
+            Assert.Equal(1, value);
+        }
+
+        [Fact]
+        public void IsNotNull_IfObjectIsNull_ExceptionIsNotThrown()
+        {
+            object obj = null;
+
+            // ReSharper disable once ExpressionIsAlwaysNull
+            Guard.IsNotNull(obj, new TimeoutException("Test"));
+        }
+
+        [Fact]
+        public void IsNotNull_IfObjectIsNotNull_ExceptionIsThrown()
+        {
+            Assert.Throws<TimeoutException>(() => Guard.IsNotNull(42, new TimeoutException("Test")));
+        }
+
+        [Fact]
         public void IsTrue_IfConditionIsTrue_ActionWillBeWork()
         {
             const bool condition = true;
