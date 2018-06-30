@@ -106,23 +106,9 @@ namespace Alternatives.Extensions
             return isValid;
         }
 
-
-        public static IEnumerable<Type> GetInheritedTypes(this Type baseType, bool writeErrorToConsole = false)
+        public static IEnumerable<Type> GetInheritedTypes(Type baseType, bool writeErrorToConsole = false)
         {
-            Task<IEnumerable<Type>> appDomainTask = Task.Factory.StartNew(() => GetInheritedTypesFromAppDomain(baseType, writeErrorToConsole));
-
-            Task.WaitAll(appDomainTask);
-
-            IEnumerable<Type> typesFromAppDomain = appDomainTask.Result;
-
-            return typesFromAppDomain.Distinct().Where(t => t != baseType);
-        }
-
-        private static IEnumerable<Type> GetInheritedTypesFromAppDomain(Type baseType, bool writeErrorToConsole)
-        {
-            ConcurrentBag<Type> concurrentBag = new ConcurrentBag<Type>();
             AppDomain domain = AppDomain.CurrentDomain;
-
             Assembly[] assemblies;
             try
             {
@@ -136,18 +122,26 @@ namespace Alternatives.Extensions
                                       $"Exception Message : {ex.Message}{Environment.NewLine}" +
                                       $"Exception : {ex}");
                 }
-                assemblies = new Assembly[]
-                             {
-                             };
+                assemblies = new Assembly[] { };
             }
 
+            return GetInheritedTypes(baseType, writeErrorToConsole, assemblies);
+        }
+
+        public static IEnumerable<Type> GetInheritedTypes(this Type baseType, bool writeErrorToConsole = false, params Assembly[] assemblies)
+        {
+            ConcurrentBag<Type> parentTypes = new ConcurrentBag<Type>();
+
             Parallel.ForEach(assemblies, assembly =>
-            {
-                List<Type> typeList = SearchAssembly(assembly, baseType, writeErrorToConsole).ToList();
-                typeList.ForEach(t => concurrentBag.Add(t));
-            }
-                            );
-            return concurrentBag;
+                                         {
+                                             IEnumerable<Type> types = SearchAssembly(assembly, baseType, writeErrorToConsole);
+                                             foreach (Type type in types)
+                                             {
+                                                 parentTypes.Add(type);
+                                             }
+                                         });
+
+            return parentTypes.Distinct().Where(t => t != baseType);
         }
 
         private static IEnumerable<Type> SearchAssembly(Assembly assembly, Type baseType, bool writeErrorToConsole)
@@ -177,9 +171,9 @@ namespace Alternatives.Extensions
                     {
                         if (baseType.IsGenericType)
                         {
-                            if (DoesMatchBaseClass(type, baseType.GetGenericTypeDefinition()))
-                                parentTypes.Add(type);
+                            baseType = baseType.GetGenericTypeDefinition();
                         }
+
                         if (DoesMatchBaseClass(type, baseType))
                         {
                             parentTypes.Add(type);
@@ -187,10 +181,14 @@ namespace Alternatives.Extensions
                     }
                     else if (baseType.IsInterface)
                     {
-                        bool isGeneric = baseType.IsGenericTypeDefinition;
+                        if (baseType.IsGenericTypeDefinition)
+                        {
+                            baseType = baseType.GetGenericTypeDefinition();
+                        }
+
                         foreach (Type i in type.GetInterfaces())
                         {
-                            if (isGeneric && i.GetGenericTypeDefinition() == baseType)
+                            if (i.IsGenericType && i.GetGenericTypeDefinition() == baseType)
                             {
                                 parentTypes.Add(type);
                             }
@@ -219,22 +217,19 @@ namespace Alternatives.Extensions
         {
             while (true)
             {
+                if (t == null) return false;
+
                 if (t == baseType)
                 {
                     return true;
                 }
-                else if (t.IsGenericType && t.GetGenericTypeDefinition() == baseType)
+
+                if (t.IsGenericType && t.GetGenericTypeDefinition() == baseType)
                 {
                     return true;
                 }
 
-                if (t.BaseType != null)
-                {
-                    t = t.BaseType;
-                    continue;
-                }
-
-                return false;
+                t = t.BaseType;
             }
         }
 
