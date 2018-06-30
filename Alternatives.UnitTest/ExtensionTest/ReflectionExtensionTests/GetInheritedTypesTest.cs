@@ -18,6 +18,11 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             T GenericField { get; set; }
         }
 
+        private abstract class GenericAbstract<T>
+        {
+            public string GetTypeName = typeof(T).Name;
+        }
+
         private abstract class FirstLevelAbstract
         {
         }
@@ -46,6 +51,10 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         private class AnotherTestGenericInterface : IGenericInterface<string>
         {
             public string GenericField { get; set; }
+        }
+
+        private class GenericAbstractClassImplementation : GenericAbstract<AnotherTestGenericInterface>
+        {
         }
 
         #endregion
@@ -132,6 +141,22 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             // Assert
             Assert.Equal(2, typeList.Count);
             Assert.True(typeList.Contains(typeof(TestAbstract)));
+        }
+
+        [Fact]
+        public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseAbstractClassImplemetor_GenericAbstractClass()
+        {
+            // Act
+            DateTime startTime = DateTime.Now;
+            List<Type> typeList = ReflectionExtensions.GetInheritedTypes(typeof(GenericAbstract<>)).ToList();
+            DateTime endTime = DateTime.Now;
+
+
+            Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
+
+            // Assert
+            Assert.Equal(1, typeList.Count);
+            Assert.True(typeList.Contains(typeof(GenericAbstractClassImplementation)));
         }
     }
 }

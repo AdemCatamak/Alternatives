@@ -111,6 +111,8 @@ namespace Alternatives.Extensions
         {
             Task<IEnumerable<Type>> appDomainTask = Task.Factory.StartNew(() => GetInheritedTypesFromAppDomain(baseType, writeErrorToConsole));
 
+            Task.WaitAll(appDomainTask);
+
             IEnumerable<Type> typesFromAppDomain = appDomainTask.Result;
 
             return typesFromAppDomain.Distinct().Where(t => t != baseType);
@@ -173,6 +175,11 @@ namespace Alternatives.Extensions
                 {
                     if (baseType.IsClass)
                     {
+                        if (baseType.IsGenericType)
+                        {
+                            if (DoesMatchBaseClass(type, baseType.GetGenericTypeDefinition()))
+                                parentTypes.Add(type);
+                        }
                         if (DoesMatchBaseClass(type, baseType))
                         {
                             parentTypes.Add(type);
@@ -213,6 +220,10 @@ namespace Alternatives.Extensions
             while (true)
             {
                 if (t == baseType)
+                {
+                    return true;
+                }
+                else if (t.IsGenericType && t.GetGenericTypeDefinition() == baseType)
                 {
                     return true;
                 }
