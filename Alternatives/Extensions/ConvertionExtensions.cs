@@ -10,6 +10,51 @@ namespace Alternatives.Extensions
 {
     public static class ConvertionExtensions
     {
+        public static short ToShort(this object value, CultureInfo culture = null)
+        {
+            if (value == null) throw new NullReferenceException($"{nameof(value)} Is Null");
+
+            CultureInfo currentCulture = culture ?? CultureInfo.CurrentCulture;
+            return Convert.ToInt16(value, currentCulture);
+        }
+
+
+        public static short TryToShort(this object value, short defaultValue = default(short))
+        {
+            return TryToShort(value, CultureInfo.CurrentCulture, defaultValue);
+        }
+
+        public static short TryToShort(this object value, CultureInfo culture, short defaultValue = default(short))
+        {
+            return TryToShort(value, out bool _, culture, defaultValue);
+        }
+
+        public static short TryToShort(this object value, out bool success, short defaultValue = default(short))
+        {
+            return TryToShort(value, out success, CultureInfo.CurrentCulture, defaultValue);
+        }
+
+        public static short TryToShort(this object value, out bool success, CultureInfo cultureInfo, short defaultValue = default(short))
+        {
+            short result;
+            success = true;
+
+            try
+            {
+                result = value == null
+                    ? defaultValue
+                    : Convert.ToInt16(value, cultureInfo);
+            }
+            catch
+            {
+                success = false;
+                result = defaultValue;
+            }
+
+            return result;
+        }
+
+
         public static int ToInt(this object value, CultureInfo culture = null)
         {
             if (value == null) throw new NullReferenceException($"{nameof(value)} Is Null");
