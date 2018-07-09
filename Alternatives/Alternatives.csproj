@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>2.1.2.8</Version>
+    <Version>2.1.2.9</Version>
     <Authors>Adem Catamak</Authors>
     <Company />
     <PackageLicenseUrl>https://github.com/AdemCatamak/Alternatives/blob/master/LICENSE</PackageLicenseUrl>

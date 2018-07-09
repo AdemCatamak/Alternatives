@@ -10,6 +10,8 @@ namespace Alternatives.Extensions
 {
     public static class ConvertionExtensions
     {
+        #region Short
+
         public static short ToShort(this object value, CultureInfo culture = null)
         {
             if (value == null) throw new NullReferenceException($"{nameof(value)} Is Null");
@@ -54,6 +56,10 @@ namespace Alternatives.Extensions
             return result;
         }
 
+
+        #endregion
+
+        #region Int
 
         public static int ToInt(this object value, CultureInfo culture = null)
         {
@@ -100,6 +106,10 @@ namespace Alternatives.Extensions
         }
 
 
+        #endregion
+
+        #region Double
+
         public static double ToDouble(this object value, CultureInfo culture = null)
         {
             if (value == null) throw new NullReferenceException($"{nameof(value)} Is Null");
@@ -144,6 +154,9 @@ namespace Alternatives.Extensions
             return result;
         }
 
+        #endregion
+
+        #region Long
 
         public static long ToLong(this object value, CultureInfo culture = null)
         {
@@ -188,6 +201,107 @@ namespace Alternatives.Extensions
 
             return result;
         }
+
+        #endregion
+
+        #region Float
+
+        public static float ToFloat(this object value, CultureInfo culture = null)
+        {
+            if (value == null) throw new NullReferenceException($"{nameof(value)} Is Null");
+
+            CultureInfo currentCulture = culture ?? CultureInfo.CurrentCulture;
+            return float.Parse(value.ToString(), currentCulture);
+        }
+
+
+        public static float TryToFloat(this object value, float defaultValue = default(float))
+        {
+            return TryToFloat(value, CultureInfo.CurrentCulture, defaultValue);
+        }
+
+        public static float TryToFloat(this object value, CultureInfo culture, float defaultValue = default(float))
+        {
+            return TryToFloat(value, out bool _, culture, defaultValue);
+        }
+
+        public static float TryToFloat(this object value, out bool success, float defaultValue = default(float))
+        {
+            return TryToFloat(value, out success, CultureInfo.CurrentCulture, defaultValue);
+        }
+
+        public static float TryToFloat(this object value, out bool success, CultureInfo cultureInfo, float defaultValue = default(float))
+        {
+            float result;
+            success = true;
+
+            try
+            {
+                result = value == null
+                             ? defaultValue
+                             : float.Parse(value.ToString(), cultureInfo);
+            }
+            catch
+            {
+                success = false;
+                result = defaultValue;
+            }
+
+            return result;
+        }
+
+
+        #endregion
+
+
+        #region Decimal
+
+        public static decimal ToDecimal(this object value, CultureInfo culture = null)
+        {
+            if (value == null) throw new NullReferenceException($"{nameof(value)} Is Null");
+
+            CultureInfo currentCulture = culture ?? CultureInfo.CurrentCulture;
+            return Convert.ToDecimal(value, currentCulture);
+        }
+
+
+        public static decimal TryToDecimal(this object value, decimal defaultValue = default(decimal))
+        {
+            return TryToDecimal(value, CultureInfo.CurrentCulture, defaultValue);
+        }
+
+        public static decimal TryToDecimal(this object value, CultureInfo culture, decimal defaultValue = default(decimal))
+        {
+            return TryToDecimal(value, out bool _, culture, defaultValue);
+        }
+
+        public static decimal TryToDecimal(this object value, out bool success, decimal defaultValue = default(decimal))
+        {
+            return TryToDecimal(value, out success, CultureInfo.CurrentCulture, defaultValue);
+        }
+
+        public static decimal TryToDecimal(this object value, out bool success, CultureInfo cultureInfo, decimal defaultValue = default(decimal))
+        {
+            decimal result;
+            success = true;
+
+            try
+            {
+                result = value == null
+                             ? defaultValue
+                             : Convert.ToDecimal(value, cultureInfo);
+            }
+            catch
+            {
+                success = false;
+                result = defaultValue;
+            }
+
+            return result;
+        }
+
+
+        #endregion
 
 
         public static TDestination Deserialize<TDestination>(this string source)
@@ -236,7 +350,7 @@ namespace Alternatives.Extensions
 
             foreach (string enumName in enumNameArray)
             {
-                int enumValue = (int) Enum.Parse(type, enumName);
+                int enumValue = (int)Enum.Parse(type, enumName);
                 if (enumValue < 0)
                     continue;
 
