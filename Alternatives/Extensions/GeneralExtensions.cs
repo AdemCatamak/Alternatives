@@ -148,5 +148,20 @@ namespace Alternatives.Extensions
             source = string.IsNullOrEmpty(source) ? text : $"{source}{separator}{text}";
             return source;
         }
+
+        public static IList<IEnumerable<T>> GetAllSubSet<T>(this IList<T> source)
+        {
+            if(source == null)
+                return new List<IEnumerable<T>>();
+            if (!source.Any())
+                return Enumerable.Repeat(Enumerable.Empty<T>(), 1).ToList();
+
+            IEnumerable<T> element = source.Take(1);
+
+            IList<IEnumerable<T>> haveNots = GetAllSubSet(source.Skip(1).ToList());
+            IEnumerable<IEnumerable<T>> haves = haveNots.Select(set => element.Concat(set));
+
+            return haves.Concat(haveNots).ToList();
+        }
     }
 }
