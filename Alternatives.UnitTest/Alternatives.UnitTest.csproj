@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Alternatives.CustomExceptions\Alternatives.CustomExceptions.csproj" />
     <ProjectReference Include="..\Alternatives\Alternatives.csproj" />
   </ItemGroup>
 
