@@ -9,6 +9,8 @@ namespace Alternatives.Extensions
 {
     public static class ReflectionExtensions
     {
+        #region Field
+
         public static bool TryGetFieldValue<T>(this object obj, string fieldName, out T result) where T : class
         {
             bool isValid = true;
@@ -106,6 +108,11 @@ namespace Alternatives.Extensions
             return isValid;
         }
 
+        #endregion
+
+        #region ScanDLL
+
+        [Obsolete("Assemblies should be supplied from user")]
         public static IEnumerable<Type> GetInheritedTypes(Type baseType, bool writeErrorToConsole = false)
         {
             AppDomain domain = AppDomain.CurrentDomain;
@@ -128,18 +135,23 @@ namespace Alternatives.Extensions
             return GetInheritedTypes(baseType, writeErrorToConsole, assemblies);
         }
 
-        public static IEnumerable<Type> GetInheritedTypes(this Type baseType, bool writeErrorToConsole = false, params Assembly[] assemblies)
+        public static IEnumerable<Type> GetInheritedTypes(this Type baseType, params Assembly[] assemblies)
+        {
+            return GetInheritedTypes(baseType, false, assemblies);
+        }
+
+        public static IEnumerable<Type> GetInheritedTypes(this Type baseType, bool writeErrorToConsole, params Assembly[] assemblies)
         {
             ConcurrentBag<Type> parentTypes = new ConcurrentBag<Type>();
 
             Parallel.ForEach(assemblies, assembly =>
-                                         {
-                                             IEnumerable<Type> types = SearchAssembly(assembly, baseType, writeErrorToConsole);
-                                             foreach (Type type in types)
-                                             {
-                                                 parentTypes.Add(type);
-                                             }
-                                         });
+            {
+                IEnumerable<Type> types = SearchAssembly(assembly, baseType, writeErrorToConsole);
+                foreach (Type type in types)
+                {
+                    parentTypes.Add(type);
+                }
+            });
 
             return parentTypes.Distinct().Where(t => t != baseType);
         }
@@ -167,32 +179,29 @@ namespace Alternatives.Extensions
             {
                 try
                 {
+                    if (baseType.IsGenericTypeDefinition)
+                    {
+                        baseType = baseType.GetGenericTypeDefinition();
+                    }
+
                     if (baseType.IsClass)
                     {
-                        if (baseType.IsGenericType)
-                        {
-                            baseType = baseType.GetGenericTypeDefinition();
-                        }
-
-                        if (DoesMatchBaseClass(type, baseType))
+                        if (DoesMatchBaseType(type, baseType, t => new[] { t.BaseType }))
                         {
                             parentTypes.Add(type);
                         }
                     }
                     else if (baseType.IsInterface)
                     {
-                        if (baseType.IsGenericTypeDefinition)
-                        {
-                            baseType = baseType.GetGenericTypeDefinition();
-                        }
-
                         foreach (Type i in type.GetInterfaces())
                         {
-                            if (i.IsGenericType && i.GetGenericTypeDefinition() == baseType)
-                            {
-                                parentTypes.Add(type);
-                            }
-                            else if (i == baseType)
+                            if (DoesMatchBaseType(i, baseType, t =>
+                                                               {
+                                                                   List<Type> subTypes = t.GetInterfaces()
+                                                                                          .ToList();
+                                                                   subTypes.Add(t.BaseType);
+                                                                   return subTypes;
+                                                               }))
                             {
                                 parentTypes.Add(type);
                             }
@@ -213,25 +222,26 @@ namespace Alternatives.Extensions
             return parentTypes;
         }
 
-        private static bool DoesMatchBaseClass(Type t, Type baseType)
+        private static bool DoesMatchBaseType(Type t, Type baseType, Func<Type, IEnumerable<Type>> getChildren)
         {
-            while (true)
+            if (t == null) return false;
+
+            if (t == baseType)
             {
-                if (t == null) return false;
-
-                if (t == baseType)
-                {
-                    return true;
-                }
-
-                if (t.IsGenericType && t.GetGenericTypeDefinition() == baseType)
-                {
-                    return true;
-                }
-
-                t = t.BaseType;
+                return true;
             }
+            if (t.IsGenericType && t.GetGenericTypeDefinition() == baseType)
+            {
+                return true;
+            }
+
+            IEnumerable<Type> subs = getChildren(t);
+
+            bool result = subs.Any(x => DoesMatchBaseType(x, baseType, getChildren));
+            return result;
         }
+
+        #endregion
 
 
         public static object CreateInstance(this Type type)

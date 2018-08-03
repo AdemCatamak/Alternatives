@@ -29,7 +29,7 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         [Fact]
         public void CreateInstance_WhenTypeGiven()
         {
-            object actual = ReflectionExtensions.CreateInstance(typeof(DummyClass));
+            object actual = typeof(DummyClass).CreateInstance();
 
 
             Assert.NotNull(actual);

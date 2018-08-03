@@ -4,14 +4,14 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>3.0.0</Version>
+    <Version>3.0.1</Version>
     <Authors>Adem Catamak</Authors>
     <Company />
     <PackageLicenseUrl>https://github.com/AdemCatamak/Alternatives/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/AdemCatamak/Alternatives.git</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AdemCatamak/Alternatives.git</RepositoryUrl>
     <Description>Shortcuts and General Extensions</Description>
-    <PackageReleaseNotes>GetAllSubset extensions added</PackageReleaseNotes>
+    <PackageReleaseNotes>Get Inherited Types search fix</PackageReleaseNotes>
     <PackageTags>alternatives,shortcut,utilities,extensions</PackageTags>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </PropertyGroup>

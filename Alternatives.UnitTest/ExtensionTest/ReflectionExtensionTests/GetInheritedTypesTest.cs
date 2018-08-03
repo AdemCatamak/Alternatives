@@ -60,11 +60,13 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         #endregion
 
         [Fact]
-        public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseInterface()
+        public void Obsolete_GetInheritedTypes_BaseInterface()
         {
             // Act
             DateTime startTime = DateTime.Now;
+#pragma warning disable 618
             List<Type> typeList = ReflectionExtensions.GetInheritedTypes(typeof(IInterface)).ToList();
+#pragma warning restore 618
             DateTime endTime = DateTime.Now;
 
 
@@ -77,11 +79,13 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         }
 
         [Fact]
-        public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseGenericInterface()
+        public void Obsolete_GetInheritedTypes_BaseGenericInterface()
         {
             // Act
             DateTime startTime = DateTime.Now;
+#pragma warning disable 618
             List<Type> typeList = ReflectionExtensions.GetInheritedTypes(typeof(IGenericInterface<>)).ToList();
+#pragma warning restore 618
             DateTime endTime = DateTime.Now;
 
 
@@ -95,11 +99,13 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 
 
         [Fact]
-        public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseGenericInterfaceSpesific()
+        public void Obsolete_GetInheritedTypes_BaseGenericInterfaceSpesific()
         {
             // Act
             DateTime startTime = DateTime.Now;
+#pragma warning disable 618
             List<Type> typeList = ReflectionExtensions.GetInheritedTypes(typeof(IGenericInterface<int>)).ToList();
+#pragma warning restore 618
             DateTime endTime = DateTime.Now;
 
 
@@ -112,11 +118,13 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
 
 
         [Fact]
-        public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseAbstractClassImplemetor_Parent()
+        public void Obsolete_GetInheritedTypes_BaseAbstractClassImplemetor_Parent()
         {
             // Act
             DateTime startTime = DateTime.Now;
+#pragma warning disable 618
             List<Type> typeList = ReflectionExtensions.GetInheritedTypes(typeof(SecondLevelAbstractClass)).ToList();
+#pragma warning restore 618
             DateTime endTime = DateTime.Now;
 
 
@@ -128,11 +136,13 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         }
 
         [Fact]
-        public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseAbstractClassImplemetor_GrandParent()
+        public void Obsolete_GetInheritedTypes_BaseAbstractClassImplemetor_GrandParent()
         {
             // Act
             DateTime startTime = DateTime.Now;
+#pragma warning disable 618
             List<Type> typeList = ReflectionExtensions.GetInheritedTypes(typeof(FirstLevelAbstract)).ToList();
+#pragma warning restore 618
             DateTime endTime = DateTime.Now;
 
 
@@ -144,11 +154,114 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
         }
 
         [Fact]
-        public void Alternatives_UnitTest_ExtensionsTest__GetInheritedTypes_BaseAbstractClassImplemetor_GenericAbstractClass()
+        public void Obsolete_GetInheritedTypes_BaseAbstractClassImplemetor_GenericAbstractClass()
         {
             // Act
             DateTime startTime = DateTime.Now;
+#pragma warning disable 618
             List<Type> typeList = ReflectionExtensions.GetInheritedTypes(typeof(GenericAbstract<>)).ToList();
+#pragma warning restore 618
+            DateTime endTime = DateTime.Now;
+
+
+            Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
+
+            // Assert
+            Assert.Equal(1, typeList.Count);
+            Assert.True(typeList.Contains(typeof(GenericAbstractClassImplementation)));
+        }
+
+
+        [Fact]
+        public void GetInheritedTypes_BaseInterface()
+        {
+            // Act
+            DateTime startTime = DateTime.Now;
+            List<Type> typeList = typeof(IInterface).GetInheritedTypes(AppDomain.CurrentDomain.GetAssemblies()).ToList();
+            DateTime endTime = DateTime.Now;
+
+
+            Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
+
+            // Assert
+            Assert.Equal(2, typeList.Count);
+            Assert.True(typeList.Contains(typeof(TestInterface)));
+            Assert.True(typeList.Contains(typeof(AnotherTestInterface)));
+        }
+
+        [Fact]
+        public void GetInheritedTypes_BaseGenericInterface()
+        {
+            // Act
+            DateTime startTime = DateTime.Now;
+            List<Type> typeList = typeof(IGenericInterface<>).GetInheritedTypes(AppDomain.CurrentDomain.GetAssemblies()).ToList();
+            DateTime endTime = DateTime.Now;
+
+
+            Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
+
+            // Assert
+            Assert.Equal(2, typeList.Count);
+            Assert.True(typeList.Contains(typeof(TestGenericInterface)));
+            Assert.True(typeList.Contains(typeof(AnotherTestGenericInterface)));
+        }
+
+
+        [Fact]
+        public void GetInheritedTypes_BaseGenericInterfaceSpesific()
+        {
+            // Act
+            DateTime startTime = DateTime.Now;
+            List<Type> typeList = typeof(IGenericInterface<int>).GetInheritedTypes(AppDomain.CurrentDomain.GetAssemblies()).ToList();
+            DateTime endTime = DateTime.Now;
+
+
+            Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
+
+            // Assert
+            Assert.Equal(1, typeList.Count);
+            Assert.True(typeList.Contains(typeof(TestGenericInterface)));
+        }
+
+
+        [Fact]
+        public void GetInheritedTypes_BaseAbstractClassImplemetor_Parent()
+        {
+            // Act
+            DateTime startTime = DateTime.Now;
+            List<Type> typeList = typeof(SecondLevelAbstractClass).GetInheritedTypes(AppDomain.CurrentDomain.GetAssemblies()).ToList();
+            DateTime endTime = DateTime.Now;
+
+
+            Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
+
+            // Assert
+            Assert.Equal(1, typeList.Count);
+            Assert.True(typeList.Contains(typeof(TestAbstract)));
+        }
+
+        [Fact]
+        public void GetInheritedTypes_BaseAbstractClassImplemetor_GrandParent()
+        {
+            // Act
+            DateTime startTime = DateTime.Now;
+            List<Type> typeList = typeof(FirstLevelAbstract).GetInheritedTypes(AppDomain.CurrentDomain.GetAssemblies()).ToList();
+            DateTime endTime = DateTime.Now;
+
+
+            Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
+
+            // Assert
+            Assert.Equal(2, typeList.Count);
+            Assert.True(typeList.Contains(typeof(TestAbstract)));
+        }
+
+        [Fact]
+        public void GetInheritedTypes_BaseAbstractClassImplemetor_GenericAbstractClass()
+        {
+            // Act
+            DateTime startTime = DateTime.Now;
+            List<Type> typeList = typeof(GenericAbstract<>).GetInheritedTypes(AppDomain.CurrentDomain.GetAssemblies()).ToList();
             DateTime endTime = DateTime.Now;
 
 
