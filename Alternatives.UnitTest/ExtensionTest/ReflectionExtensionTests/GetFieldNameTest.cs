@@ -16,6 +16,8 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             public InnerDummyClass InnerClassField { get; set; }
 
             private InnerDummyClass InnerPrivateFild { get; set; } = new InnerDummyClass {InnerDummyStringField = "private"};
+
+            public string this[string field] => this.GetFieldValue<string>(field);
         }
 
         private class InnerDummyClass
@@ -87,6 +89,18 @@ namespace Alternatives.UnitTest.ExtensionTest.ReflectionExtensionTests
             Assert.Throws<FieldAccessException>(() => dummyClass.GetFieldValue<InnerDummyClass>("InnerPrivateFild"));
         }
 
+
+        [Fact]
+        public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_SuccessForClassField_WithIndexer()
+        {
+            DummyClass dummyClass = new DummyClass
+                                    {
+                                        StringField = "asd"
+                                    };
+            string result = dummyClass[nameof(DummyClass.StringField)];
+
+            Assert.Equal(dummyClass.StringField, result);
+        }
 
         [Fact]
         public void Alternatives_UnitTest_ExtensionsTest__GetFieldNameTest_SuccessForClassField()
