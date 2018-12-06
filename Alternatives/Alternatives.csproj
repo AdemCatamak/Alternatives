@@ -1,26 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <Version>2.0.0</Version>
+    <Company>Adem Catamak</Company>
+    <Authors>Adem Catamak</Authors>
+    <PackageLicenseUrl>https://github.com/AdemCatamak/Alternatives/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/AdemCatamak/Alternatives</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>3.0.1</Version>
-    <Authors>Adem Catamak</Authors>
-    <Company />
-    <PackageLicenseUrl>https://github.com/AdemCatamak/Alternatives/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/AdemCatamak/Alternatives.git</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/AdemCatamak/Alternatives.git</RepositoryUrl>
-    <Description>Shortcuts and General Extensions</Description>
-    <PackageReleaseNotes>Get Inherited Types search fix</PackageReleaseNotes>
-    <PackageTags>alternatives,shortcut,utilities,extensions</PackageTags>
-    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <PackageProjectUrl>https://github.com/AdemCatamak/Alternatives</PackageProjectUrl>
+    <PackageReleaseNotes>Alternatives package splitted sub packages --&gt; Alternatives.CollectionExtensions , Alternatives.ConversionExtensions, Alternatives.Crypto, Alternatives.REflectionExtensions</PackageReleaseNotes>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.2.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
-  </ItemGroup>
-
 
 </Project>

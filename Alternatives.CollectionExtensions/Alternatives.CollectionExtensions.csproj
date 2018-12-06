@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>Adem Catamak</Authors>
+    <PackageLicenseUrl>https://github.com/AdemCatamak/Alternatives/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/AdemCatamak/Alternatives</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AdemCatamak/Alternatives</RepositoryUrl>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
+
+</Project>
