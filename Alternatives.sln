@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
 		build.cake = build.cake
 		build.ps1 = build.ps1
 		build.sh = build.sh
@@ -17,15 +18,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alternatives.CollectionExtensions", "Alternatives.CollectionExtensions\Alternatives.CollectionExtensions.csproj", "{0A0DDF9F-3A6F-4235-9188-265EABCBA61D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alternatives.CollectionExtensions", "Alternatives.CollectionExtensions\Alternatives.CollectionExtensions.csproj", "{0A0DDF9F-3A6F-4235-9188-265EABCBA61D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alternatives.ConversionExtensions", "Alternatives.ConversionExtensions\Alternatives.ConversionExtensions.csproj", "{5291CBDA-03F1-4886-94FB-88C3969EF62E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alternatives.ReflectionExtensions", "Alternatives.ReflectionExtensions\Alternatives.ReflectionExtensions.csproj", "{8C75FFE7-DB0E-45C5-A578-1C91D3D3237B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alternatives.ReflectionExtensions", "Alternatives.ReflectionExtensions\Alternatives.ReflectionExtensions.csproj", "{8C75FFE7-DB0E-45C5-A578-1C91D3D3237B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alternatives", "Alternatives\Alternatives.csproj", "{68ED231B-0EE6-42B0-9F88-F696F5870F2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alternatives", "Alternatives\Alternatives.csproj", "{68ED231B-0EE6-42B0-9F88-F696F5870F2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alternatives.Crypto", "Alternatives.Crypto\Alternatives.Crypto.csproj", "{9CB6E921-1636-4DD6-8B01-8D3E95AC4642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alternatives.Crypto", "Alternatives.Crypto\Alternatives.Crypto.csproj", "{9CB6E921-1636-4DD6-8B01-8D3E95AC4642}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{24377374-DE56-411A-8E00-7EE87E769CE9}"
 EndProject
@@ -37,7 +38,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alternatives.CryptoTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alternatives.ReflectionExtensionsTests", "Alternatives.ReflectionExtensionsTest\Alternatives.ReflectionExtensionsTests.csproj", "{BB6F0458-C4BC-41D7-8958-29C2C988FB3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlternativesTest", "AlternativesTest\AlternativesTest.csproj", "{6CB1818B-812C-4C09-8337-EC8CB13DAD82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlternativesTest", "AlternativesTest\AlternativesTest.csproj", "{6CB1818B-812C-4C09-8337-EC8CB13DAD82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
