@@ -1,120 +1,118 @@
 // TOOLS
 
-#tool "nuget:?package=NUnit.Runners&version=2.6.4"
+#tool "nuget:?package=xunit.runner.console"
 #tool "nuget:?package=JetBrains.dotCover.CommandLineTools"
+
+string[] Projects = new string[]{
+    "Alternatives",
+    "Alternatives.CollectionExtensions",
+    "Alternatives.ConversionExtensions",
+    "Alternatives.Crypto",
+    "Alternatives.ReflectionExtensions",
+};
+
+// TOOLS
+
+// ADDIN
+
+// ARGUMENTS
+
+string BranchName = Argument("branchName", "");
+string BuildConfig = Argument("buildType", "Release");
+string NugetApiKey = Argument("nugetKey", "");
+string NugetSourceUrl = Argument("nugetServer", "https://api.nuget.org/v3/index.json");
 
 // VARIABLES
 
-string solutionName = "Alternatives";
-string solutionFullName = $"{solutionName}.sln";
-string BuildConfig = "Release";
-string NugetPackageOutputDirectory = "./NugetPackages";
-string NugetSourceUrl = "https://www.nuget.org/api/v2/package";
+FilePathCollection slnFiles;
+
+string NugetPackagePath = "./packages/";
+
+string[] RemovableDirectories = new string[]{
+"./**/bin/**",
+"./**/obj/**",
+"./**/build/**",
+"./**/octoPackages/**"
+};
+
+string[] TestProjects = new string[]{
+    "./**/*Test.csproj",
+    "./**/*Tests.csproj",
+};
+
+var ReleaseBranch = new string[]
+{
+    "master"
+};
 
 // STAGE NAMES
 
-string DefaultStage = "RESULT";
-string NugetPushStage = "Nuget Push";
-string NugetPackStage = "Nuget Pack";
-string TestStage = "Test";
+string ResultStage = "RESULT";
+string PushStage = "Push Package";
+string PackageStage = "Create Package";
 string AnalysisStage = "Analysis";
+string TestStage = "Test";
 string BuildStage = "Build";
-string CleanStage = "Clean";
 string NugetRestoreStage = "Nuget Restore";
+string CleanStage = "Clean";
+string FindSlnStage = "Find .sln files";
+string CheckEnvVarStage = "Check Environment Name";
 
 // RUN OPERATION
 
-var NugetApiKey = Argument("NugetApiKey", "");
-var target = Argument("target", DefaultStage);
+var target = Argument("target", ResultStage);
 
-Task(DefaultStage)
-.IsDependentOn(TestStage)
-.IsDependentOn(AnalysisStage)
-.IsDependentOn(NugetPushStage)
-.Does(() =>{});
+Task(ResultStage)
+.IsDependentOn(PushStage);
 
-
-Task(NugetPushStage)
-.IsDependentOn(NugetPackStage)
-.ContinueOnError()
-.Does(()=> 
+Task(PushStage)
+.IsDependentOn(PackageStage)
+.Does(()=>
 {
-    var npkgFiles = GetFiles(NugetPackageOutputDirectory + "/*.nupkg");
-    foreach(var nupkgFile in npkgFiles)
+    foreach (var project in Projects)
     {
-        var nugetPushSettings = new NuGetPushSettings
+        var npkgFiles = GetFiles($"./**/Release/*{project}*.nupkg");
+        foreach(var nupkgFile in npkgFiles)
         {
-            ApiKey = NugetApiKey,
-            Source = NugetSourceUrl 
-        };
-        
-        NuGetPush(nupkgFile.FullPath, nugetPushSettings);        
+            Console.WriteLine();
+            Console.WriteLine(nupkgFile);
+            PublishPackage(project, nupkgFile, NugetSourceUrl, NugetApiKey);  
+        }
     }
+   
 });
 
-Task(NugetPackStage)
-.IsDependentOn(BuildStage)
-.Does(()=> 
+Task(PackageStage)
+.IsDependentOn(TestStage)
+.Does(()=>
 {
-    var nuspecFiles = GetFiles("./**/*.nuspec");
-    foreach(var nuspecFile in nuspecFiles)
-    {
-        Console.WriteLine(nuspecFile);
-        var nuGetPackSettings = new NuGetPackSettings
-                                    {
-                                        Id                      = "Alternatives",
-                                        Title                   = "Alternatives",
-                                        Authors                 = new[] {"Adem Catamak"},
-                                        Owners                  = new[] {"Adem Catamak"},
-                                        Description             = "Common Extensions",
-                                        ProjectUrl              = new Uri("https://github.com/AdemCatamak/Alternatives.git"),
-                                        LicenseUrl              = new Uri("https://github.com/AdemCatamak/Alternatives/blob/master/LICENSE"),
-                                        Tags                    = new [] {"C#", "Extensions"},
-                                        RequireLicenseAcceptance= true,
-                                        Symbols                 = true,
-                                        OutputDirectory         = NugetPackageOutputDirectory
-                                    };
-                                    
-        NuGetPack(nuspecFile, nuGetPackSettings);
-    }
+    // packages created build stage
 });
 
 Task(AnalysisStage)
 .IsDependentOn(BuildStage)
+.ContinueOnError()
 .Does(()=>
 {
     DotCoverAnalyse(tool => 
     {
-        tool.NUnit("./**/bin/**/*Test.dll");
+        tool.XUnit2(TestProjects);
     },
     new FilePath("./AnalysisResult.xml"),
     new DotCoverAnalyseSettings());
 });
 
-
 Task(TestStage)
 .IsDependentOn(BuildStage)
 .Does(()=>
 {
-    var testDlls = GetFiles("./**/bin/**/*Test.dll");
-    bool success = true;
-    foreach(var testDll in testDlls)
+    foreach (var testProject in TestProjects)
     {
-        Console.WriteLine(testDll.FullPath);
-        try
+        var projectFiles = GetFiles(testProject);
+        foreach(var file in projectFiles)
         {
-            NUnit(testDll.FullPath);
+            DotNetCoreTest(file.FullPath);
         }
-        catch(Exception e)
-        {
-            success = false;
-            Console.WriteLine(e);
-        }
-    }
-
-    if(!success)
-    {
-        throw new Exception(BuildStage + " FAIL");
     }
 });
 
@@ -122,63 +120,89 @@ Task(BuildStage)
 .IsDependentOn(NugetRestoreStage)
 .Does(()=>
 {
-    MSBuild(solutionFullName, new MSBuildSettings
-        {
-            Verbosity = Verbosity.Minimal,
-            ToolVersion = MSBuildToolVersion.VS2017,
-            Configuration = BuildConfig,
-            PlatformTarget = PlatformTarget.MSIL
-        });
+    DotNetCoreBuild(".", new DotNetCoreBuildSettings()
+                        {
+                            Configuration = BuildConfig,
+                            ArgumentCustomization = args => args.Append("--no-restore"),
+                        });
 });
 
 Task(NugetRestoreStage)
 .IsDependentOn(CleanStage)
 .Does(()=>
 {
-    NuGetRestore(solutionFullName, new NuGetRestoreSettings
-    {
-        NoCache = true,
-        Verbosity = NuGetVerbosity.Detailed,
-        PackagesDirectory = "./packages/"
-    });
+    DotNetCoreRestore();
 });
 
 
 Task(CleanStage)
+.IsDependentOn(CheckEnvVarStage)
 .Does(()=>
 {
-    var objDirectories = GetDirectories("./**/obj/*");
-
-    foreach(var directory in objDirectories)
+    foreach (var directoryPath in RemovableDirectories)
     {
-        Console.WriteLine(directory);
-        DeleteDirectory(directory, new DeleteDirectorySettings
+        var directories = GetDirectories(directoryPath);
+
+        foreach (var directory in directories)
         {
-            Force = true,
-            Recursive  = true
-        });
-    }
-    
-    var binDirectories = GetDirectories("./**/bin/*");
+            if(!DirectoryExists(directory))
+                continue;
 
-    foreach(var directory in binDirectories)
-    {
-        Console.WriteLine(directory);
-        DeleteDirectory(directory, new DeleteDirectorySettings {
-            Force = true,
-            Recursive  = true
-        });
-    }
-    if(DirectoryExists(NugetPackageOutputDirectory))
-    {
-        Console.WriteLine(NugetPackageOutputDirectory);
-        DeleteDirectory(NugetPackageOutputDirectory, new DeleteDirectorySettings {
-            Force = true,
-            Recursive  = true
-        });
-    }
-    
+            Console.WriteLine("Directory is cleaning : " + directory.ToString());            
+            DeleteDirectory(directory, new DeleteDirectorySettings
+            {
+                Force = true,
+                Recursive  = true
+            });
+        }
+
+    }   
 });
 
+Task(CheckEnvVarStage)
+.Does(()=>
+{
+    if(string.IsNullOrEmpty(BranchName))
+    {
+        throw new Exception("Branch Name should be provided");
+    }
+    Console.WriteLine("Branch Name = " + BranchName);
+
+    if(string.IsNullOrEmpty(NugetApiKey))
+    {
+        throw new Exception("Nuget Api Key should be provided");
+    }
+});
+
+private void PublishPackage (string packageId, FilePath packagePath, string nugetSourceUrl, string apiKey)
+{
+    if(IsNuGetPublished(packageId, packagePath, nugetSourceUrl))
+    {
+        Console.WriteLine($"{packageId} is already published. Hence this package will be skipped");
+        return;
+    }
+    
+    var nugetPushSettings = new NuGetPushSettings
+    {
+        ApiKey = apiKey,
+        Source = nugetSourceUrl 
+    };
+    
+    NuGetPush(packagePath.FullPath, nugetPushSettings);  
+}
+
+private bool IsNuGetPublished(string packageId, FilePath packagePath, string nugetSourceUrl) {
+    string packageNameWithVersion = packagePath.GetFilename().ToString().Replace(".nupkg", "");
+    var latestPublishedVersions = NuGetList(
+        packageId,
+        new NuGetListSettings 
+        {
+            Prerelease = true,
+            Source = new string[]{nugetSourceUrl}
+        }
+    );
+
+    return latestPublishedVersions.Any(p => packageNameWithVersion.EndsWith(p.Version));
+}
 
 RunTarget(target);

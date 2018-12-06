@@ -75,8 +75,8 @@ namespace Alternatives.ReflectionExtensionsTests
 
             // Assert
             Assert.Equal(2, typeList.Count);
-            Assert.True(typeList.Contains(typeof(TestInterface)));
-            Assert.True(typeList.Contains(typeof(AnotherTestInterface)));
+            Assert.Contains(typeof(TestInterface), typeList);
+            Assert.Contains(typeof(AnotherTestInterface), typeList);
         }
 
         [Fact]
@@ -94,8 +94,8 @@ namespace Alternatives.ReflectionExtensionsTests
 
             // Assert
             Assert.Equal(2, typeList.Count);
-            Assert.True(typeList.Contains(typeof(TestGenericInterface)));
-            Assert.True(typeList.Contains(typeof(AnotherTestGenericInterface)));
+            Assert.Contains(typeof(TestGenericInterface), typeList);
+            Assert.Contains(typeof(AnotherTestGenericInterface), typeList);
         }
 
 
@@ -113,8 +113,8 @@ namespace Alternatives.ReflectionExtensionsTests
             Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
 
             // Assert
-            Assert.Equal(1, typeList.Count);
-            Assert.True(typeList.Contains(typeof(TestGenericInterface)));
+            Assert.Single(typeList);
+            Assert.Contains(typeof(TestGenericInterface), typeList);
         }
 
 
@@ -132,8 +132,8 @@ namespace Alternatives.ReflectionExtensionsTests
             Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
 
             // Assert
-            Assert.Equal(1, typeList.Count);
-            Assert.True(typeList.Contains(typeof(TestAbstract)));
+            Assert.Single(typeList);
+            Assert.Contains(typeof(TestAbstract), typeList);
         }
 
         [Fact]
@@ -151,7 +151,7 @@ namespace Alternatives.ReflectionExtensionsTests
 
             // Assert
             Assert.Equal(2, typeList.Count);
-            Assert.True(typeList.Contains(typeof(TestAbstract)));
+            Assert.Contains(typeof(TestAbstract), typeList);
         }
 
         [Fact]
@@ -168,8 +168,8 @@ namespace Alternatives.ReflectionExtensionsTests
             Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
 
             // Assert
-            Assert.Equal(1, typeList.Count);
-            Assert.True(typeList.Contains(typeof(GenericAbstractClassImplementation)));
+            Assert.Single(typeList);
+            Assert.Contains(typeof(GenericAbstractClassImplementation), typeList);
         }
 
 
@@ -186,8 +186,8 @@ namespace Alternatives.ReflectionExtensionsTests
 
             // Assert
             Assert.Equal(2, typeList.Count);
-            Assert.True(typeList.Contains(typeof(TestInterface)));
-            Assert.True(typeList.Contains(typeof(AnotherTestInterface)));
+            Assert.Contains(typeof(TestInterface), typeList);
+            Assert.Contains(typeof(AnotherTestInterface), typeList);
         }
 
         [Fact]
@@ -203,8 +203,8 @@ namespace Alternatives.ReflectionExtensionsTests
 
             // Assert
             Assert.Equal(2, typeList.Count);
-            Assert.True(typeList.Contains(typeof(TestGenericInterface)));
-            Assert.True(typeList.Contains(typeof(AnotherTestGenericInterface)));
+            Assert.Contains(typeof(TestGenericInterface), typeList);
+            Assert.Contains(typeof(AnotherTestGenericInterface), typeList);
         }
 
 
@@ -220,8 +220,8 @@ namespace Alternatives.ReflectionExtensionsTests
             Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
 
             // Assert
-            Assert.Equal(1, typeList.Count);
-            Assert.True(typeList.Contains(typeof(TestGenericInterface)));
+            Assert.Single(typeList);
+            Assert.Contains(typeof(TestGenericInterface), typeList);
         }
 
 
@@ -237,8 +237,8 @@ namespace Alternatives.ReflectionExtensionsTests
             Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
 
             // Assert
-            Assert.Equal(1, typeList.Count);
-            Assert.True(typeList.Contains(typeof(TestAbstract)));
+            Assert.Single(typeList);
+            Assert.Contains(typeof(TestAbstract), typeList);
         }
 
         [Fact]
@@ -254,7 +254,7 @@ namespace Alternatives.ReflectionExtensionsTests
 
             // Assert
             Assert.Equal(2, typeList.Count);
-            Assert.True(typeList.Contains(typeof(TestAbstract)));
+            Assert.Contains(typeof(TestAbstract), typeList);
         }
 
         [Fact]
@@ -269,8 +269,8 @@ namespace Alternatives.ReflectionExtensionsTests
             Console.WriteLine($"Runtime : {endTime.Ticks - startTime.Ticks:#,0}");
 
             // Assert
-            Assert.Equal(1, typeList.Count);
-            Assert.True(typeList.Contains(typeof(GenericAbstractClassImplementation)));
+            Assert.Single(typeList);
+            Assert.Contains(typeof(GenericAbstractClassImplementation), typeList);
         }
     }
 }
