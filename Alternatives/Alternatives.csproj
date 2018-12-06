@@ -10,6 +10,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/AdemCatamak/Alternatives</PackageProjectUrl>
+    <PackageReleaseNotes>Alternatives package splitted sub packages --&gt; Alternatives.CollectionExtensions , Alternatives.ConversionExtensions, Alternatives.Crypto, Alternatives.REflectionExtensions</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
