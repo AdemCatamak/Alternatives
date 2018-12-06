@@ -4,7 +4,7 @@
 ![AppVeyor](https://img.shields.io/appveyor/ci/ademcatamak/alternatives-gbx0h.svg) ![AppVeyor tests](https://img.shields.io/appveyor/tests/ademcatamak/alternatives-gbx0h.svg)
 
 **Travis**
-![Travis (.com)](https://img.shields.io/travis/com/AdemCatamak/Alternatives.svg)
+![Travis (.com)](https://img.shields.io/travis/AdemCatamak/Alternatives.svg)
 
 **Nuget Versions**
 
