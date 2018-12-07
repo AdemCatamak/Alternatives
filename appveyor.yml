@@ -6,7 +6,8 @@ before_build:
 test:
   assemblies:
     only:
-      - '**\Test\**\*Test.dll'
+      - '**\*Tests.dll'
+      - '**\*Test.dll'
 build:
   publish_nuget: true
   publish_nuget_symbols: true
