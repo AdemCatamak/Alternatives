@@ -69,6 +69,12 @@ Task(PushStage)
 .IsDependentOn(PackageStage)
 .Does(()=>
 {
+    if(!ReleaseBranch.Contains(BranchName))
+    {
+        Console.WriteLine("This branch's artifacts are not published");
+        return;
+    }
+
     foreach (var project in Projects)
     {
         var npkgFiles = GetFiles($"./**/{project}/bin/Release/*.nupkg");
@@ -79,14 +85,23 @@ Task(PushStage)
             PublishPackage(project, nupkgFile, NugetSourceUrl, NugetApiKey);  
         }
     }
-   
 });
 
 Task(PackageStage)
 .IsDependentOn(TestStage)
 .Does(()=>
 {
-    // packages created build stage
+    foreach (var project in Projects)
+    {
+        FilePath csproj = GetFiles($"./**/{project}.csproj").First();
+        DirectoryPath directory = csproj.GetDirectory();
+        string d = directory.ToString();
+        DotNetCorePack(d, new DotNetCorePackSettings()
+                    {
+                        Configuration = BuildConfig,
+                        ArgumentCustomization = args => args.Append("--no-restore").Append("--include-symbols"),
+                    });
+    }
 });
 
 Task(AnalysisStage)

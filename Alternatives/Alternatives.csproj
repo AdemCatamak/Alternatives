@@ -7,7 +7,7 @@
     <Authors>Adem Catamak</Authors>
     <PackageLicenseUrl>https://github.com/AdemCatamak/Alternatives/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/AdemCatamak/Alternatives</RepositoryUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/AdemCatamak/Alternatives</PackageProjectUrl>
     <PackageReleaseNotes>Alternatives package splitted sub packages --&gt; Alternatives.CollectionExtensions , Alternatives.ConversionExtensions, Alternatives.Crypto, Alternatives.REflectionExtensions</PackageReleaseNotes>
