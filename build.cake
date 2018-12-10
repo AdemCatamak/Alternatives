@@ -20,13 +20,11 @@ string[] Projects = new string[]{
 string BranchName = Argument("branchName", "");
 string BuildConfig = Argument("buildType", "Release");
 string NugetApiKey = Argument("nugetKey", "");
-string NugetSourceUrl = Argument("nugetServer", "https://api.nuget.org/v3/index.json");
+string NugetSourceServerUrl = Argument("nugetServer", "https://api.nuget.org/v3/index.json");
+string NugetSymbolServerUrl = Argument("nugetSymbolServer", "https://api.nuget.org/v3/index.json");
+// string NugetSymbolServerUrl = Argument("nugetSymbolServer", "https://symbolsource.org");
 
 // VARIABLES
-
-FilePathCollection slnFiles;
-
-string NugetPackagePath = "./packages/";
 
 string[] RemovableDirectories = new string[]{
 "./**/bin/**",
@@ -44,6 +42,9 @@ var ReleaseBranch = new string[]
 {
     "master"
 };
+
+string NugetPackageExtension = ".nupkg";
+string NugetSymbolPackageName = "symbol";
 
 // STAGE NAMES
 
@@ -77,12 +78,20 @@ Task(PushStage)
 
     foreach (var project in Projects)
     {
-        var npkgFiles = GetFiles($"./**/{project}/bin/Release/*.nupkg");
-        foreach(var nupkgFile in npkgFiles)
+        var npkgFiles = GetFiles($"./**/{project}/bin/{BuildConfig}/*.{NugetPackageExtension}");
+        foreach(FilePath nupkgFile in npkgFiles)
         {
             Console.WriteLine();
-            Console.WriteLine(nupkgFile);
-            PublishPackage(project, nupkgFile, NugetSourceUrl, NugetApiKey);  
+            if(nupkgFile.ToString().Contains(NugetSymbolPackageName))
+            {
+                Console.WriteLine($"{nupkgFile} - Push to SymbolServer");
+                PublishSymbolNugetPackage(project, nupkgFile, NugetSymbolServerUrl, NugetApiKey);
+            }
+            else
+            {
+                Console.WriteLine($"{nupkgFile} - Push to SourceServer");
+                PublishSourceNugetPackage(project, nupkgFile, NugetSourceServerUrl, NugetApiKey);  
+            }
         }
     }
 });
@@ -189,9 +198,20 @@ Task(CheckEnvVarStage)
     }
 });
 
-private void PublishPackage (string packageId, FilePath packagePath, string nugetSourceUrl, string apiKey)
+private void PublishSymbolNugetPackage (string packageId, FilePath packagePath, string NugetSourceServerUrl, string apiKey)
+{ 
+    var nugetPushSettings = new NuGetPushSettings
+    {
+        ApiKey = apiKey,
+        Source = NugetSourceServerUrl 
+    };
+    
+    NuGetPush(packagePath.FullPath, nugetPushSettings);  
+}
+
+private void PublishSourceNugetPackage (string packageId, FilePath packagePath, string NugetSourceServerUrl, string apiKey)
 {
-    if(IsNuGetPublished(packageId, packagePath, nugetSourceUrl))
+    if(IsNugetSourcePackagePublished(packageId, packagePath, NugetSourceServerUrl))
     {
         Console.WriteLine($"{packageId} is already published. Hence this package will be skipped");
         return;
@@ -200,20 +220,20 @@ private void PublishPackage (string packageId, FilePath packagePath, string nuge
     var nugetPushSettings = new NuGetPushSettings
     {
         ApiKey = apiKey,
-        Source = nugetSourceUrl 
+        Source = NugetSourceServerUrl 
     };
     
     NuGetPush(packagePath.FullPath, nugetPushSettings);  
 }
 
-private bool IsNuGetPublished(string packageId, FilePath packagePath, string nugetSourceUrl) {
+private bool IsNugetSourcePackagePublished(string packageId, FilePath packagePath, string NugetSourceServerUrl) {
     string packageNameWithVersion = packagePath.GetFilename().ToString().Replace(".nupkg", "");
     var latestPublishedVersions = NuGetList(
         packageId,
         new NuGetListSettings 
         {
             Prerelease = true,
-            Source = new string[]{nugetSourceUrl}
+            Source = new string[]{NugetSourceServerUrl}
         }
     );
 
