@@ -2,7 +2,7 @@ using System;
 using Alternatives;
 using Xunit;
 
-namespace AlternativesTest.GeneralExtensionTests
+namespace AlternativesTests.GeneralExtensionTests
 {
     public class AppendWithSeparatorTest
     {

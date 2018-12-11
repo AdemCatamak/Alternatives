@@ -3,7 +3,7 @@ using System.Linq;
 using Alternatives.CollectionExtensions;
 using Xunit;
 
-namespace Alternatives.CollectionExtensionsTest
+namespace Alternatives.CollectionExtensionsTests
 {
     public class IsNullOrEmptyTest
     {

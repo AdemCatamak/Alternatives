@@ -1,8 +1,8 @@
-﻿using Alternatives;
-using System;
+﻿using System;
+using Alternatives;
 using Xunit;
 
-namespace AlternativesTest
+namespace AlternativesTests
 {
     public class GuardTest
     {
