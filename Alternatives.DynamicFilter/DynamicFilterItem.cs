@@ -25,20 +25,19 @@ namespace Alternatives.DynamicFilter
             CheckProperty(typeof(T));
             Type propertyType = GetPropertyType(typeof(T));
             DoesMatchPropertyTypeAndObjectType(propertyType, Value.GetType());
-            DoesOperatorCanApplied(propertyType);
 
             var operationFactory = new OperatorFactory();
             Operator.Operator operation = operationFactory.Resolve(Op);
+
+            if (!operation.DoesOperatorCanApplied(propertyType))
+            {
+                throw new InvalidOperationException($"{Op} operation could not applied this type -{propertyType.FullName}-");
+            }
+
             return operation.Apply<T>(queryable, PropertyName, Value);
         }
 
-        private void DoesOperatorCanApplied(Type propertyType)
-        {
-            if (!propertyType.IsInstanceOfType(typeof(IComparable)))
-            {
-                throw new InvalidOperationException($"{Op} does not accept {propertyType}");
-            }
-        }
+
 
         private void DoesMatchPropertyTypeAndObjectType(Type propertyType, Type objectType)
         {

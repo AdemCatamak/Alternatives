@@ -20,5 +20,16 @@ namespace Alternatives.DynamicFilter.Operator.Imp
                              .Where(comparison)
                              .AsQueryable();
         }
+
+        public override bool DoesOperatorCanApplied(Type propertyType)
+        {
+            if (!propertyType.IsInstanceOfType(typeof(IComparable)))
+            {
+                return false;
+                //throw new InvalidOperationException($"{Op} does not accept {propertyType}");
+            }
+
+            return true;
+        }
     }
 }

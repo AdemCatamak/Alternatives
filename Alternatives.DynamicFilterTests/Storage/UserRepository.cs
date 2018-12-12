@@ -19,21 +19,33 @@ namespace Alternatives.DynamicFilterTests.Storage
                                                                 Id = 1,
                                                                 Email = "1@a.com",
                                                                 SomeCount = 4,
-                                                                Attributes = JObject.Parse("{\"age\":27, \"numberOfCar\":0, \"city\" : \"istanbul\"}")
+                                                                Address = new Address()
+                                                                          {
+                                                                              City = "Istanbul",
+                                                                              Country = "Turkey"
+                                                                          }
                                                             },
                                                             new UserModel()
                                                             {
                                                                 Id = 2,
                                                                 Email = "2@a.com",
                                                                 SomeCount = 44,
-                                                                Attributes = JObject.Parse("{\"age\":45, \"numberOfCar\":2, \"city\" : \"istanbul\"}"),
+                                                                Address = new Address()
+                                                                          {
+                                                                              City = "Berlin",
+                                                                              Country = "Germany"
+                                                                          }
                                                             },
                                                             new UserModel()
                                                             {
                                                                 Id = 3,
                                                                 Email = "3@a.com",
                                                                 SomeCount = 34,
-                                                                Attributes = JObject.Parse("{\"age\":70, \"numberOfCar\":1, \"city\" : \"ankara\"}")
+                                                                Address = new Address()
+                                                                          {
+                                                                              City = "Ankara",
+                                                                              Country = "Turkey"
+                                                                          }
                                                             }
                                                         }.AsQueryable();
     };
