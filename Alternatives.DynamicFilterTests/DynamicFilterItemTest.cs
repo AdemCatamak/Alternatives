@@ -13,7 +13,6 @@ namespace Alternatives.DynamicFilterTests
     {
         [Theory]
         [InlineData(null, Operators.LessThan, 5)]
-        [InlineData("Id", (Operators) (-1), 5)]
         [InlineData("Id", Operators.LessThan, null)]
         public void WhenArgumentsIsNull_ArgumentNullExceptionShouldBeThrown(string propertyName, Operators op, object value)
         {
@@ -31,7 +30,17 @@ namespace Alternatives.DynamicFilterTests
         }
 
         [Fact]
-        public void WhenPropertyDoesNotMatchSuppliedProperty_ArgumentExceptionShouldBeThrown()
+        public void WhenOperationIsNotPreDefined_ArgumentExceptionShouldBeThrown()
+        {
+
+            Assert.Throws<ArgumentException>(() =>
+                                             {
+                                                 var dynamicFilterItem = new DynamicFilterItem(nameof(UserModel.Id), (Operators)(-1), 1);
+                                             });
+        }
+
+        [Fact]
+        public void WhenPropertyTypeDoesNotMatchSuppliedPropertyType_ArgumentExceptionShouldBeThrown()
         {
             Assert.Throws<ArgumentException>(() =>
                                              {
@@ -45,7 +54,7 @@ namespace Alternatives.DynamicFilterTests
         {
             Assert.Throws<InvalidOperationException>(() =>
                                                      {
-                                                         var dynamicFilterItem = new DynamicFilterItem(nameof(UserModel.Address), Operators.GreaterThan, new Address() {City = "Istanbul", Country = "Turkey"});
+                                                         var dynamicFilterItem = new DynamicFilterItem(nameof(UserModel.Address), Operators.GreaterThan, new Address() { City = "Istanbul", Country = "Turkey" });
                                                          dynamicFilterItem.Apply(new List<UserModel>().AsQueryable());
                                                      });
         }

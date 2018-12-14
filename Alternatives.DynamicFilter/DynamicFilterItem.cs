@@ -16,7 +16,7 @@ namespace Alternatives.DynamicFilter
             PropertyName = propertyName ?? throw new ArgumentNullException($"{nameof(propertyName)} should not be null");
             Value = value ?? throw new ArgumentNullException($"{nameof(value)} should not be null");
             if (!Enum.IsDefined(typeof(Operators), op))
-                throw new ArgumentNullException($"{nameof(op)} should not be null");
+                throw new ArgumentException($"{nameof(op)} should not be null");
             Op = op;
         }
 
